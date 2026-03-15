@@ -123,7 +123,22 @@
   * {
     @apply border-border outline-ring/50;
   }
+  
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
   body {
     @apply bg-background text-foreground;
+    touch-action: pan-y;
+  }
+  
+  /* Mobile touch improvements */
+  @media (hover: none) and (pointer: coarse) {
+    a, button {
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 }

@@ -160,22 +160,22 @@ export function ProjectsSection() {
   }, [])
 
   return (
-    <section id="projects" className="relative py-32 px-6" ref={sectionRef}>
+    <section id="projects" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6" ref={sectionRef}>
       <div className="max-w-6xl mx-auto">
         <div
           className={`transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="flex items-center gap-4 mb-12">
-            <span className="text-primary font-mono text-sm">03.</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+            <span className="text-primary font-mono text-xs sm:text-sm">03.</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               Featured Projects
             </h2>
             <div className="flex-1 h-px bg-border max-w-xs" />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.title}
@@ -203,18 +203,18 @@ function ProjectCard({
   return (
     <div
       className={cn(
-        "group relative p-6 bg-card border border-border rounded-2xl transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.15)]",
+        "group relative p-4 sm:p-6 bg-card border border-border rounded-2xl transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.15)]",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="text-primary mb-4 group-hover:drop-shadow-[0_0_8px_rgba(100,200,220,0.6)] transition-all">
+      <div className="text-primary mb-3 sm:mb-4 group-hover:drop-shadow-[0_0_8px_rgba(100,200,220,0.6)] transition-all">
         {project.icon}
       </div>
-      <h3 className="text-xl font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
+      <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
         {project.title}
       </h3>
-      <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
+      <p className="text-muted-foreground text-xs sm:text-sm mb-3 sm:mb-4 leading-relaxed">
         {project.description}
       </p>
       <div className="flex flex-wrap gap-2">

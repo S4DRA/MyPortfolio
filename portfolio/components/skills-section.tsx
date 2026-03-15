@@ -47,7 +47,7 @@ export function SkillsSection() {
   return (
     <section
       id="skills"
-      className="relative py-32 px-6 bg-secondary/20"
+      className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/20"
       ref={sectionRef}
     >
       <div className="max-w-6xl mx-auto">
@@ -56,18 +56,18 @@ export function SkillsSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="flex items-center gap-4 mb-12">
-            <span className="text-primary font-mono text-sm">02.</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+            <span className="text-primary font-mono text-xs sm:text-sm">02.</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
               Skills & Technologies
             </h2>
             <div className="flex-1 h-px bg-border max-w-xs" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
             {/* Programming Languages */}
-            <div className="space-y-8">
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+            <div className="space-y-6 sm:space-y-8">
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
                 Programming Languages
               </h3>
               {skills.programming.map((skill, index) => (
@@ -96,15 +96,15 @@ export function SkillsSection() {
 
             {/* Technologies */}
             <div>
-              <h3 className="text-xl font-semibold text-foreground mb-6">
+              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
                 Technologies
               </h3>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {skills.technologies.map((tech, index) => (
                   <span
                     key={tech}
                     className={cn(
-                      "px-4 py-2 bg-card border border-border rounded-lg text-sm text-foreground transition-all duration-500 hover:border-primary hover:shadow-[0_0_15px_rgba(100,200,220,0.2)]",
+                      "px-3 py-1.5 sm:px-4 sm:py-2 bg-card border border-border rounded-lg text-xs sm:text-sm text-foreground transition-all duration-500 hover:border-primary hover:shadow-[0_0_15px_rgba(100,200,220,0.2)]",
                       isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-4"
