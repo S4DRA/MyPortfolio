@@ -1,25 +1,44 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import { AnimatedPageLink } from "@/components/animated-page-link"
 import { cn } from "@/lib/utils"
+import { portfolioPages } from "@/lib/portfolio-pages"
 
-const navItems = [
-  { label: "Home", href: "#hero" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+type NavItem = {
+  label: string
+  href: string
+  section?: string
+}
+
+const navItems: NavItem[] = [
+  { label: "Home", href: "/", section: "hero" },
+  { label: "Projects", href: "/#projects", section: "projects" },
+  { label: "Contact", href: "/#contact", section: "contact" },
+  ...portfolioPages.map((page) => ({
+    label: page.title,
+    href: page.href,
+  })),
 ]
 
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
+  const pathname = usePathname()
+  const isHomePage = pathname === "/"
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
 
-      const sections = navItems.map((item) => item.href.slice(1))
+      if (!isHomePage) return
+
+      const sections = navItems
+        .map((item) => item.section)
+        .filter((section): section is string => Boolean(section))
+
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section)
         if (element) {
@@ -32,8 +51,15 @@ export function Navigation() {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [isHomePage])
+
+  const isActive = (item: NavItem) => {
+    if (item.href === pathname) return true
+    if (isHomePage && item.section) return activeSection === item.section
+    return false
+  }
 
   return (
     <nav
@@ -46,41 +72,57 @@ export function Navigation() {
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
         <div className="flex items-center justify-between">
-          <a
-            href="#hero"
+          <Link
+            href="/"
             className="text-xl font-bold text-foreground tracking-tight hover:text-primary transition-colors"
           >
             SA
-          </a>
-          <ul className="hidden md:flex items-center gap-8">
+          </Link>
+          <ul className="hidden lg:flex items-center gap-4 xl:gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium transition-all duration-200 hover:text-primary",
-                    activeSection === item.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {item.label}
-                </a>
+                {item.section ? (
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "text-sm font-medium transition-all duration-200 hover:text-primary",
+                      isActive(item) ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <AnimatedPageLink
+                    href={item.href}
+                    className={cn(
+                      "text-sm font-medium transition-all duration-200 hover:text-primary",
+                      isActive(item) ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {item.label}
+                  </AnimatedPageLink>
+                )}
               </li>
             ))}
           </ul>
-          <MobileMenu activeSection={activeSection} />
+          <MobileMenu activeSection={activeSection} pathname={pathname} />
         </div>
       </div>
     </nav>
   )
 }
 
-function MobileMenu({ activeSection }: { activeSection: string }) {
+function MobileMenu({
+  activeSection,
+  pathname,
+}: {
+  activeSection: string
+  pathname: string
+}) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-foreground p-2"
@@ -114,18 +156,34 @@ function MobileMenu({ activeSection }: { activeSection: string }) {
           <ul className="flex flex-col p-6 gap-4">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={cn(
-                    "text-lg font-medium transition-colors",
-                    activeSection === item.href.slice(1)
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
-                  )}
-                >
-                  {item.label}
-                </a>
+                {item.section ? (
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className={cn(
+                      "text-lg font-medium transition-colors",
+                      pathname === item.href ||
+                        (pathname === "/" && item.section === activeSection)
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <AnimatedPageLink
+                    href={item.href}
+                    className={cn(
+                      "text-lg font-medium transition-colors",
+                      pathname === item.href ||
+                        (pathname === "/" && item.section === activeSection)
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-primary"
+                    )}
+                  >
+                    {item.label}
+                  </AnimatedPageLink>
+                )}
               </li>
             ))}
           </ul>

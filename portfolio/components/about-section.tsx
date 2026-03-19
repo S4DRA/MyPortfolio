@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 
 export function AboutSection() {
@@ -61,15 +62,26 @@ export function AboutSection() {
             </div>
 
             <div className="relative">
-              <div className="relative z-10 p-6 sm:p-8 bg-card border border-border rounded-2xl">
-                <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                  <StatItem label="University" value="BAU Istanbul" />
-                  <StatItem label="Field" value="Computer Eng." />
-                  <StatItem label="Focus" value="AI & Game Dev" />
-                  <StatItem label="Location" value="Istanbul, TR" />
+              <div className="relative z-10 overflow-hidden rounded-[2rem] border border-border bg-card/80 p-4 backdrop-blur-sm sm:p-5">
+                <div className="grid gap-5">
+                  <div className="relative overflow-hidden rounded-[1.5rem] border border-border/70 bg-secondary/20">
+                    <div className="absolute inset-0 z-10 bg-gradient-to-t from-background/50 via-transparent to-transparent" />
+                    <Image
+                      src="/myPhoto.jpg"
+                      alt="Portrait of Sadra Ahadiyan"
+                      width={900}
+                      height={1100}
+                      className="aspect-[4/5] w-full object-cover object-center grayscale-[8%]"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                    <StatItem label="University" value="BAU Istanbul" />
+                    <StatItem label="Field" value="Computer Eng." />
+                    <StatItem label="Focus" value="AI & Game Dev" />
+                    <StatItem label="Location" value="Istanbul, TR" />
+                  </div>
                 </div>
               </div>
-              {/* Glow effect */}
               <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent rounded-2xl blur-xl opacity-50" />
             </div>
           </div>

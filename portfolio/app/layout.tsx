@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import type { Viewport } from 'next'
+import { PageTransitionProvider } from '@/components/page-transition-provider'
 import './globals.css'
-
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -29,8 +26,8 @@ export const metadata: Metadata = {
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.jpg',
-        type: 'image/svg+xml',
+        url: '/icon.JPG',
+        type: 'image/jpeg',
       },
     ],
     apple: '/apple-icon.png',
@@ -45,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        {children}
+        <PageTransitionProvider>{children}</PageTransitionProvider>
         <Analytics />
       </body>
     </html>
