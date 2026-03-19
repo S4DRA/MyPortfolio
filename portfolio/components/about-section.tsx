@@ -74,7 +74,7 @@ export function AboutSection() {
                       className="aspect-[4/5] w-full object-cover object-center grayscale-[8%]"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4 sm:gap-6">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                     <StatItem label="University" value="BAU Istanbul" />
                     <StatItem label="Field" value="Computer Eng." />
                     <StatItem label="Focus" value="AI & Game Dev" />

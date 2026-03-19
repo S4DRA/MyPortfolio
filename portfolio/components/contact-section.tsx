@@ -35,12 +35,12 @@ export function ContactSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
           }`}
         >
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-            <div className="flex-1 h-px bg-border max-w-[60px] sm:max-w-[100px]" />
-            <span className="text-primary font-mono text-xs sm:text-sm">04.</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground whitespace-nowrap">
-              Get In Touch
-            </h2>
+            <div className="mb-6 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4">
+              <div className="flex-1 h-px bg-border max-w-[60px] sm:max-w-[100px]" />
+              <span className="text-primary font-mono text-xs sm:text-sm">04.</span>
+              <h2 className="text-xl font-bold text-foreground sm:text-3xl md:text-4xl">
+                Get In Touch
+              </h2>
             <div className="flex-1 h-px bg-border max-w-[60px] sm:max-w-[100px]" />
           </div>
 
@@ -52,11 +52,11 @@ export function ContactSection() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             <a
               href="mailto:sadra.ahadiyan@bahcesehir.edu.tr "
-              className="group p-6 bg-card border border-border rounded-2xl transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.15)]"
+              className="group p-4 sm:p-6 bg-card border border-border rounded-2xl transition-all duration-300 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.15)]"
             >
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
                 <svg
-                  className="w-6 h-6 text-primary group-hover:drop-shadow-[0_0_8px_rgba(100,200,220,0.6)] transition-all"
+                  className="h-5 w-5 text-primary transition-all group-hover:drop-shadow-[0_0_8px_rgba(100,200,220,0.6)] sm:h-6 sm:w-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -68,9 +68,9 @@ export function ContactSection() {
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <div className="text-left">
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="text-foreground font-medium group-hover:text-primary transition-colors">
+                <div className="text-center sm:text-left">
+                  <p className="text-xs sm:text-sm text-muted-foreground">Email</p>
+                  <p className="break-all text-sm font-medium text-foreground transition-colors group-hover:text-primary sm:text-base">
                     sadra.ahadiyan@bahcesehir.edu.tr
                   </p>
                 </div>

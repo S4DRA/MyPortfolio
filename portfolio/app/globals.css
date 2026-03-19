@@ -126,6 +126,7 @@
   }
   
   html {
+    font-size: clamp(12.5px, 0.55vw + 10px, 16px);
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -161,5 +162,9 @@
     a, button {
       -webkit-tap-highlight-color: transparent;
     }
+  }
+
+  nextjs-portal {
+    display: none !important;
   }
 }

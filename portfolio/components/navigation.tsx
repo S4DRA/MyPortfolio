@@ -78,7 +78,7 @@ export function Navigation() {
           >
             SA
           </Link>
-          <ul className="hidden lg:flex items-center gap-4 xl:gap-6">
+          <ul className="hidden xl:flex items-center gap-4 2xl:gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 {item.section ? (
@@ -122,7 +122,7 @@ function MobileMenu({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="text-foreground p-2"
