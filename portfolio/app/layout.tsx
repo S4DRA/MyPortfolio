@@ -16,20 +16,7 @@ export const metadata: Metadata = {
   description: 'Portfolio of Sadra Ahadiyan - Computer Engineering Student specializing in AI, Computer Vision, and Game Development',
   generator: 'v0.app',
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.JPG',
-        type: 'image/jpeg',
-      },
-    ],
+    icon: '/rootonset.png',
     apple: '/apple-icon.png',
   },
 }
