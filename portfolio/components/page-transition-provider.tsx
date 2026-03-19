@@ -58,7 +58,7 @@ export function PageTransitionProvider({
 
       coverTimeoutRef.current = window.setTimeout(() => {
         router.push(href)
-      }, 520)
+      }, 780)
     },
     [clearTimers, isTransitioning, pathname, router]
   )
@@ -76,7 +76,7 @@ export function PageTransitionProvider({
       setIsTransitioning(false)
       pendingPathRef.current = null
       setDestinationHref(null)
-    }, 700)
+    }, 520)
 
     return () => window.cancelAnimationFrame(frame)
   }, [isTransitioning, pathname])
@@ -97,15 +97,15 @@ export function PageTransitionProvider({
       {children}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-[100] overflow-hidden transition-opacity duration-300 ${
+        className={`pointer-events-none fixed inset-0 z-[100] overflow-hidden transition-opacity duration-150 ${
           phase === "idle" ? "opacity-0" : "opacity-100"
         }`}
       >
         <div
-          className={`absolute inset-0 bg-background/95 backdrop-blur-xl transition-all duration-700 ease-[cubic-bezier(0.77,0,0.175,1)] ${
+          className={`absolute inset-0 bg-background/30 backdrop-blur-2xl transition-all duration-[620ms] ease-[cubic-bezier(0.77,0,0.175,1)] ${
             phase === "cover"
               ? "translate-y-0 scale-100"
-              : "-translate-y-full scale-105"
+              : "-translate-y-full scale-[1.02]"
           }`}
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(100,200,220,0.32),transparent_40%),radial-gradient(circle_at_bottom,rgba(125,160,255,0.12),transparent_35%),linear-gradient(180deg,rgba(6,12,25,0.98),rgba(6,12,25,0.92))]" />
@@ -115,17 +115,17 @@ export function PageTransitionProvider({
             }`}
           />
           <div
-            className={`absolute inset-x-0 top-1/2 mx-auto h-48 w-48 -translate-y-1/2 rounded-full bg-primary/15 blur-3xl transition-all duration-700 ${
-              phase === "cover" ? "scale-125 opacity-100" : "scale-75 opacity-0"
+            className={`absolute inset-x-0 top-1/2 mx-auto h-48 w-48 -translate-y-1/2 rounded-full bg-primary/12 blur-3xl transition-all duration-[620ms] ${
+              phase === "cover" ? "scale-125 opacity-100" : "scale-90 opacity-0"
             }`}
           />
           <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.03)_35%,transparent_70%)]" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div
-              className={`text-center transition-all duration-700 ${
+              className={`text-center transition-all duration-[620ms] ${
                 phase === "cover"
                   ? "translate-y-0 scale-100 opacity-100"
-                  : "-translate-y-4 scale-95 opacity-0"
+                  : "-translate-y-8 scale-96 opacity-0"
               }`}
             >
               <p className="text-xs uppercase tracking-[0.6em] text-primary/80 sm:text-sm">
