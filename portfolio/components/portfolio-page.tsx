@@ -53,7 +53,7 @@ export function PortfolioPage({
             }`}
           >
             <div className="max-w-3xl">
-              <span className="inline-flex rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-xs font-medium tracking-[0.25em] text-primary uppercase">
+              <span className="inline-flex rounded-full border border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] px-4 py-2 text-xs font-medium tracking-[0.25em] text-primary uppercase shadow-[0_0_20px_rgba(255,31,106,0.1)]">
                 {eyebrow}
               </span>
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-balance sm:text-5xl md:text-6xl">
@@ -70,7 +70,7 @@ export function PortfolioPage({
             {metrics.map((metric) => (
               <div
                 key={metric.label}
-                className="rounded-2xl border border-border bg-card/70 p-5 backdrop-blur-sm"
+                className="rootonset-surface rootonset-outline rounded-2xl border p-5 backdrop-blur-sm"
               >
                 <p className="text-sm text-muted-foreground">{metric.label}</p>
                 <p className="mt-2 text-xl font-semibold text-foreground">
@@ -87,7 +87,7 @@ export function PortfolioPage({
           {sections.map((section) => (
             <div
               key={section.title}
-              className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur-sm sm:p-8"
+                className="rootonset-surface rootonset-outline rounded-3xl border p-6 backdrop-blur-sm sm:p-8"
             >
               <h2 className="text-2xl font-semibold text-foreground">
                 {section.title}
@@ -99,7 +99,7 @@ export function PortfolioPage({
                 {section.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-2xl border border-border/80 bg-background/50 px-4 py-3 text-sm text-secondary-foreground sm:text-base"
+                    className="rounded-2xl border border-white/10 bg-background/35 px-4 py-3 text-sm text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] sm:text-base"
                   >
                     {item}
                   </li>
@@ -125,7 +125,7 @@ export function PortfolioPage({
             {showcases.map((card) => (
               <article
                 key={card.title}
-                className="rounded-3xl border border-border bg-card/70 p-6 transition-colors hover:border-primary/40"
+                className="rootonset-surface rootonset-outline rounded-3xl border p-6 transition-colors hover:border-primary/40 hover:shadow-[0_0_34px_rgba(255,31,106,0.14)]"
               >
                 <h3 className="text-xl font-semibold text-foreground">
                   {card.title}
@@ -137,7 +137,7 @@ export function PortfolioPage({
                   {card.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+                        className="rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] px-3 py-1 text-xs font-medium text-primary"
                     >
                       {tag}
                     </span>
@@ -147,7 +147,7 @@ export function PortfolioPage({
             ))}
           </div>
 
-          <div className="mt-12 flex flex-col gap-4 rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="rootonset-surface rootonset-glow mt-12 flex flex-col gap-4 rounded-3xl border border-primary/20 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
               <h3 className="text-xl font-semibold text-foreground">
                 Want to explore more of the portfolio?
@@ -159,7 +159,7 @@ export function PortfolioPage({
             </div>
             <AnimatedPageLink
               href="/"
-              className="inline-flex items-center justify-center rounded-xl bg-primary px-5 py-3 font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center rounded-xl bg-[linear-gradient(180deg,rgba(255,66,118,1),rgba(117,18,255,1))] px-5 py-3 font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(255,31,106,0.34)]"
             >
               Back to Home
             </AnimatedPageLink>

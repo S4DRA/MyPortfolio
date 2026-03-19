@@ -18,7 +18,7 @@ export function PagesSection() {
             <AnimatedPageLink
               key={page.href}
               href={page.href}
-              className="group rounded-3xl border border-border bg-card/70 p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.12)] sm:p-6"
+              className="rootonset-surface rootonset-outline group rounded-3xl border p-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_0_34px_rgba(255,31,106,0.16)] sm:p-6"
             >
               <p className="text-base font-semibold text-foreground transition-colors group-hover:text-primary sm:text-lg">
                 {page.title}

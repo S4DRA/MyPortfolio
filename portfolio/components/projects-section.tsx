@@ -203,12 +203,12 @@ function ProjectCard({
   return (
     <div
       className={cn(
-        "group relative p-4 sm:p-6 bg-card border border-border rounded-2xl transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_30px_rgba(100,200,220,0.15)]",
+        "rootonset-surface rootonset-outline group relative rounded-2xl border p-4 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_34px_rgba(255,31,106,0.16)] sm:p-6",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="text-primary mb-3 sm:mb-4 group-hover:drop-shadow-[0_0_8px_rgba(100,200,220,0.6)] transition-all">
+      <div className="mb-3 text-primary transition-all group-hover:drop-shadow-[0_0_10px_rgba(255,31,106,0.45)] sm:mb-4">
         {project.icon}
       </div>
       <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
@@ -221,7 +221,7 @@ function ProjectCard({
         {project.tags.map((tag) => (
           <span
             key={tag}
-            className="px-2 py-1 text-xs font-mono text-primary/80 bg-primary/10 rounded"
+            className="rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] px-2.5 py-1 text-xs font-mono text-primary/85"
           >
             {tag}
           </span>

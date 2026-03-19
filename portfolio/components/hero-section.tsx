@@ -66,7 +66,7 @@ export function HeroSection() {
           }`}
         >
           <div className="mx-auto mb-6 w-full max-w-[170px] sm:mb-8 sm:max-w-[220px] lg:mb-10 lg:max-w-[320px]">
-            <div className="relative overflow-hidden rounded-[1.8rem] border border-border/80 bg-card/70 p-2 backdrop-blur-sm shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
+            <div className="rootonset-surface rootonset-outline rootonset-glow relative overflow-hidden rounded-[1.8rem] border p-2 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-t from-background/35 via-transparent to-transparent" />
               <Image
                 src="/myPhoto.jpg"
@@ -80,7 +80,7 @@ export function HeroSection() {
           </div>
           <h1 className="px-2 text-[clamp(2.8rem,12vw,8.2rem)] font-bold leading-[0.92] tracking-tight text-balance text-foreground">
             Sadra{" "}
-            <span className="text-primary drop-shadow-[0_0_25px_rgba(100,200,220,0.5)]">
+            <span className="chrome-text drop-shadow-[0_0_25px_rgba(255,31,106,0.18)]">
               Ahadiyan
             </span>
           </h1>
@@ -117,7 +117,7 @@ export function HeroSection() {
               <AnimatedPageLink
                 key={page.href}
                 href={page.href}
-                className="rounded-full border border-border bg-background/65 px-4 py-2.5 text-xs font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary hover:shadow-[0_0_30px_rgba(100,200,220,0.18)] sm:px-6 sm:py-3 sm:text-base"
+                className="rootonset-surface rootonset-outline rounded-full border px-4 py-2.5 text-xs font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary hover:shadow-[0_0_34px_rgba(255,31,106,0.18)] sm:px-6 sm:py-3 sm:text-base"
               >
                 {page.title}
               </AnimatedPageLink>
@@ -135,14 +135,14 @@ export function HeroSection() {
           <div className="flex flex-col items-center justify-center gap-3 px-2 sm:flex-row sm:gap-4 sm:px-4">
             <a
               href="#projects"
-              className="group relative w-full max-w-xs overflow-hidden rounded-lg bg-primary px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_30px_rgba(100,200,220,0.4)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
+              className="group relative w-full max-w-xs overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(255,66,118,1),rgba(117,18,255,1))] px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_34px_rgba(255,31,106,0.34)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
             >
               <span className="relative z-10">View My Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 transition-opacity group-hover:opacity-100" />
             </a>
             <a
               href="#contact"
-              className="w-full max-w-xs rounded-lg border border-border px-6 py-3 font-medium text-foreground transition-all duration-300 hover:border-primary hover:text-primary sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
+              className="rootonset-surface rootonset-outline w-full max-w-xs rounded-lg border px-6 py-3 font-medium text-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_28px_rgba(120,30,255,0.18)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
             >
               Get In Touch
             </a>
