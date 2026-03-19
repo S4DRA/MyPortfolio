@@ -104,7 +104,7 @@ export function SkillsSection() {
                   <span
                     key={tech}
                     className={cn(
-                        "rootonset-surface rootonset-outline px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg text-xs sm:text-sm text-foreground transition-all duration-500 hover:border-primary hover:shadow-[0_0_20px_rgba(255,31,106,0.16)]",
+                        "rootonset-surface rootonset-outline px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg text-xs sm:text-sm text-foreground transition-all duration-500 hover:border-primary hover:shadow-[0_0_20px_rgba(229,231,235,0.14)]",
                       isVisible
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-4"

@@ -108,9 +108,9 @@ export function PageTransitionProvider({
               : "-translate-y-full scale-[1.02]"
           }`}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(100,200,220,0.32),transparent_40%),radial-gradient(circle_at_bottom,rgba(125,160,255,0.12),transparent_35%),linear-gradient(180deg,rgba(6,12,25,0.98),rgba(6,12,25,0.92))]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(117,196,255,0.24),transparent_36%),radial-gradient(circle_at_bottom,rgba(76,121,255,0.18),transparent_34%),linear-gradient(180deg,rgba(23,34,63,0.98),rgba(14,18,29,0.95))]" />
           <div
-            className={`absolute inset-x-0 top-1/2 mx-auto h-px bg-primary shadow-[0_0_25px_rgba(100,200,220,0.75)] transition-[width,opacity] duration-700 ease-out ${
+            className={`absolute inset-x-0 top-1/2 mx-auto h-px bg-primary shadow-[0_0_30px_rgba(84,146,255,0.72)] transition-[width,opacity] duration-700 ease-out ${
               phase === "cover" ? "w-full opacity-100" : "w-0 opacity-0"
             }`}
           />

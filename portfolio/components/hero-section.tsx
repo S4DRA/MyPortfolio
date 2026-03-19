@@ -48,15 +48,15 @@ export function HeroSection() {
       className="relative flex min-h-screen items-center justify-center px-4 py-28 sm:px-6 sm:py-32"
     >
       {showZoomPopup ? (
-        <div className="fixed top-20 left-1/2 z-40 hidden w-[min(calc(100%-2rem),28rem)] -translate-x-1/2 rounded-2xl border border-amber-300/30 bg-[rgba(29,18,8,0.88)] px-5 py-4 text-center shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:block">
-          <p className="text-sm font-semibold text-amber-100">
+        <div className="fixed top-20 left-1/2 z-40 hidden w-[min(calc(100%-2rem),28rem)] -translate-x-1/2 rounded-2xl border border-white/15 bg-[rgba(40,40,46,0.88)] px-5 py-4 text-center shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:block">
+          <p className="text-sm font-semibold text-slate-100">
             Zoom out to view all content (80% zoom recommended)
           </p>
         </div>
       ) : null}
 
       <div className="relative z-10 mx-auto max-w-5xl text-center">
-        <div className="absolute inset-x-0 top-1/2 -z-10 mx-auto h-64 w-64 -translate-y-1/2 rounded-full bg-primary/16 blur-3xl sm:h-80 sm:w-80 lg:h-[32rem] lg:w-[32rem]" />
+        <div className="absolute inset-x-0 top-1/2 -z-10 mx-auto h-64 w-64 -translate-y-1/2 rounded-full bg-primary/25 blur-3xl sm:h-80 sm:w-80 lg:h-[32rem] lg:w-[32rem]" />
 
         <div
           className={`transition-all duration-500 ${
@@ -80,7 +80,7 @@ export function HeroSection() {
           </div>
           <h1 className="px-2 text-[clamp(2.8rem,12vw,8.2rem)] font-bold leading-[0.92] tracking-tight text-balance text-foreground">
             Sadra{" "}
-            <span className="chrome-text drop-shadow-[0_0_25px_rgba(255,31,106,0.18)]">
+            <span className="chrome-text drop-shadow-[0_0_25px_rgba(116,153,226,0.18)]">
               Ahadiyan
             </span>
           </h1>
@@ -117,7 +117,7 @@ export function HeroSection() {
               <AnimatedPageLink
                 key={page.href}
                 href={page.href}
-                className="rootonset-surface rootonset-outline rounded-full border px-4 py-2.5 text-xs font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary hover:shadow-[0_0_34px_rgba(255,31,106,0.18)] sm:px-6 sm:py-3 sm:text-base"
+                className="rootonset-surface rootonset-outline neon-navy-glow rounded-full border px-4 py-2.5 text-xs font-medium text-foreground backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:text-primary hover:shadow-[0_0_34px_rgba(84,146,255,0.26)] sm:px-6 sm:py-3 sm:text-base"
               >
                 {page.title}
               </AnimatedPageLink>
@@ -135,14 +135,14 @@ export function HeroSection() {
           <div className="flex flex-col items-center justify-center gap-3 px-2 sm:flex-row sm:gap-4 sm:px-4">
             <a
               href="#projects"
-              className="group relative w-full max-w-xs overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(255,66,118,1),rgba(117,18,255,1))] px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_34px_rgba(255,31,106,0.34)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
+              className="group relative w-full max-w-xs overflow-hidden rounded-lg bg-[linear-gradient(180deg,rgba(124,196,255,1),rgba(48,93,214,1)_52%,rgba(17,33,74,1))] px-6 py-3 font-medium text-primary-foreground transition-all duration-300 hover:shadow-[0_0_38px_rgba(66,123,255,0.36)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
             >
               <span className="relative z-10">View My Work</span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80 opacity-0 transition-opacity group-hover:opacity-100" />
             </a>
             <a
               href="#contact"
-              className="rootonset-surface rootonset-outline w-full max-w-xs rounded-lg border px-6 py-3 font-medium text-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_28px_rgba(120,30,255,0.18)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
+              className="rootonset-surface rootonset-outline w-full max-w-xs rounded-lg border px-6 py-3 font-medium text-foreground transition-all duration-300 hover:border-primary hover:text-primary hover:shadow-[0_0_28px_rgba(84,112,170,0.2)] sm:w-auto sm:max-w-none sm:px-8 sm:py-4"
             >
               Get In Touch
             </a>

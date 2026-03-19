@@ -53,7 +53,7 @@ export function PortfolioPage({
             }`}
           >
             <div className="max-w-3xl">
-              <span className="inline-flex rounded-full border border-white/15 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] px-4 py-2 text-xs font-medium tracking-[0.25em] text-primary uppercase shadow-[0_0_20px_rgba(255,31,106,0.1)]">
+              <span className="inline-flex rounded-full border border-primary/20 bg-[linear-gradient(180deg,rgba(151,205,255,0.12),rgba(255,255,255,0.02))] px-4 py-2 text-xs font-medium tracking-[0.25em] text-primary uppercase shadow-[0_0_20px_rgba(84,146,255,0.18)]">
                 {eyebrow}
               </span>
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-balance sm:text-5xl md:text-6xl">
@@ -125,7 +125,7 @@ export function PortfolioPage({
             {showcases.map((card) => (
               <article
                 key={card.title}
-                className="rootonset-surface rootonset-outline rounded-3xl border p-6 transition-colors hover:border-primary/40 hover:shadow-[0_0_34px_rgba(255,31,106,0.14)]"
+                className="rootonset-surface rootonset-outline neon-navy-glow rounded-3xl border p-6 transition-colors hover:border-primary/50 hover:shadow-[0_0_34px_rgba(84,146,255,0.24)]"
               >
                 <h3 className="text-xl font-semibold text-foreground">
                   {card.title}
@@ -137,7 +137,7 @@ export function PortfolioPage({
                   {card.tags.map((tag) => (
                     <span
                       key={tag}
-                        className="rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] px-3 py-1 text-xs font-medium text-primary"
+                        className="rounded-full border border-primary/20 bg-[linear-gradient(180deg,rgba(151,205,255,0.12),rgba(255,255,255,0.02))] px-3 py-1 text-xs font-medium text-primary"
                     >
                       {tag}
                     </span>
@@ -159,7 +159,7 @@ export function PortfolioPage({
             </div>
             <AnimatedPageLink
               href="/"
-              className="inline-flex items-center justify-center rounded-xl bg-[linear-gradient(180deg,rgba(255,66,118,1),rgba(117,18,255,1))] px-5 py-3 font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-[0_0_34px_rgba(255,31,106,0.34)]"
+              className="inline-flex items-center justify-center rounded-xl bg-[linear-gradient(180deg,rgba(124,196,255,1),rgba(48,93,214,1)_52%,rgba(17,33,74,1))] px-5 py-3 font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(66,123,255,0.34)]"
             >
               Back to Home
             </AnimatedPageLink>

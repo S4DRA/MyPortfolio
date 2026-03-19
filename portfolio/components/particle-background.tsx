@@ -58,8 +58,8 @@ export function ParticleBackground() {
 
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        const hue = 320 + (particle.x / canvas.width) * 40
-        ctx.fillStyle = `hsla(${hue}, 90%, 62%, ${particle.opacity})`
+        const lightness = 62 + (particle.x / canvas.width) * 14
+        ctx.fillStyle = `hsla(220, 32%, ${lightness}%, ${particle.opacity})`
         ctx.fill()
 
         // Draw connections between nearby particles
@@ -72,8 +72,8 @@ export function ParticleBackground() {
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            const glowHue = 300 + (otherParticle.y / canvas.height) * 50
-            ctx.strokeStyle = `hsla(${glowHue}, 85%, 68%, ${0.12 * (1 - distance / 120)})`
+            const glowLightness = 58 + (otherParticle.y / canvas.height) * 16
+            ctx.strokeStyle = `hsla(220, 34%, ${glowLightness}%, ${0.12 * (1 - distance / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }

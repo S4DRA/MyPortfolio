@@ -66,7 +66,7 @@ export function Navigation() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-white/10 bg-background/78 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+          ? "border-b border-primary/20 bg-background/78 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_22px_rgba(66,123,255,0.12)]"
           : "bg-transparent"
       )}
     >
@@ -85,7 +85,7 @@ export function Navigation() {
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(255,31,106,0.35)]",
+                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(84,146,255,0.34)]",
                       isActive(item) ? "text-primary" : "text-muted-foreground"
                     )}
                   >
@@ -95,7 +95,7 @@ export function Navigation() {
                   <AnimatedPageLink
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(255,31,106,0.35)]",
+                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(84,146,255,0.34)]",
                       isActive(item) ? "text-primary" : "text-muted-foreground"
                     )}
                   >
@@ -152,7 +152,7 @@ function MobileMenu({
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 border-b border-white/10 bg-background/92 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.4)]">
+        <div className="absolute top-full left-0 right-0 border-b border-primary/20 bg-background/92 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.4),0_0_24px_rgba(66,123,255,0.12)]">
           <ul className="flex flex-col p-6 gap-4">
             {navItems.map((item) => (
               <li key={item.href}>

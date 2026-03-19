@@ -203,12 +203,12 @@ function ProjectCard({
   return (
     <div
       className={cn(
-        "rootonset-surface rootonset-outline group relative rounded-2xl border p-4 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_34px_rgba(255,31,106,0.16)] sm:p-6",
+        "rootonset-surface rootonset-outline group relative rounded-2xl border p-4 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_34px_rgba(229,231,235,0.14)] sm:p-6",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="mb-3 text-primary transition-all group-hover:drop-shadow-[0_0_10px_rgba(255,31,106,0.45)] sm:mb-4">
+      <div className="mb-3 text-primary transition-all group-hover:drop-shadow-[0_0_10px_rgba(229,231,235,0.28)] sm:mb-4">
         {project.icon}
       </div>
       <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-2 sm:mb-3 group-hover:text-primary transition-colors">
