@@ -30,28 +30,30 @@ export default function WebsiteDesignPage() {
           ],
         },
         {
-          title: "Possible Content",
+          title: "Current Sample",
           description:
-            "This page is ready for case studies, mockups, and redesign work as more projects are added.",
+            "This section now includes a real interface sample instead of only placeholder directions.",
           items: [
-            "Landing page concepts with strong messaging and conversion paths.",
-            "Portfolio and studio websites designed around storytelling.",
-            "Dashboard or product interface explorations for more complex systems.",
+            "A product-focused landing page built around headline clarity and fast scanning.",
+            "Clear brand sections that separate trust signals, feature messaging, and conversion prompts.",
+            "A balance of visual marketing energy and structured information blocks.",
           ],
         },
       ]}
       showcases={[
         {
+          title: "Exairon Website Sample",
+          description:
+            "This sample presents a landing page for Exairon with a strong hero section, partner logos, and feature-led messaging. The dark blue and orange contrast gives it a clear brand identity, while the structure supports quick reading through headline, proof, and product explanation sections.",
+          tags: ["Landing Page", "Product Website", "Branding"],
+          imageSrc: "/website-1.png",
+          imageAlt: "Exairon website landing page sample",
+        },
+        {
           title: "Portfolio Experience",
           description:
             "A polished personal site direction that mixes atmosphere, motion, and project-first storytelling.",
           tags: ["Portfolio", "Motion", "Storytelling"],
-        },
-        {
-          title: "Startup Landing Page",
-          description:
-            "A clean marketing page layout built to introduce a product quickly and move visitors toward action.",
-          tags: ["Landing Page", "Conversion", "Branding"],
         },
         {
           title: "Creative Studio Site",
