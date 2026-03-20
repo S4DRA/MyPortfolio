@@ -2,13 +2,25 @@
 
 import { useEffect, useRef } from "react"
 
-interface Particle {
-  x: number
-  y: number
-  vx: number
-  vy: number
+type Ribbon = {
+  baseY: number
+  amplitude: number
+  speed: number
+  thickness: number
+  hue: number
+  alpha: number
+  offset: number
+}
+
+type Orb = {
+  radius: number
+  angle: number
+  speed: number
+  orbitX: number
+  orbitY: number
   size: number
-  opacity: number
+  hue: number
+  alpha: number
 }
 
 export function ParticleBackground() {
@@ -22,109 +34,158 @@ export function ParticleBackground() {
     if (!ctx) return
 
     let animationId = 0
-    let particles: Particle[] = []
+    let ribbons: Ribbon[] = []
+    let orbs: Orb[] = []
+    let frame = 0
 
     const resize = () => {
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
     }
 
-    const createParticles = () => {
-      const particleCount = Math.floor((canvas.width * canvas.height) / 10500)
-      particles = []
+    const createScene = () => {
+      const ribbonCount = Math.max(4, Math.floor(canvas.height / 220))
+      ribbons = Array.from({ length: ribbonCount }, (_, index) => ({
+        baseY: ((index + 1) / (ribbonCount + 1)) * canvas.height,
+        amplitude: 26 + Math.random() * 22,
+        speed: 0.0022 + Math.random() * 0.0015,
+        thickness: 50 + Math.random() * 36,
+        hue: 318 + Math.random() * 34,
+        alpha: 0.05 + Math.random() * 0.05,
+        offset: Math.random() * Math.PI * 2,
+      }))
 
-      for (let i = 0; i < particleCount; i += 1) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.28,
-          vy: (Math.random() - 0.5) * 0.28,
-          size: Math.random() * 2.3 + 0.6,
-          opacity: Math.random() * 0.32 + 0.22,
-        })
-      }
+      orbs = Array.from({ length: 6 }, (_, index) => ({
+        radius: 90 + index * 28 + Math.random() * 24,
+        angle: Math.random() * Math.PI * 2,
+        speed: 0.0018 + Math.random() * 0.0015,
+        orbitX: canvas.width * (0.35 + Math.random() * 0.3),
+        orbitY: canvas.height * (0.24 + Math.random() * 0.34),
+        size: 110 + Math.random() * 70,
+        hue: 330 + Math.random() * 20,
+        alpha: 0.035 + Math.random() * 0.03,
+      }))
     }
 
-    const drawParticles = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+    const drawBackdrop = () => {
+      const background = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      background.addColorStop(0, "rgba(255, 255, 255, 0.98)")
+      background.addColorStop(0.5, "rgba(248, 248, 248, 0.96)")
+      background.addColorStop(1, "rgba(241, 241, 241, 0.98)")
+      ctx.fillStyle = background
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-      particles.forEach((particle, index) => {
-        const previousX = particle.x
-        const previousY = particle.y
+      const spotlight = ctx.createRadialGradient(
+        canvas.width * 0.5,
+        canvas.height * 0.22,
+        0,
+        canvas.width * 0.5,
+        canvas.height * 0.22,
+        canvas.width * 0.55
+      )
+      spotlight.addColorStop(0, "rgba(0, 0, 0, 0.045)")
+      spotlight.addColorStop(0.4, "rgba(0, 0, 0, 0.03)")
+      spotlight.addColorStop(0.7, "rgba(0, 0, 0, 0.015)")
+      spotlight.addColorStop(1, "rgba(0, 0, 0, 0)")
+      ctx.fillStyle = spotlight
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
 
-        particle.x += particle.vx
-        particle.y += particle.vy
-
-        if (particle.x < 0) particle.x = canvas.width
-        if (particle.x > canvas.width) particle.x = 0
-        if (particle.y < 0) particle.y = canvas.height
-        if (particle.y > canvas.height) particle.y = 0
-
-        const speed = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy)
-        const tailLength = 16 + speed * 26
-        const angle = Math.atan2(particle.vy, particle.vx)
-        const tailX = particle.x - Math.cos(angle) * tailLength
-        const tailY = particle.y - Math.sin(angle) * tailLength
-
-        const trail = ctx.createLinearGradient(particle.x, particle.y, tailX, tailY)
-        trail.addColorStop(0, `rgba(2, 6, 23, ${particle.opacity * 0.65})`)
-        trail.addColorStop(1, "rgba(2, 6, 23, 0)")
-
+    const drawRibbons = () => {
+      ribbons.forEach((ribbon) => {
         ctx.beginPath()
-        ctx.moveTo(particle.x, particle.y)
-        ctx.lineTo(tailX, tailY)
-        ctx.strokeStyle = trail
-        ctx.lineWidth = particle.size * 0.78
-        ctx.lineCap = "round"
-        ctx.stroke()
 
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(2, 6, 23, ${particle.opacity})`
-        ctx.fill()
+        for (let x = 0; x <= canvas.width + 20; x += 12) {
+          const wave =
+            Math.sin(x * 0.008 + frame * ribbon.speed + ribbon.offset) *
+              ribbon.amplitude +
+            Math.sin(x * 0.0032 - frame * ribbon.speed * 0.7) * 16
+          const y = ribbon.baseY + wave
 
-        const wrappedAcrossEdge =
-          Math.abs(previousX - particle.x) > canvas.width * 0.5 ||
-          Math.abs(previousY - particle.y) > canvas.height * 0.5
-
-        if (wrappedAcrossEdge) {
-          return
-        }
-
-        for (let i = index + 1; i < particles.length; i += 1) {
-          const otherParticle = particles[i]
-          const dx = particle.x - otherParticle.x
-          const dy = particle.y - otherParticle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < 128) {
-            ctx.beginPath()
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(2, 6, 23, ${0.085 * (1 - distance / 128)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
+          if (x === 0) {
+            ctx.moveTo(x, y)
+          } else {
+            ctx.lineTo(x, y)
           }
         }
-      })
 
-      animationId = window.requestAnimationFrame(drawParticles)
+        ctx.strokeStyle = `rgba(0, 0, 0, ${ribbon.alpha})`
+        ctx.lineWidth = ribbon.thickness
+        ctx.lineCap = "round"
+        ctx.lineJoin = "round"
+        ctx.filter = "blur(18px)"
+        ctx.stroke()
+
+        ctx.strokeStyle = `rgba(20, 20, 20, ${ribbon.alpha * 1.4})`
+        ctx.lineWidth = Math.max(1, ribbon.thickness * 0.08)
+        ctx.filter = "blur(0px)"
+        ctx.stroke()
+      })
+    }
+
+    const drawOrbs = () => {
+      orbs.forEach((orb, index) => {
+        orb.angle += orb.speed
+        const x = orb.orbitX + Math.cos(orb.angle + index) * orb.radius
+        const y =
+          orb.orbitY +
+          Math.sin(orb.angle * 1.12 + index * 0.6) * (orb.radius * 0.42)
+
+        const glow = ctx.createRadialGradient(x, y, 0, x, y, orb.size)
+        glow.addColorStop(0, `rgba(0, 0, 0, ${orb.alpha * 0.7})`)
+        glow.addColorStop(0.3, `rgba(20, 20, 20, ${orb.alpha * 0.45})`)
+        glow.addColorStop(1, "rgba(0, 0, 0, 0)")
+        ctx.fillStyle = glow
+        ctx.fillRect(x - orb.size, y - orb.size, orb.size * 2, orb.size * 2)
+      })
+    }
+
+    const drawGrid = () => {
+      ctx.save()
+      ctx.strokeStyle = "rgba(0, 0, 0, 0.05)"
+      ctx.lineWidth = 1
+
+      for (let y = 0; y < canvas.height; y += 120) {
+        ctx.beginPath()
+        ctx.moveTo(0, y)
+        ctx.lineTo(canvas.width, y)
+        ctx.stroke()
+      }
+
+      for (let x = 0; x < canvas.width; x += 160) {
+        ctx.beginPath()
+        ctx.moveTo(x, 0)
+        ctx.lineTo(x, canvas.height)
+        ctx.stroke()
+      }
+
+      ctx.restore()
+    }
+
+    const render = () => {
+      frame += 1
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      drawBackdrop()
+      drawGrid()
+      drawOrbs()
+      drawRibbons()
+      ctx.filter = "none"
+      animationId = window.requestAnimationFrame(render)
     }
 
     const handleResize = () => {
       resize()
-      createParticles()
+      createScene()
     }
 
-    resize()
-    createParticles()
-    drawParticles()
-
+    handleResize()
+    render()
     window.addEventListener("resize", handleResize)
 
     return () => {
       window.cancelAnimationFrame(animationId)
       window.removeEventListener("resize", handleResize)
+      ctx.filter = "none"
     }
   }, [])
 
@@ -133,7 +194,7 @@ export function ParticleBackground() {
       ref={canvasRef}
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0"
-      style={{ opacity: 0.62 }}
+      style={{ opacity: 0.72 }}
     />
   )
 }
