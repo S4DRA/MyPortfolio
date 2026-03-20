@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import type { Viewport } from 'next'
 import { PageTransitionProvider } from '@/components/page-transition-provider'
+import { Toaster } from '@/components/ui/toaster'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         <PageTransitionProvider>{children}</PageTransitionProvider>
+        <Toaster />
         <Analytics />
       </body>
     </html>

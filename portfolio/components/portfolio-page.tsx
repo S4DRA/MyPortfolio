@@ -110,13 +110,13 @@ export function PortfolioPage({
               <article key={card.title} className="rootonset-surface rootonset-outline rounded-sm border p-6 transition-colors hover:border-foreground/20">
                 {card.imageSrc ? (
                   <div className="mb-5 overflow-hidden rounded-sm border border-border bg-background/40">
-                    <Image
-                      src={card.imageSrc}
+                      <Image
+                        src={card.imageSrc}
                       alt={card.imageAlt ?? card.title}
                       width={1200}
                       height={900}
                       className="h-auto w-full object-cover"
-                    />
+                      />
                   </div>
                 ) : null}
                 <h3 className="text-xl font-semibold text-foreground">{card.title}</h3>

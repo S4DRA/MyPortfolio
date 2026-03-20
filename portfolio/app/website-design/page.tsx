@@ -30,13 +30,13 @@ export default function WebsiteDesignPage() {
           ],
         },
         {
-          title: "Current Sample",
+          title: "Exairon Documentation Website",
           description:
-            "This section now includes a real interface sample instead of only placeholder directions.",
+            "One of the website design projects I worked on was a documentation-focused website for Exairon. Even though I do not currently have access to the live site or screenshots, the project was centered on making technical information easier to navigate and understand.",
           items: [
-            "A product-focused landing page built around headline clarity and fast scanning.",
-            "Clear brand sections that separate trust signals, feature messaging, and conversion prompts.",
-            "A balance of visual marketing energy and structured information blocks.",
+            "Designed the structure around readability, so users could move through guides, references, and product information without feeling lost.",
+            "Focused on documentation hierarchy, including clearer section grouping, predictable navigation, and fast scanning for technical content.",
+            "Balanced company branding with a clean utility-first layout so the site could feel professional while still being practical for everyday use.",
           ],
         },
       ]}

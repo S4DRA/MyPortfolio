@@ -7,6 +7,7 @@ import { portfolioPages } from "@/lib/portfolio-pages"
 
 export function HeroSection() {
   const [step, setStep] = useState(0)
+  const [showZoomPopup, setShowZoomPopup] = useState(false)
 
   useEffect(() => {
     const timeouts = [
@@ -21,6 +22,21 @@ export function HeroSection() {
     }
   }, [])
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(max-width: 2250px) and (min-width: 1024px)"
+    )
+
+    const updateZoomPopup = (event?: MediaQueryListEvent) => {
+      setShowZoomPopup(event ? event.matches : mediaQuery.matches)
+    }
+
+    updateZoomPopup()
+    mediaQuery.addEventListener("change", updateZoomPopup)
+
+    return () => mediaQuery.removeEventListener("change", updateZoomPopup)
+  }, [])
+
   const showName = step >= 1
   const showPortfolio = step >= 2
   const showPages = step >= 3
@@ -31,6 +47,14 @@ export function HeroSection() {
       id="hero"
       className="relative flex min-h-screen items-center justify-center px-4 py-28 sm:px-6 sm:py-32"
     >
+      {showZoomPopup ? (
+        <div className="fixed top-20 left-1/2 z-40 hidden w-[min(calc(100%-2rem),28rem)] -translate-x-1/2 rounded-2xl border border-amber-300/30 bg-[rgba(29,18,8,0.88)] px-5 py-4 text-center shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:block">
+          <p className="text-sm font-semibold text-amber-100">
+            Zoom out to view all content (80% zoom recommended)
+          </p>
+        </div>
+      ) : null}
+
       <div className="relative z-10 mx-auto max-w-5xl text-center">
         <div
           className={`transition-all duration-500 ${
