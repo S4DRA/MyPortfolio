@@ -8,6 +8,7 @@ import { portfolioPages } from "@/lib/portfolio-pages"
 export function HeroSection() {
   const [step, setStep] = useState(0)
   const [showZoomPopup, setShowZoomPopup] = useState(false)
+  const [isZoomPopupDismissed, setIsZoomPopupDismissed] = useState(false)
 
   useEffect(() => {
     const timeouts = [
@@ -28,14 +29,19 @@ export function HeroSection() {
     )
 
     const updateZoomPopup = (event?: MediaQueryListEvent) => {
-      setShowZoomPopup(event ? event.matches : mediaQuery.matches)
+      const matches = event ? event.matches : mediaQuery.matches
+      setShowZoomPopup(matches && !isZoomPopupDismissed)
+
+      if (!matches) {
+        setIsZoomPopupDismissed(false)
+      }
     }
 
     updateZoomPopup()
     mediaQuery.addEventListener("change", updateZoomPopup)
 
     return () => mediaQuery.removeEventListener("change", updateZoomPopup)
-  }, [])
+  }, [isZoomPopupDismissed])
 
   const showName = step >= 1
   const showPortfolio = step >= 2
@@ -49,7 +55,20 @@ export function HeroSection() {
     >
       {showZoomPopup ? (
         <div className="fixed top-20 left-1/2 z-40 hidden w-[min(calc(100%-2rem),28rem)] -translate-x-1/2 rounded-2xl border border-amber-300/30 bg-[rgba(29,18,8,0.88)] px-5 py-4 text-center shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl lg:block">
-          <p className="text-sm font-semibold text-amber-100">
+          <button
+            type="button"
+            onClick={() => {
+              setIsZoomPopupDismissed(true)
+              setShowZoomPopup(false)
+            }}
+            className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full text-amber-100/80 transition-colors hover:bg-amber-100/10 hover:text-amber-50"
+            aria-label="Close zoom recommendation"
+          >
+            <span aria-hidden="true" className="text-lg leading-none">
+              ×
+            </span>
+          </button>
+          <p className="pr-8 text-sm font-semibold text-amber-100">
             Zoom out to view all content (80% zoom recommended)
           </p>
         </div>
