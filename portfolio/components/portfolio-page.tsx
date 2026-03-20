@@ -1,4 +1,5 @@
 import type { ReactNode } from "react"
+import Image from "next/image"
 import { AnimatedPageLink } from "@/components/animated-page-link"
 import { Navigation } from "@/components/navigation"
 import { ParticleBackground } from "@/components/particle-background"
@@ -19,6 +20,8 @@ type ShowcaseCard = {
   title: string
   description: string
   tags: string[]
+  imageSrc?: string
+  imageAlt?: string
 }
 
 type PortfolioPageProps = {
@@ -53,12 +56,10 @@ export function PortfolioPage({
             }`}
           >
             <div className="max-w-3xl">
-              <span className="inline-flex rounded-full border border-primary/20 bg-[linear-gradient(180deg,rgba(151,205,255,0.12),rgba(255,255,255,0.02))] px-4 py-2 text-xs font-medium tracking-[0.25em] text-primary uppercase shadow-[0_0_20px_rgba(84,146,255,0.18)]">
+              <span className="inline-flex rounded-sm border border-border bg-card px-4 py-2 text-xs uppercase tracking-[0.28em] text-muted-foreground">
                 {eyebrow}
               </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight text-balance sm:text-5xl md:text-6xl">
-                {title}
-              </h1>
+              <h1 className="mt-6 text-4xl sm:text-5xl md:text-6xl">{title}</h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
                 {intro}
               </p>
@@ -68,14 +69,9 @@ export function PortfolioPage({
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             {metrics.map((metric) => (
-              <div
-                key={metric.label}
-                className="rootonset-surface rootonset-outline rounded-2xl border p-5 backdrop-blur-sm"
-              >
+              <div key={metric.label} className="rootonset-surface rootonset-outline rounded-sm border p-5">
                 <p className="text-sm text-muted-foreground">{metric.label}</p>
-                <p className="mt-2 text-xl font-semibold text-foreground">
-                  {metric.value}
-                </p>
+                <p className="mt-2 text-xl font-semibold text-foreground">{metric.value}</p>
               </div>
             ))}
           </div>
@@ -85,22 +81,14 @@ export function PortfolioPage({
       <section className="relative px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
           {sections.map((section) => (
-            <div
-              key={section.title}
-                className="rootonset-surface rootonset-outline rounded-3xl border p-6 backdrop-blur-sm sm:p-8"
-            >
-              <h2 className="text-2xl font-semibold text-foreground">
-                {section.title}
-              </h2>
+            <div key={section.title} className="rootonset-surface rootonset-outline rounded-sm border p-6 sm:p-8">
+              <h2 className="text-2xl text-foreground">{section.title}</h2>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                 {section.description}
               </p>
               <ul className="mt-6 space-y-3">
                 {section.items.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-background/35 px-4 py-3 text-sm text-secondary-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] sm:text-base"
-                  >
+                  <li key={item} className="rounded-sm border border-border bg-background/80 px-4 py-3 text-sm text-secondary-foreground sm:text-base">
                     {item}
                   </li>
                 ))}
@@ -113,32 +101,31 @@ export function PortfolioPage({
       <section className="relative px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 max-w-2xl">
-            <p className="text-sm font-medium uppercase tracking-[0.3em] text-primary">
-              Highlights
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-foreground sm:text-4xl">
-              Featured Work Direction
-            </h2>
+            <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground">Highlights</p>
+            <h2 className="mt-3 text-3xl sm:text-4xl">Featured Work</h2>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-3">
             {showcases.map((card) => (
-              <article
-                key={card.title}
-                className="rootonset-surface rootonset-outline neon-navy-glow rounded-3xl border p-6 transition-colors hover:border-primary/50 hover:shadow-[0_0_34px_rgba(84,146,255,0.24)]"
-              >
-                <h3 className="text-xl font-semibold text-foreground">
-                  {card.title}
-                </h3>
+              <article key={card.title} className="rootonset-surface rootonset-outline rounded-sm border p-6 transition-colors hover:border-foreground/20">
+                {card.imageSrc ? (
+                  <div className="mb-5 overflow-hidden rounded-sm border border-border bg-background/40">
+                    <Image
+                      src={card.imageSrc}
+                      alt={card.imageAlt ?? card.title}
+                      width={1200}
+                      height={900}
+                      className="h-auto w-full object-cover"
+                    />
+                  </div>
+                ) : null}
+                <h3 className="text-xl font-semibold text-foreground">{card.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
                   {card.description}
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {card.tags.map((tag) => (
-                    <span
-                      key={tag}
-                        className="rounded-full border border-primary/20 bg-[linear-gradient(180deg,rgba(151,205,255,0.12),rgba(255,255,255,0.02))] px-3 py-1 text-xs font-medium text-primary"
-                    >
+                    <span key={tag} className="rounded-sm border border-border bg-secondary px-3 py-1 text-xs font-medium text-muted-foreground">
                       {tag}
                     </span>
                   ))}
@@ -147,19 +134,16 @@ export function PortfolioPage({
             ))}
           </div>
 
-          <div className="rootonset-surface rootonset-glow mt-12 flex flex-col gap-4 rounded-3xl border border-primary/20 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+          <div className="rootonset-surface mt-12 flex flex-col gap-4 rounded-sm border border-border p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div>
-              <h3 className="text-xl font-semibold text-foreground">
-                Want to explore more of the portfolio?
-              </h3>
+              <h3 className="text-xl font-semibold text-foreground">Explore the full portfolio</h3>
               <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-                Return to the homepage to browse the full portfolio and contact
-                section.
+                Return to the homepage to browse the full portfolio and contact section.
               </p>
             </div>
             <AnimatedPageLink
               href="/"
-              className="inline-flex items-center justify-center rounded-xl bg-[linear-gradient(180deg,rgba(124,196,255,1),rgba(48,93,214,1)_52%,rgba(17,33,74,1))] px-5 py-3 font-medium text-primary-foreground transition-transform hover:-translate-y-0.5 hover:shadow-[0_0_38px_rgba(66,123,255,0.34)]"
+              className="inline-flex items-center justify-center rounded-sm border border-foreground bg-foreground px-5 py-3 font-medium text-background transition-colors hover:bg-primary hover:border-primary"
             >
               Back to Home
             </AnimatedPageLink>

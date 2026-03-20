@@ -15,14 +15,13 @@ export default function AboutMePage() {
       intro="I'm Sadra Ahadiyan, a computer engineering student at Bahcesehir University in Istanbul. I'm interested in building intelligent systems, designing thoughtful digital experiences, and exploring game development as a creative medium."
       heroVisual={
         <div className="mx-auto max-w-sm">
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card/70 p-3 backdrop-blur-sm">
-            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          <div className="overflow-hidden rounded-sm border border-border bg-card p-3">
             <Image
               src="/myPhoto.jpg"
               alt="Portrait of Sadra Ahadiyan"
               width={900}
               height={1100}
-              className="relative z-10 aspect-[4/5] w-full rounded-[1.4rem] object-cover object-center"
+              className="aspect-[4/5] w-full rounded-sm object-cover object-center"
               priority
             />
           </div>
@@ -38,17 +37,17 @@ export default function AboutMePage() {
         {
           title: "What Drives Me",
           description:
-            "I enjoy combining technical depth with creativity, especially in projects that have both a functional and emotional impact.",
+            "I enjoy combining technical depth with creativity, especially in projects that have both a functional and human impact.",
           items: [
             "Learning how intelligent systems can solve meaningful everyday problems.",
-            "Designing digital products that feel polished, clear, and engaging.",
-            "Exploring game development as a way to tell stories through interaction.",
+            "Designing digital products that feel clear, polished, and dependable.",
+            "Exploring game development as a way to build stories through interaction.",
           ],
         },
         {
           title: "How I Work",
           description:
-            "My process is usually a mix of research, experimentation, and iteration until the idea feels solid both technically and visually.",
+            "My process is usually a mix of research, experimentation, and iteration until the idea feels strong both technically and visually.",
           items: [
             "Start with understanding the purpose and constraints of the project.",
             "Prototype quickly, then refine structure, detail, and usability.",
@@ -66,7 +65,7 @@ export default function AboutMePage() {
         {
           title: "Creative Web Work",
           description:
-            "A design direction focused on expressive but usable interfaces for portfolios, products, and personal brands.",
+            "A design direction focused on thoughtful and usable interfaces for portfolios, products, and personal brands.",
           tags: ["Web Design", "Frontend", "UX"],
         },
         {

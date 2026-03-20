@@ -45,71 +45,53 @@ export function SkillsSection() {
   }, [])
 
   return (
-    <section
-      id="skills"
-      className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-secondary/20"
-      ref={sectionRef}
-    >
-      <div className="max-w-6xl mx-auto">
-        <div
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          <div className="flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-            <span className="text-primary font-mono text-xs sm:text-sm">02.</span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground">
-              Skills & Technologies
-            </h2>
-            <div className="flex-1 h-px bg-border max-w-xs" />
+    <section id="skills" className="relative bg-secondary/45 px-4 py-16 sm:px-6 sm:py-24 md:py-28" ref={sectionRef}>
+      <div className="mx-auto max-w-6xl">
+        <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
+          <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
+            <span className="font-mono text-xs text-muted-foreground sm:text-sm">03.</span>
+            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Skills and Technologies</h2>
+            <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 sm:gap-12">
-            {/* Programming Languages */}
-            <div className="space-y-6 sm:space-y-8">
-              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
-                Programming Languages
-              </h3>
-              {skills.programming.map((skill, index) => (
-                <div key={skill.name} className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-foreground font-medium">
-                      {skill.name}
-                    </span>
-                    <span className="text-muted-foreground">{skill.level}%</span>
+          <div className="grid gap-8 md:grid-cols-2 sm:gap-12">
+            <div className="rootonset-surface rootonset-outline rounded-sm border p-6">
+              <h3 className="mb-6 text-lg font-semibold text-foreground sm:text-xl">Programming Languages</h3>
+              <div className="space-y-6">
+                {skills.programming.map((skill, index) => (
+                  <div key={skill.name} className="space-y-2">
+                    <div className="flex justify-between text-sm">
+                      <span className="font-medium text-foreground">{skill.name}</span>
+                      <span className="text-muted-foreground">{skill.level}%</span>
+                    </div>
+                    <div className="h-2 overflow-hidden rounded-full bg-secondary">
+                      <div
+                        className={cn(
+                          "h-full rounded-full bg-foreground/80 transition-all duration-1000 ease-out",
+                          isVisible ? "" : "w-0"
+                        )}
+                        style={{
+                          width: isVisible ? `${skill.level}%` : "0%",
+                          transitionDelay: `${index * 180}ms`,
+                        }}
+                      />
+                    </div>
                   </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                    <div
-                      className={cn(
-                        "h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-1000 ease-out",
-                        isVisible ? "" : "w-0"
-                      )}
-                      style={{
-                        width: isVisible ? `${skill.level}%` : "0%",
-                        transitionDelay: `${index * 200}ms`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            {/* Technologies */}
-            <div>
-              <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-4 sm:mb-6">
-                Technologies
-              </h3>
-              <div className="flex flex-wrap gap-2 sm:gap-3">
+            <div className="rootonset-surface rootonset-outline rounded-sm border p-6">
+              <h3 className="mb-6 text-lg font-semibold text-foreground sm:text-xl">Technologies</h3>
+              <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 {skills.technologies.map((tech, index) => (
                   <span
                     key={tech}
                     className={cn(
-                        "rootonset-surface rootonset-outline px-3 py-1.5 sm:px-4 sm:py-2 border rounded-lg text-xs sm:text-sm text-foreground transition-all duration-500 hover:border-primary hover:shadow-[0_0_20px_rgba(229,231,235,0.14)]",
-                      isVisible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-4"
+                      "rounded-sm border border-border bg-background px-3 py-2 text-xs text-foreground transition-all duration-500 sm:text-sm",
+                      isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
                     )}
-                    style={{ transitionDelay: `${index * 100}ms` }}
+                    style={{ transitionDelay: `${index * 90}ms` }}
                   >
                     {tech}
                   </span>

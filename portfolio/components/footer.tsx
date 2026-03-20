@@ -1,10 +1,12 @@
 export function Footer() {
   return (
-    <footer className="py-6 sm:py-8 px-4 sm:px-6 border-t border-border">
-      <div className="max-w-6xl mx-auto text-center">
-        <p className="text-muted-foreground text-xs sm:text-sm px-2">
-          Designed and developed by{" "}
-          <span className="text-primary">Sadra Ahadiyan</span>
+    <footer className="border-t border-border px-4 py-8 sm:px-6 sm:py-10">
+      <div className="mx-auto flex max-w-6xl flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <p className="text-sm text-muted-foreground">
+          Sadra Ahadiyan Portfolio
+        </p>
+        <p className="text-sm text-muted-foreground">
+          Designed and developed by <span className="text-foreground">Sadra Ahadiyan</span>
         </p>
       </div>
     </footer>

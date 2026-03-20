@@ -17,9 +17,7 @@ type PageTransitionContextValue = {
   isTransitioning: boolean
 }
 
-const PageTransitionContext = createContext<PageTransitionContextValue | null>(
-  null
-)
+const PageTransitionContext = createContext<PageTransitionContextValue | null>(null)
 
 export function PageTransitionProvider({
   children,
@@ -58,7 +56,7 @@ export function PageTransitionProvider({
 
       coverTimeoutRef.current = window.setTimeout(() => {
         router.push(href)
-      }, 780)
+      }, 320)
     },
     [clearTimers, isTransitioning, pathname, router]
   )
@@ -76,7 +74,7 @@ export function PageTransitionProvider({
       setIsTransitioning(false)
       pendingPathRef.current = null
       setDestinationHref(null)
-    }, 520)
+    }, 260)
 
     return () => window.cancelAnimationFrame(frame)
   }, [isTransitioning, pathname])
@@ -97,45 +95,23 @@ export function PageTransitionProvider({
       {children}
       <div
         aria-hidden="true"
-        className={`pointer-events-none fixed inset-0 z-[100] overflow-hidden transition-opacity duration-150 ${
+        className={`pointer-events-none fixed inset-0 z-[100] transition-opacity duration-150 ${
           phase === "idle" ? "opacity-0" : "opacity-100"
         }`}
       >
         <div
-          className={`absolute inset-0 bg-background/30 backdrop-blur-2xl transition-all duration-[620ms] ease-[cubic-bezier(0.77,0,0.175,1)] ${
-            phase === "cover"
-              ? "translate-y-0 scale-100"
-              : "-translate-y-full scale-[1.02]"
+          className={`absolute inset-0 bg-[rgba(249,247,242,0.96)] transition-transform duration-300 ease-out ${
+            phase === "cover" ? "translate-y-0" : "-translate-y-full"
           }`}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(117,196,255,0.24),transparent_36%),radial-gradient(circle_at_bottom,rgba(76,121,255,0.18),transparent_34%),linear-gradient(180deg,rgba(23,34,63,0.98),rgba(14,18,29,0.95))]" />
-          <div
-            className={`absolute inset-x-0 top-1/2 mx-auto h-px bg-primary shadow-[0_0_30px_rgba(84,146,255,0.72)] transition-[width,opacity] duration-700 ease-out ${
-              phase === "cover" ? "w-full opacity-100" : "w-0 opacity-0"
-            }`}
-          />
-          <div
-            className={`absolute inset-x-0 top-1/2 mx-auto h-48 w-48 -translate-y-1/2 rounded-full bg-primary/12 blur-3xl transition-all duration-[620ms] ${
-              phase === "cover" ? "scale-125 opacity-100" : "scale-90 opacity-0"
-            }`}
-          />
-          <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgba(255,255,255,0.03)_35%,transparent_70%)]" />
+          <div className="absolute left-0 right-0 top-1/2 mx-auto h-px w-32 -translate-y-1/2 bg-border" />
           <div className="absolute inset-0 flex items-center justify-center">
-            <div
-              className={`text-center transition-all duration-[620ms] ${
-                phase === "cover"
-                  ? "translate-y-0 scale-100 opacity-100"
-                  : "-translate-y-8 scale-96 opacity-0"
-              }`}
-            >
-              <p className="text-xs uppercase tracking-[0.6em] text-primary/80 sm:text-sm">
-                Entering
+            <div className="text-center">
+              <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground sm:text-sm">
+                Opening
               </p>
-              <p className="mt-4 text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+              <p className="mt-4 font-display text-3xl text-foreground sm:text-5xl">
                 {destinationLabel}
-              </p>
-              <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-                Preparing the next scene...
               </p>
             </div>
           </div>
@@ -149,9 +125,7 @@ export function usePageTransition() {
   const context = useContext(PageTransitionContext)
 
   if (!context) {
-    throw new Error(
-      "usePageTransition must be used within a PageTransitionProvider."
-    )
+    throw new Error("usePageTransition must be used within a PageTransitionProvider.")
   }
 
   return context

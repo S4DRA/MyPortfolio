@@ -24,6 +24,12 @@ export const portfolioPages = [
       "Interactive concepts, gameplay prototypes, and story-driven game development work.",
   },
   {
+    title: "Work Experience",
+    href: "/work-experience",
+    description:
+      "Professional experience across software development, student services, and patient support.",
+  },
+  {
     title: "About Me",
     href: "/about-me",
     description:

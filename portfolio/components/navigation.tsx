@@ -31,7 +31,7 @@ export function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 24)
 
       if (!isHomePage) return
 
@@ -41,12 +41,12 @@ export function Navigation() {
 
       const currentSection = sections.find((section) => {
         const element = document.getElementById(section)
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          return rect.top <= 100 && rect.bottom >= 100
-        }
-        return false
+        if (!element) return false
+
+        const rect = element.getBoundingClientRect()
+        return rect.top <= 120 && rect.bottom >= 120
       })
+
       if (currentSection) setActiveSection(currentSection)
     }
 
@@ -64,29 +64,30 @@ export function Navigation() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed left-0 right-0 top-0 z-50 border-b transition-all duration-300",
         scrolled
-          ? "border-b border-primary/20 bg-background/78 backdrop-blur-xl shadow-[0_12px_40px_rgba(0,0,0,0.35),0_0_22px_rgba(66,123,255,0.12)]"
-          : "bg-transparent"
+          ? "border-border bg-background/95 shadow-sm backdrop-blur"
+          : "border-transparent bg-background/72 backdrop-blur"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-        <div className="flex items-center justify-between">
+      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
+        <div className="flex items-center justify-between gap-6">
           <Link
             href="/"
-            className="chrome-text text-xl font-bold tracking-tight transition-all hover:opacity-85"
+            className="font-display text-2xl font-semibold tracking-tight text-foreground"
           >
-            SA
+            Sadra Ahadiyan
           </Link>
-          <ul className="hidden xl:flex items-center gap-4 2xl:gap-6">
+
+          <ul className="hidden xl:flex items-center gap-5 2xl:gap-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 {item.section ? (
                   <Link
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(84,146,255,0.34)]",
-                      isActive(item) ? "text-primary" : "text-muted-foreground"
+                      "text-sm transition-colors duration-200",
+                      isActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -95,8 +96,8 @@ export function Navigation() {
                   <AnimatedPageLink
                     href={item.href}
                     className={cn(
-                      "text-sm font-medium transition-all duration-200 hover:text-primary hover:drop-shadow-[0_0_14px_rgba(84,146,255,0.34)]",
-                      isActive(item) ? "text-primary" : "text-muted-foreground"
+                      "text-sm transition-colors duration-200",
+                      isActive(item) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -105,6 +106,7 @@ export function Navigation() {
               </li>
             ))}
           </ul>
+
           <MobileMenu activeSection={activeSection} pathname={pathname} />
         </div>
       </div>
@@ -125,35 +127,20 @@ function MobileMenu({
     <div className="xl:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="text-foreground p-2"
+        className="rounded-md border border-border p-2 text-foreground"
         aria-label="Toggle menu"
       >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           {isOpen ? (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 18L18 6M6 6l12 12" />
           ) : (
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M4 6h16M4 12h16M4 18h16" />
           )}
         </svg>
       </button>
-      {isOpen && (
-        <div className="absolute top-full left-0 right-0 border-b border-primary/20 bg-background/92 backdrop-blur-xl shadow-[0_16px_40px_rgba(0,0,0,0.4),0_0_24px_rgba(66,123,255,0.12)]">
-          <ul className="flex flex-col p-6 gap-4">
+      {isOpen ? (
+        <div className="absolute left-0 right-0 top-full border-b border-border bg-background shadow-sm">
+          <ul className="flex flex-col gap-4 p-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 {item.section ? (
@@ -161,11 +148,10 @@ function MobileMenu({
                     href={item.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-lg font-medium transition-colors",
-                      pathname === item.href ||
-                        (pathname === "/" && item.section === activeSection)
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
+                      "text-base transition-colors",
+                      pathname === item.href || (pathname === "/" && item.section === activeSection)
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -174,11 +160,10 @@ function MobileMenu({
                   <AnimatedPageLink
                     href={item.href}
                     className={cn(
-                      "text-lg font-medium transition-colors",
-                      pathname === item.href ||
-                        (pathname === "/" && item.section === activeSection)
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-primary"
+                      "text-base transition-colors",
+                      pathname === item.href || (pathname === "/" && item.section === activeSection)
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
                     )}
                   >
                     {item.label}
@@ -188,7 +173,7 @@ function MobileMenu({
             ))}
           </ul>
         </div>
-      )}
+      ) : null}
     </div>
   )
 }
