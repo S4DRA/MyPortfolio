@@ -15,12 +15,12 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { label: "Home", href: "/", section: "hero" },
-  { label: "Projects", href: "/#projects", section: "projects" },
-  { label: "Contact", href: "/#contact", section: "contact" },
   ...portfolioPages.map((page) => ({
     label: page.title,
     href: page.href,
   })),
+  { label: "Projects", href: "/#projects", section: "projects" },
+  { label: "Contact", href: "/#contact", section: "contact" },
 ]
 
 export function Navigation() {

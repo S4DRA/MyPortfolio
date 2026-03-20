@@ -1,15 +1,9 @@
 export const portfolioPages = [
   {
-    title: "Logo",
-    href: "/logo",
+    title: "Work Experience",
+    href: "/work-experience",
     description:
-      "A space for logo concepts, identity systems, and branding directions.",
-  },
-  {
-    title: "Website Design",
-    href: "/website-design",
-    description:
-      "Interface work, layout ideas, and web design thinking for modern digital products.",
+      "Professional experience across software development, student services, and patient support.",
   },
   {
     title: "Programming Projects",
@@ -18,16 +12,22 @@ export const portfolioPages = [
       "Technical builds spanning AI, algorithms, application development, and research.",
   },
   {
+    title: "Website Design",
+    href: "/website-design",
+    description:
+      "Interface work, layout ideas, and web design thinking for modern digital products.",
+  },
+  {
+    title: "Logo",
+    href: "/logo",
+    description:
+      "A space for logo concepts, identity systems, and branding directions.",
+  },
+  {
     title: "Game Projects",
     href: "/game-projects",
     description:
       "Interactive concepts, gameplay prototypes, and story-driven game development work.",
-  },
-  {
-    title: "Work Experience",
-    href: "/work-experience",
-    description:
-      "Professional experience across software development, student services, and patient support.",
   },
   {
     title: "About Me",
