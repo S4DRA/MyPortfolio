@@ -6,7 +6,7 @@ export function Footer() {
           Sadra Ahadiyan Portfolio
         </p>
         <p className="text-sm text-muted-foreground">
-          Designed and developed by <span className="text-foreground">Sadra Ahadiyan</span>
+          AI systems, software, and product-minded execution by <span className="text-foreground">Sadra Ahadiyan</span>
         </p>
       </div>
     </footer>

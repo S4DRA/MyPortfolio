@@ -51,16 +51,16 @@ export function ContactSection() {
         <div className={`text-center transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-6 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4">
             <div className="h-px max-w-[100px] flex-1 bg-border" />
-            <span className="font-mono text-xs text-muted-foreground sm:text-sm">05.</span>
-            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Contact</h2>
+            <span className="font-mono text-xs text-muted-foreground sm:text-sm">06.</span>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Let&apos;s Build</h2>
             <div className="h-px max-w-[100px] flex-1 bg-border" />
           </div>
 
-          <span className="section-kicker">Strong CTA</span>
+          <span className="section-kicker">Conversion point</span>
           <p className="mx-auto mt-4 mb-8 max-w-2xl px-2 text-sm leading-relaxed text-muted-foreground sm:mb-12 sm:text-base md:text-lg">
-            If you are hiring for an internship, need a sharp technical builder for a freelance
-            project, or want to collaborate on something ambitious, this is the moment to reach
-            out.
+            What could we ship together in the next few weeks? I am actively open to internships,
+            freelance product builds, and ambitious collaborations where AI, software, and strong
+            user experience need to come together fast.
           </p>
 
           <div className="mb-8 grid gap-4 text-left sm:mb-12 lg:grid-cols-3">

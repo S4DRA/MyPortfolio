@@ -9,13 +9,13 @@ const projects = [
     title: "Smart Office Security Camera",
     hook: "Why wait for a security review when the camera can escalate risk instantly?",
     summary:
-      "An AI surveillance workflow built to detect unauthorized entry in office environments and trigger immediate alerts before a human operator even notices the problem.",
+      "An AI surveillance workflow that turns passive camera footage into an active security layer for small offices that cannot afford a full monitoring team.",
     problem:
-      "Traditional camera feeds are passive. Someone still needs to watch them, which means suspicious movement can be missed until it is too late.",
+      "Traditional security cameras record everything and prevent nothing. In a real office, that means suspicious entry can go unnoticed until after the incident.",
     approach:
-      "I combined YOLOv5-based person detection with a Python alerting workflow and Telegram notifications to turn a passive stream into a real-time security signal.",
+      "I combined YOLOv5-based person detection, Python event handling, and Telegram notifications to create a lightweight real-time escalation loop instead of a passive archive.",
     impact:
-      "Cuts response time from manual monitoring to instant alert delivery and creates a stronger operational case for low-cost AI monitoring in small offices.",
+      "Transforms monitoring from delayed review to immediate action. The concept shows how AI can compress response time and create enterprise-style awareness with a student-built budget.",
     tags: ["Python", "YOLOv5", "Computer Vision", "Telegram API", "Real-Time Alerts"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,13 +27,13 @@ const projects = [
     title: "User Rating Prediction System",
     hook: "Why should recommendation quality depend on guesswork when user patterns already tell a story?",
     summary:
-      "A predictive modeling project designed to estimate user ratings from previous behavior and translate raw preference data into actionable recommendation logic.",
+      "A recommendation-oriented prediction system designed to infer likely user ratings and make messy preference data usable for better personalization logic.",
     problem:
-      "Platforms that rely on ratings need better ways to anticipate user preferences, especially when explicit feedback is incomplete or inconsistent.",
+      "Products that depend on ratings rarely get complete feedback. That leaves gaps in personalization and weakens discovery for both users and the platform.",
     approach:
-      "I built the system in C++ using algorithmic modeling to identify behavioral patterns and infer likely future ratings from historical user input.",
+      "I built the model in C++ and focused on the algorithmic side of pattern recognition, using historical preference signals to predict future rating behavior.",
     impact:
-      "Demonstrates the recommendation-engine thinking behind smarter personalization and shows how structured modeling can reduce cold-start friction in product discovery.",
+      "Frames me as someone who understands recommendation logic beyond the UI layer. It is the kind of systems thinking that matters in marketplaces, media products, and discovery platforms.",
     tags: ["C++", "Algorithms", "Predictive Modeling", "Data Analysis"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -45,13 +45,13 @@ const projects = [
     title: "10 Interaction App",
     hook: "Why make users adapt to the interface when the interface can adapt to them?",
     summary:
-      "An interaction design project exploring how a single app can support multiple input patterns, user intents, and behavioral flows without becoming chaotic.",
+      "An interaction design exploration focused on building one product experience that can support multiple user behaviors without losing clarity.",
     problem:
-      "Many apps look polished but collapse when users interact in different ways or move beyond the ideal path imagined by the designer.",
+      "Too many interfaces only work for the ideal user path. Real users move differently, hesitate, backtrack, and explore in ways that polished mockups often ignore.",
     approach:
-      "I designed and structured ten distinct interaction mechanisms, testing how layout, flow, and interface feedback could stay coherent across multiple user behaviors.",
+      "I designed ten interaction models inside one app concept and used them to test hierarchy, navigation feedback, and flow resilience across different behaviors.",
     impact:
-      "Strengthened my ability to design products that feel intuitive under real usage instead of only in static mockups, which directly improves frontend decision-making.",
+      "Sharpened my frontend decision-making by forcing the interface to survive real behavior, not just look clean in a design review.",
     tags: ["UI/UX", "Interaction Design", "Research", "Product Thinking"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -63,13 +63,13 @@ const projects = [
     title: "Health Tracker App Research",
     hook: "Why do health products lose trust so easily? Usually because clarity breaks before the code does.",
     summary:
-      "A research and documentation project analyzing a health-tracking application through the lenses of usability, technical structure, and communication quality.",
+      "A health-product audit focused on usability, technical clarity, and the documentation layer that often determines whether people trust the product at all.",
     problem:
-      "Health products live or die on trust. Weak documentation and unclear system thinking can make even useful tools feel unreliable or hard to adopt.",
+      "Health products operate under a trust penalty. If the system is unclear, the interface feels unreliable, and adoption drops even when the underlying functionality works.",
     approach:
-      "I audited the application, mapped its core functionality, and produced professional documentation that made the product easier to understand, evaluate, and communicate.",
+      "I reviewed the core user flow, mapped the product logic, and translated the app into structured documentation that made evaluation and onboarding much easier.",
     impact:
-      "Improved my product analysis discipline and showed how strong technical documentation can reduce ambiguity, improve onboarding, and support better iteration.",
+      "Shows that I care about the invisible layers of product quality. Clear communication reduces friction, improves onboarding, and makes future iteration faster.",
     tags: ["Research", "Documentation", "Health Tech", "Product Analysis"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -81,13 +81,13 @@ const projects = [
     title: "DasaPhase Game Concept",
     hook: "Why do certain game worlds stay in your head long after the screen goes dark?",
     summary:
-      "A narrative game concept built around a surreal school-to-dream-world transition, designed to merge story tension, atmosphere, and environmental curiosity.",
+      "A narrative worldbuilding concept built around a surreal school-to-dream-world transition, designed to create emotional pull through atmosphere and story logic.",
     problem:
-      "Many student game concepts stop at plot description. They do not build a world with enough emotional logic to make players want to keep exploring.",
+      "A lot of game concepts stop at plot summary. They never build enough world logic or emotional tension to make exploration feel necessary.",
     approach:
-      "I developed the concept around mood, pacing, and environmental storytelling so the world itself becomes part of the narrative engine.",
+      "I focused on pacing, environmental storytelling, and symbolic worldbuilding so the setting itself becomes part of the narrative engine.",
     impact:
-      "Expanded my storytelling range and sharpened my ability to design products and experiences that create emotional pull, not just technical functionality.",
+      "This project expands the emotional side of my design range. It proves I can think beyond functionality and build experiences that leave a stronger memory trace.",
     tags: ["Game Design", "Storytelling", "Worldbuilding", "Concept Design"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -100,13 +100,13 @@ const projects = [
     title: "IoT Research",
     hook: "Why is IoT powerful and fragile at the same time? Because every connected device is both a feature and a risk.",
     summary:
-      "A research-driven project exploring Internet of Things systems, networking behavior, and the architectural tradeoffs behind connected environments.",
+      "A systems-focused research project exploring IoT architecture, networking behavior, and the tradeoffs that appear when connected devices move from theory to deployment.",
     problem:
-      "IoT conversations are often too abstract. Teams need clearer explanations of how connectivity, reliability, and system design affect real-world deployment.",
+      "IoT is easy to oversimplify. In practice, reliability, security, latency, and device coordination all affect whether a connected system is useful or fragile.",
     approach:
-      "I analyzed core IoT concepts, networking foundations, and implementation considerations, then translated that work into a structured technical presentation.",
+      "I studied core IoT architecture, networking foundations, and deployment considerations, then translated that research into a structured technical presentation.",
     impact:
-      "Built stronger systems-level thinking around distributed devices and improved my ability to explain technical infrastructure in a way decision-makers can follow.",
+      "Strengthened my systems-level reasoning and my ability to explain complex infrastructure in a way non-specialists can actually follow.",
     tags: ["IoT", "Networking", "Research", "Systems Thinking"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -143,15 +143,16 @@ export function ProjectsSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">04.</span>
-            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Featured Projects</h2>
+            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Case Studies</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="mb-8 max-w-3xl sm:mb-12">
-            <span className="section-kicker">Case studies, not filler</span>
+            <span className="section-kicker">Case studies, not classwork</span>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              These projects are framed the way serious teams evaluate work: what problem existed,
-              how I approached it, what stack I used, and why the result matters.
+              What happens when technical projects are presented the way serious teams actually
+              evaluate talent? You get context, decisions, stack clarity, and a credible outcome
+              instead of a gallery of disconnected screenshots.
             </p>
           </div>
 
@@ -188,7 +189,7 @@ function ProjectCard({
           {project.icon}
         </div>
         <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/70 px-3 py-1 text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
-          WHY this project
+          Why this matters
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
       </div>
@@ -203,7 +204,7 @@ function ProjectCard({
       </div>
 
       <div className="mt-4 rounded-[1.15rem] border border-primary/12 bg-primary/6 p-4">
-        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Impact</p>
+        <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Outcome</p>
         <p className="mt-2 text-sm leading-relaxed text-foreground/90">{project.impact}</p>
       </div>
 

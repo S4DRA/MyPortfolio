@@ -30,32 +30,31 @@ export function AboutSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">02.</span>
-            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">About</h2>
+            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Builder OS</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] sm:gap-12">
             <div className="space-y-6">
-              <span className="section-kicker">Builder mindset</span>
+              <span className="section-kicker">Why I build this way</span>
               <p className="max-w-3xl text-xl leading-relaxed text-foreground sm:text-2xl">
-                I am not positioning myself as &quot;just a student.&quot; I am a high-agency
-                builder who uses engineering, AI, and design thinking to make technical ideas
-                clearer, stronger, and more useful.
+                What if the real edge is not just writing code, but connecting systems thinking,
+                interface taste, and execution speed into one workflow?
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                I study computer engineering at <span className="text-foreground">Bahcesehir University</span> in Istanbul, but the way I work already goes beyond classroom output. I like solving problems where technical depth is not enough on its own and the final result also needs narrative clarity, usability, and product sense.
+                I study computer engineering at <span className="text-foreground">Bahcesehir University</span> in Istanbul, but I do not frame my work around the word student. I frame it around leverage: understanding the system, finding the pressure point, and building the clearest path from idea to usable product.
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                My edge is the combination: AI systems, software engineering, interaction thinking, and a strong instinct for how work should be presented so people immediately understand why it matters.
+                My edge is the combination of AI systems, software engineering, interaction thinking, and storytelling. That mix helps me build work that is technically sound and immediately legible to recruiters, clients, founders, and collaborators.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <ValueCard
                   title="What I build"
-                  description="AI workflows, technical prototypes, software systems, and digital experiences with a clear reason to exist."
+                  description="AI-powered workflows, technical prototypes, and digital products that solve a visible problem instead of decorating a resume."
                 />
                 <ValueCard
-                  title="What I optimize for"
-                  description="Strong logic, clean execution, fast iteration, and outcomes that feel credible to both technical and non-technical audiences."
+                  title="How I think"
+                  description="Start from the real-world tension, reduce complexity, then ship a product experience people can immediately understand."
                 />
               </div>
             </div>
@@ -73,7 +72,7 @@ export function AboutSection() {
                 </div>
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
                   <StatItem label="Base" value="Istanbul" />
-                  <StatItem label="Core Focus" value="AI + Software" />
+                  <StatItem label="Core Focus" value="AI + Product" />
                   <StatItem label="Strength" value="Systems + UX" />
                   <StatItem label="Open To" value="Internships / Freelance" />
                 </div>

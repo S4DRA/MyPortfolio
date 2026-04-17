@@ -264,4 +264,25 @@
       radial-gradient(circle at top, rgba(255, 255, 255, 0.45), transparent 45%),
       linear-gradient(180deg, rgba(203, 119, 46, 0.14), rgba(64, 84, 163, 0.08));
   }
+
+  .hero-scanline {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0)),
+      linear-gradient(90deg, rgba(203, 119, 46, 0.18), rgba(64, 84, 163, 0.08));
+    mix-blend-mode: screen;
+    opacity: 0.85;
+    animation: scanline 7s ease-in-out infinite;
+  }
+
+  @keyframes scanline {
+    0%, 100% {
+      transform: translateY(-20%);
+      opacity: 0.55;
+    }
+
+    50% {
+      transform: translateY(320%);
+      opacity: 0.9;
+    }
+  }
 }
