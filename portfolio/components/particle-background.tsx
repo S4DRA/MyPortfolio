@@ -2,25 +2,23 @@
 
 import { useEffect, useRef } from "react"
 
-type Ribbon = {
+type WaveLine = {
   baseY: number
   amplitude: number
+  wavelength: number
   speed: number
   thickness: number
-  hue: number
   alpha: number
-  offset: number
+  phase: number
+  color: string
 }
 
-type Orb = {
+type Ripple = {
+  x: number
+  y: number
   radius: number
-  angle: number
-  speed: number
-  orbitX: number
-  orbitY: number
-  size: number
-  hue: number
-  alpha: number
+  life: number
+  maxLife: number
 }
 
 export function ParticleBackground() {
@@ -34,9 +32,15 @@ export function ParticleBackground() {
     if (!ctx) return
 
     let animationId = 0
-    let ribbons: Ribbon[] = []
-    let orbs: Orb[] = []
+    let waves: WaveLine[] = []
+    let ripples: Ripple[] = []
     let frame = 0
+
+    const pointer = {
+      x: 0,
+      y: 0,
+      active: false,
+    }
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -44,120 +48,207 @@ export function ParticleBackground() {
     }
 
     const createScene = () => {
-      const ribbonCount = Math.max(4, Math.floor(canvas.height / 220))
-      ribbons = Array.from({ length: ribbonCount }, (_, index) => ({
-        baseY: ((index + 1) / (ribbonCount + 1)) * canvas.height,
-        amplitude: 26 + Math.random() * 22,
-        speed: 0.0022 + Math.random() * 0.0015,
-        thickness: 50 + Math.random() * 36,
-        hue: 318 + Math.random() * 34,
-        alpha: 0.05 + Math.random() * 0.05,
-        offset: Math.random() * Math.PI * 2,
-      }))
+      const lineCount = Math.max(7, Math.floor(canvas.height / 110))
+      const colors = [
+        "79, 96, 145",
+        "103, 126, 182",
+        "162, 128, 177",
+        "194, 146, 108",
+      ]
 
-      orbs = Array.from({ length: 6 }, (_, index) => ({
-        radius: 90 + index * 28 + Math.random() * 24,
-        angle: Math.random() * Math.PI * 2,
-        speed: 0.0018 + Math.random() * 0.0015,
-        orbitX: canvas.width * (0.35 + Math.random() * 0.3),
-        orbitY: canvas.height * (0.24 + Math.random() * 0.34),
-        size: 110 + Math.random() * 70,
-        hue: 330 + Math.random() * 20,
-        alpha: 0.035 + Math.random() * 0.03,
+      waves = Array.from({ length: lineCount }, (_, index) => ({
+        baseY: ((index + 1) / (lineCount + 1)) * canvas.height,
+        amplitude: 20 + Math.random() * 34,
+        wavelength: 180 + Math.random() * 260,
+        speed: 0.35 + Math.random() * 0.65,
+        thickness: 1.2 + Math.random() * 3.6,
+        alpha: 0.08 + Math.random() * 0.1,
+        phase: Math.random() * Math.PI * 2,
+        color: colors[index % colors.length],
       }))
+    }
+
+    const pushRipple = (x: number, y: number) => {
+      ripples.push({
+        x,
+        y,
+        radius: 0,
+        life: 0,
+        maxLife: 80,
+      })
+
+      if (ripples.length > 6) {
+        ripples = ripples.slice(-6)
+      }
+    }
+
+    const handlePointerMove = (event: PointerEvent) => {
+      pointer.x = event.clientX
+      pointer.y = event.clientY
+      pointer.active = true
+    }
+
+    const handlePointerLeave = () => {
+      pointer.active = false
+    }
+
+    const handlePointerDown = (event: PointerEvent) => {
+      pointer.x = event.clientX
+      pointer.y = event.clientY
+      pointer.active = true
+      pushRipple(event.clientX, event.clientY)
     }
 
     const drawBackdrop = () => {
-      const background = ctx.createLinearGradient(0, 0, 0, canvas.height)
-      background.addColorStop(0, "rgba(255, 255, 255, 0.98)")
-      background.addColorStop(0.5, "rgba(248, 248, 248, 0.96)")
-      background.addColorStop(1, "rgba(241, 241, 241, 0.98)")
-      ctx.fillStyle = background
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      const spotlight = ctx.createRadialGradient(
-        canvas.width * 0.5,
-        canvas.height * 0.22,
-        0,
-        canvas.width * 0.5,
-        canvas.height * 0.22,
-        canvas.width * 0.55
-      )
-      spotlight.addColorStop(0, "rgba(0, 0, 0, 0.045)")
-      spotlight.addColorStop(0.4, "rgba(0, 0, 0, 0.03)")
-      spotlight.addColorStop(0.7, "rgba(0, 0, 0, 0.015)")
-      spotlight.addColorStop(1, "rgba(0, 0, 0, 0)")
-      ctx.fillStyle = spotlight
+      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      gradient.addColorStop(0, "rgba(255, 252, 247, 0.98)")
+      gradient.addColorStop(0.5, "rgba(248, 244, 237, 0.98)")
+      gradient.addColorStop(1, "rgba(243, 238, 231, 0.99)")
+      ctx.fillStyle = gradient
       ctx.fillRect(0, 0, canvas.width, canvas.height)
     }
 
-    const drawRibbons = () => {
-      ribbons.forEach((ribbon) => {
-        ctx.beginPath()
+    const drawAmbientGlow = () => {
+      const glowA = ctx.createRadialGradient(
+        canvas.width * 0.24,
+        canvas.height * 0.18,
+        0,
+        canvas.width * 0.24,
+        canvas.height * 0.18,
+        canvas.width * 0.28
+      )
+      glowA.addColorStop(0, "rgba(125, 146, 212, 0.08)")
+      glowA.addColorStop(1, "rgba(125, 146, 212, 0)")
+      ctx.fillStyle = glowA
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
 
-        for (let x = 0; x <= canvas.width + 20; x += 12) {
-          const wave =
-            Math.sin(x * 0.008 + frame * ribbon.speed + ribbon.offset) *
-              ribbon.amplitude +
-            Math.sin(x * 0.0032 - frame * ribbon.speed * 0.7) * 16
-          const y = ribbon.baseY + wave
+      const glowB = ctx.createRadialGradient(
+        canvas.width * 0.78,
+        canvas.height * 0.74,
+        0,
+        canvas.width * 0.78,
+        canvas.height * 0.74,
+        canvas.width * 0.26
+      )
+      glowB.addColorStop(0, "rgba(196, 147, 108, 0.07)")
+      glowB.addColorStop(1, "rgba(196, 147, 108, 0)")
+      ctx.fillStyle = glowB
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+    }
 
-          if (x === 0) {
-            ctx.moveTo(x, y)
-          } else {
-            ctx.lineTo(x, y)
+    const getRippleDistortion = (x: number, y: number) => {
+      let offsetY = 0
+
+      ripples.forEach((ripple) => {
+        const dx = x - ripple.x
+        const dy = y - ripple.y
+        const distance = Math.hypot(dx, dy)
+        const band = Math.abs(distance - ripple.radius)
+
+        if (band < 54) {
+          const wave = (1 - band / 54) * 26 * (1 - ripple.life / ripple.maxLife)
+          offsetY += Math.sin((distance - ripple.radius) * 0.06) * wave
+        }
+      })
+
+      return offsetY
+    }
+
+    const drawWave = (wave: WaveLine, index: number) => {
+      ctx.beginPath()
+
+      for (let x = -40; x <= canvas.width + 40; x += 8) {
+        const travel = x + frame * wave.speed * -1.8
+        const primary =
+          Math.sin(travel / wave.wavelength + wave.phase) * wave.amplitude
+        const secondary =
+          Math.cos(travel / (wave.wavelength * 0.52) + wave.phase * 0.8) *
+          wave.amplitude *
+          0.28
+        const tertiary =
+          Math.sin(travel / (wave.wavelength * 1.9) - wave.phase * 0.6 + frame * 0.01) *
+          12
+
+        let y = wave.baseY + primary + secondary + tertiary
+
+        if (pointer.active) {
+          const dx = x - pointer.x
+          const dy = y - pointer.y
+          const distance = Math.hypot(dx, dy)
+          const influence = 190
+
+          if (distance < influence) {
+            y += (1 - distance / influence) * 42 * Math.sign(dy || 1)
           }
         }
 
-        ctx.strokeStyle = `rgba(0, 0, 0, ${ribbon.alpha})`
-        ctx.lineWidth = ribbon.thickness
-        ctx.lineCap = "round"
-        ctx.lineJoin = "round"
-        ctx.filter = "blur(18px)"
-        ctx.stroke()
+        y += getRippleDistortion(x, y)
 
-        ctx.strokeStyle = `rgba(20, 20, 20, ${ribbon.alpha * 1.4})`
-        ctx.lineWidth = Math.max(1, ribbon.thickness * 0.08)
-        ctx.filter = "blur(0px)"
-        ctx.stroke()
-      })
+        if (x <= -40) {
+          ctx.moveTo(x, y)
+        } else {
+          ctx.lineTo(x, y)
+        }
+      }
+
+      ctx.strokeStyle = `rgba(${wave.color}, ${wave.alpha})`
+      ctx.lineWidth = wave.thickness
+      ctx.lineCap = "round"
+      ctx.lineJoin = "round"
+      ctx.shadowBlur = 18
+      ctx.shadowColor = `rgba(${wave.color}, ${wave.alpha * 0.22})`
+      ctx.stroke()
+
+      ctx.beginPath()
+      for (let x = -40; x <= canvas.width + 40; x += 16) {
+        const travel = x + frame * wave.speed * -1.8
+        const primary =
+          Math.sin(travel / wave.wavelength + wave.phase) * wave.amplitude
+        const secondary =
+          Math.cos(travel / (wave.wavelength * 0.52) + wave.phase * 0.8) *
+          wave.amplitude *
+          0.28
+        const tertiary =
+          Math.sin(travel / (wave.wavelength * 1.9) - wave.phase * 0.6 + frame * 0.01) *
+          12
+        let y = wave.baseY + primary + secondary + tertiary
+
+        if (pointer.active) {
+          const dx = x - pointer.x
+          const dy = y - pointer.y
+          const distance = Math.hypot(dx, dy)
+          const influence = 190
+
+          if (distance < influence) {
+            y += (1 - distance / influence) * 42 * Math.sign(dy || 1)
+          }
+        }
+
+        y += getRippleDistortion(x, y)
+        ctx.moveTo(x, y)
+        ctx.arc(x, y, 0.8 + (index % 3) * 0.25, 0, Math.PI * 2)
+      }
+
+      ctx.fillStyle = `rgba(${wave.color}, ${Math.min(wave.alpha * 1.65, 0.22)})`
+      ctx.fill()
+      ctx.shadowBlur = 0
     }
 
-    const drawOrbs = () => {
-      orbs.forEach((orb, index) => {
-        orb.angle += orb.speed
-        const x = orb.orbitX + Math.cos(orb.angle + index) * orb.radius
-        const y =
-          orb.orbitY +
-          Math.sin(orb.angle * 1.12 + index * 0.6) * (orb.radius * 0.42)
-
-        const glow = ctx.createRadialGradient(x, y, 0, x, y, orb.size)
-        glow.addColorStop(0, `rgba(0, 0, 0, ${orb.alpha * 0.7})`)
-        glow.addColorStop(0.3, `rgba(20, 20, 20, ${orb.alpha * 0.45})`)
-        glow.addColorStop(1, "rgba(0, 0, 0, 0)")
-        ctx.fillStyle = glow
-        ctx.fillRect(x - orb.size, y - orb.size, orb.size * 2, orb.size * 2)
-      })
-    }
-
-    const drawGrid = () => {
+    const drawRipples = () => {
       ctx.save()
-      ctx.strokeStyle = "rgba(0, 0, 0, 0.05)"
-      ctx.lineWidth = 1
+      ripples = ripples.filter((ripple) => ripple.life < ripple.maxLife)
 
-      for (let y = 0; y < canvas.height; y += 120) {
-        ctx.beginPath()
-        ctx.moveTo(0, y)
-        ctx.lineTo(canvas.width, y)
-        ctx.stroke()
-      }
+      ripples.forEach((ripple) => {
+        ripple.life += 1
+        ripple.radius += 7
+        const alpha = (1 - ripple.life / ripple.maxLife) * 0.16
 
-      for (let x = 0; x < canvas.width; x += 160) {
         ctx.beginPath()
-        ctx.moveTo(x, 0)
-        ctx.lineTo(x, canvas.height)
+        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2)
+        ctx.strokeStyle = `rgba(115, 138, 196, ${alpha})`
+        ctx.lineWidth = 1.1
         ctx.stroke()
-      }
+      })
 
       ctx.restore()
     }
@@ -166,10 +257,9 @@ export function ParticleBackground() {
       frame += 1
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       drawBackdrop()
-      drawGrid()
-      drawOrbs()
-      drawRibbons()
-      ctx.filter = "none"
+      drawAmbientGlow()
+      waves.forEach((wave, index) => drawWave(wave, index))
+      drawRipples()
       animationId = window.requestAnimationFrame(render)
     }
 
@@ -181,11 +271,17 @@ export function ParticleBackground() {
     handleResize()
     render()
     window.addEventListener("resize", handleResize)
+    window.addEventListener("pointermove", handlePointerMove)
+    window.addEventListener("pointerdown", handlePointerDown)
+    document.addEventListener("pointerleave", handlePointerLeave)
 
     return () => {
       window.cancelAnimationFrame(animationId)
       window.removeEventListener("resize", handleResize)
-      ctx.filter = "none"
+      window.removeEventListener("pointermove", handlePointerMove)
+      window.removeEventListener("pointerdown", handlePointerDown)
+      document.removeEventListener("pointerleave", handlePointerLeave)
+      ctx.shadowBlur = 0
     }
   }, [])
 
@@ -194,7 +290,7 @@ export function ParticleBackground() {
       ref={canvasRef}
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0"
-      style={{ opacity: 0.72 }}
+      style={{ opacity: 0.76 }}
     />
   )
 }

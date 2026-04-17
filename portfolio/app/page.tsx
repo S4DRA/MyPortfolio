@@ -14,10 +14,10 @@ export default function HomePage() {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <PagesSection />
       <AboutSection />
-      <SkillsSection />
       <ProjectsSection />
+      <SkillsSection />
+      <PagesSection />
       <ContactSection />
       <Footer />
     </main>

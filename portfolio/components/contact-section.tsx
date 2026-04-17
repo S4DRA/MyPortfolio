@@ -1,6 +1,28 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { ArrowRight, BriefcaseBusiness, Handshake, Rocket } from "lucide-react"
+
+const opportunities = [
+  {
+    title: "Internship",
+    description:
+      "Bring me into a team that wants an engineer who can think beyond implementation and contribute across product, AI, and frontend execution.",
+    icon: BriefcaseBusiness,
+  },
+  {
+    title: "Freelance Build",
+    description:
+      "If you need a smart prototype, product concept, landing page, or AI-driven workflow, I can help shape and ship it quickly.",
+    icon: Rocket,
+  },
+  {
+    title: "Collaboration",
+    description:
+      "Open to building with founders, researchers, designers, and developers working on ideas with ambition and real upside.",
+    icon: Handshake,
+  },
+]
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -34,35 +56,68 @@ export function ContactSection() {
             <div className="h-px max-w-[100px] flex-1 bg-border" />
           </div>
 
-          <p className="mx-auto mb-8 max-w-xl px-2 text-sm leading-relaxed text-muted-foreground sm:mb-12 sm:text-base md:text-lg">
-            I am open to professional opportunities, collaborations, and thoughtful conversations around technology and digital work.
+          <span className="section-kicker">Strong CTA</span>
+          <p className="mx-auto mt-4 mb-8 max-w-2xl px-2 text-sm leading-relaxed text-muted-foreground sm:mb-12 sm:text-base md:text-lg">
+            If you are hiring for an internship, need a sharp technical builder for a freelance
+            project, or want to collaborate on something ambitious, this is the moment to reach
+            out.
           </p>
 
+          <div className="mb-8 grid gap-4 text-left sm:mb-12 lg:grid-cols-3">
+            {opportunities.map((opportunity) => {
+              const Icon = opportunity.icon
+
+              return (
+                <div
+                  key={opportunity.title}
+                  className="premium-panel magnetic-card rounded-[1.35rem] border p-5"
+                >
+                  <div className="inline-flex rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-xl text-foreground">{opportunity.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {opportunity.description}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+
           <div className="mb-8 grid gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            <a href="mailto:sadra.ahadiyan@bahcesehir.edu.tr" className="rootonset-surface rootonset-outline rounded-sm border p-5 text-left transition-colors hover:border-foreground/20">
+            <a href="mailto:sadra.ahadiyan@bahcesehir.edu.tr" className="premium-panel rounded-[1.2rem] border p-5 text-left transition-all hover:-translate-y-1 hover:border-primary/25">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
               <p className="mt-3 break-all text-sm font-medium text-foreground sm:text-base">sadra.ahadiyan@bahcesehir.edu.tr</p>
             </a>
 
-            <a href="tel:+905315266501" className="rootonset-surface rootonset-outline rounded-sm border p-5 text-left transition-colors hover:border-foreground/20">
+            <a href="tel:+905315266501" className="premium-panel rounded-[1.2rem] border p-5 text-left transition-all hover:-translate-y-1 hover:border-primary/25">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
               <p className="mt-3 text-sm font-medium text-foreground sm:text-base">+90 531 526 6501</p>
             </a>
 
-            <div className="rootonset-surface rootonset-outline rounded-sm border p-5 text-left">
+            <div className="premium-panel rounded-[1.2rem] border p-5 text-left">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Location</p>
               <p className="mt-3 text-sm font-medium text-foreground sm:text-base">Istanbul, Turkey</p>
             </div>
           </div>
 
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:border-primary hover:bg-primary sm:px-8 sm:text-base"
-          >
-            LinkedIn
-          </a>
+          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a
+              href="mailto:sadra.ahadiyan@bahcesehir.edu.tr?subject=Let's%20Build%20Something"
+              className="inline-flex items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:px-8 sm:text-base"
+            >
+              Start a Conversation
+              <ArrowRight className="h-4 w-4" />
+            </a>
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-sm border border-border bg-card/85 px-6 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:px-8 sm:text-base"
+            >
+              Connect on LinkedIn
+            </a>
+          </div>
         </div>
       </div>
     </section>

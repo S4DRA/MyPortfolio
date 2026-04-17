@@ -23,6 +23,15 @@ const navItems: NavItem[] = [
   { label: "Contact", href: "/#contact", section: "contact" },
 ]
 
+const desktopNavItems: NavItem[] = [
+  { label: "Home", href: "/", section: "hero" },
+  { label: "About", href: "/#about", section: "about" },
+  { label: "Projects", href: "/#projects", section: "projects" },
+  { label: "Contact", href: "/#contact", section: "contact" },
+  { label: "Work Experience", href: "/work-experience" },
+  { label: "About Me", href: "/about-me" },
+]
+
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("hero")
@@ -35,7 +44,7 @@ export function Navigation() {
 
       if (!isHomePage) return
 
-      const sections = navItems
+      const sections = desktopNavItems
         .map((item) => item.section)
         .filter((section): section is string => Boolean(section))
 
@@ -80,7 +89,7 @@ export function Navigation() {
           </Link>
 
           <ul className="hidden xl:flex items-center gap-5 2xl:gap-6">
-            {navItems.map((item) => (
+            {desktopNavItems.map((item) => (
               <li key={item.href}>
                 {item.section ? (
                   <Link
@@ -106,6 +115,15 @@ export function Navigation() {
               </li>
             ))}
           </ul>
+
+          <div className="hidden xl:flex items-center gap-3">
+            <AnimatedPageLink
+              href="/programming-projects"
+              className="rounded-full border border-border bg-card/80 px-4 py-2 text-sm text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/25 hover:bg-secondary"
+            >
+              More Work
+            </AnimatedPageLink>
+          </div>
 
           <MobileMenu activeSection={activeSection} pathname={pathname} />
         </div>
