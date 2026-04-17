@@ -51,7 +51,7 @@ export function SkillsSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">03.</span>
-            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Execution Stack</h2>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Can One Builder Cross The Stack?</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 

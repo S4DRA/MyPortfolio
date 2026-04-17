@@ -14,8 +14,8 @@ export default function HomePage() {
       <ParticleBackground />
       <Navigation />
       <HeroSection />
-      <AboutSection />
       <ProjectsSection />
+      <AboutSection />
       <SkillsSection />
       <PagesSection />
       <ContactSection />

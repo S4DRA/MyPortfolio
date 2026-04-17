@@ -30,7 +30,7 @@ export function AboutSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">02.</span>
-            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Why I&apos;m Dangerous</h2>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Why This Works</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
@@ -38,8 +38,8 @@ export function AboutSection() {
             <div className="order-2 space-y-5 md:order-1 sm:space-y-6">
               <span className="section-kicker">WHY this approach works</span>
               <p className="max-w-3xl text-lg leading-relaxed text-foreground sm:text-2xl">
-                What happens when one person can think like an engineer, a product designer, and a
-                systems builder at the same time?
+                What happens when one builder can think like an engineer, a product designer, and a
+                systems strategist at the same time?
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
                 The result is leverage. I can move from technical ambiguity to a working system

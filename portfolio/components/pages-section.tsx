@@ -7,7 +7,7 @@ export function PagesSection() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
           <span className="font-mono text-xs text-muted-foreground sm:text-sm">05.</span>
-          <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">Extended Range</h2>
+          <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">What Else Can He Build?</h2>
           <div className="h-px max-w-xs flex-1 bg-border" />
         </div>
 

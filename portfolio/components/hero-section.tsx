@@ -96,12 +96,12 @@ export function HeroSection() {
               </div>
 
               <h1 className="mx-auto mt-5 max-w-[12ch] text-[clamp(2.45rem,11vw,5.35rem)] leading-[0.96] tracking-[-0.045em] text-balance text-foreground sm:mt-6 sm:max-w-[12ch] sm:leading-[0.93] lg:mx-0 lg:max-w-[10.5ch]">
-                I build systems that turn technical ambition into visible impact.
+                I build AI systems that turn complexity into decisive action.
               </h1>
 
               <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-2xl sm:text-lg md:text-[1.05rem] lg:mx-0">
-                AI workflows, software products, and user-facing systems designed to move from idea
-                to proof fast, with enough clarity that people instantly understand why they matter.
+                Software, interfaces, and intelligent workflows built to move fast, read clearly,
+                and make ambitious ideas feel real within minutes.
               </p>
 
               <p className="mx-auto mt-4 max-w-md text-[0.72rem] uppercase leading-relaxed tracking-[0.18em] text-foreground/70 sm:max-w-2xl sm:text-[0.86rem] lg:mx-0">
@@ -113,14 +113,14 @@ export function HeroSection() {
                   href="#projects"
                   className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:w-auto sm:px-6"
                 >
-                  Enter the Case Studies
+                  See What I Built
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
                   className="inline-flex min-h-12 w-full items-center justify-center rounded-sm border border-border bg-card/85 px-5 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:w-auto sm:px-6"
                 >
-                  Let&apos;s Build Something Real
+                  Let&apos;s Build Something Sharp
                 </a>
               </div>
 

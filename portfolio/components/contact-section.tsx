@@ -52,7 +52,7 @@ export function ContactSection() {
           <div className="mb-6 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4">
             <div className="h-px max-w-[100px] flex-1 bg-border" />
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">06.</span>
-            <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">Open Signal</h2>
+            <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">Ready To Build Something Impactful?</h2>
             <div className="h-px max-w-[100px] flex-1 bg-border" />
           </div>
 

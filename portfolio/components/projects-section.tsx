@@ -16,6 +16,11 @@ const projects = [
       "I combined YOLOv5-based person detection, Python event handling, and Telegram notifications to create a lightweight real-time escalation loop instead of a passive archive.",
     impact:
       "Transforms monitoring from delayed review to immediate action. The concept shows how AI can compress response time and create enterprise-style awareness with a student-built budget.",
+    stats: {
+      systemResponse: 92,
+      productClarity: 76,
+      realWorldFit: 88,
+    },
     tags: ["Python", "YOLOv5", "Computer Vision", "Telegram API", "Real-Time Alerts"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -34,6 +39,11 @@ const projects = [
       "I built the model in C++ and focused on the algorithmic side of pattern recognition, using historical preference signals to predict future rating behavior.",
     impact:
       "Frames me as someone who understands recommendation logic beyond the UI layer. It is the kind of systems thinking that matters in marketplaces, media products, and discovery platforms.",
+    stats: {
+      systemResponse: 84,
+      productClarity: 72,
+      realWorldFit: 81,
+    },
     tags: ["C++", "Algorithms", "Predictive Modeling", "Data Analysis"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,6 +62,11 @@ const projects = [
       "I designed ten interaction models inside one app concept and used them to test hierarchy, navigation feedback, and flow resilience across different behaviors.",
     impact:
       "Sharpened my frontend decision-making by forcing the interface to survive real behavior, not just look clean in a design review.",
+    stats: {
+      systemResponse: 71,
+      productClarity: 94,
+      realWorldFit: 79,
+    },
     tags: ["UI/UX", "Interaction Design", "Research", "Product Thinking"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,6 +85,11 @@ const projects = [
       "I reviewed the core user flow, mapped the product logic, and translated the app into structured documentation that made evaluation and onboarding much easier.",
     impact:
       "Shows that I care about the invisible layers of product quality. Clear communication reduces friction, improves onboarding, and makes future iteration faster.",
+    stats: {
+      systemResponse: 68,
+      productClarity: 91,
+      realWorldFit: 82,
+    },
     tags: ["Research", "Documentation", "Health Tech", "Product Analysis"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -88,6 +108,11 @@ const projects = [
       "I focused on pacing, environmental storytelling, and symbolic worldbuilding so the setting itself becomes part of the narrative engine.",
     impact:
       "This project expands the emotional side of my design range. It proves I can think beyond functionality and build experiences that leave a stronger memory trace.",
+    stats: {
+      systemResponse: 63,
+      productClarity: 80,
+      realWorldFit: 70,
+    },
     tags: ["Game Design", "Storytelling", "Worldbuilding", "Concept Design"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,6 +132,11 @@ const projects = [
       "I studied core IoT architecture, networking foundations, and deployment considerations, then translated that research into a structured technical presentation.",
     impact:
       "Strengthened my systems-level reasoning and my ability to explain complex infrastructure in a way non-specialists can actually follow.",
+    stats: {
+      systemResponse: 77,
+      productClarity: 74,
+      realWorldFit: 78,
+    },
     tags: ["IoT", "Networking", "Research", "Systems Thinking"],
     icon: (
       <svg className="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -118,6 +148,7 @@ const projects = [
 
 export function ProjectsSection() {
   const [isVisible, setIsVisible] = useState(false)
+  const [activeProjectIndex, setActiveProjectIndex] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -150,14 +181,27 @@ export function ProjectsSection() {
           <div className="mb-8 max-w-3xl sm:mb-12">
             <span className="section-kicker">WHY this work is credible</span>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Each project starts with a real question, moves through a concrete build decision,
-              and ends with an outcome. That is how serious teams evaluate technical talent.
+              Can systems react faster than humans, predict intent earlier, or feel more intuitive
+              in motion? Each case study answers a real question instead of just presenting a build.
             </p>
           </div>
 
+          <ProjectSpotlight
+            project={projects[activeProjectIndex]}
+            activeProjectIndex={activeProjectIndex}
+            onSelect={setActiveProjectIndex}
+          />
+
           <div className="grid gap-5 xl:grid-cols-2">
             {projects.map((project, index) => (
-              <ProjectCard key={project.title} project={project} index={index} isVisible={isVisible} />
+              <ProjectCard
+                key={project.title}
+                project={project}
+                index={index}
+                isVisible={isVisible}
+                isActive={index === activeProjectIndex}
+                onActivate={() => setActiveProjectIndex(index)}
+              />
             ))}
           </div>
         </div>
@@ -170,18 +214,25 @@ function ProjectCard({
   project,
   index,
   isVisible,
+  isActive,
+  onActivate,
 }: {
   project: (typeof projects)[0]
   index: number
   isVisible: boolean
+  isActive: boolean
+  onActivate: () => void
 }) {
   return (
     <div
       className={cn(
         "signal-card signal-rail magnetic-card rounded-[1.3rem] border p-4 transition-all duration-500 hover:border-primary/20 hover:shadow-[0_22px_50px_rgba(18,25,38,0.1)] sm:rounded-[1.5rem] sm:p-6",
+        isActive ? "border-primary/25 shadow-[0_24px_55px_rgba(18,25,38,0.11)]" : "",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
+      onMouseEnter={onActivate}
+      onFocus={onActivate}
     >
       <div className="mb-5 flex flex-col items-start gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="inline-flex rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
@@ -223,6 +274,87 @@ function ProjectCard({
             {tag}
           </span>
         ))}
+      </div>
+    </div>
+  )
+}
+
+function ProjectSpotlight({
+  project,
+  activeProjectIndex,
+  onSelect,
+}: {
+  project: (typeof projects)[0]
+  activeProjectIndex: number
+  onSelect: (index: number) => void
+}) {
+  return (
+    <div className="signal-panel mb-8 overflow-hidden rounded-[1.5rem] border border-border/80 p-5 sm:mb-12 sm:p-8">
+      <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
+        <div>
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground">
+            Live Case Study Spotlight
+          </p>
+          <p className="mt-3 max-w-2xl text-xl leading-tight text-foreground sm:text-[1.85rem]">
+            {project.hook}
+          </p>
+          <h3 className="mt-4 text-2xl text-foreground sm:text-3xl">{project.title}</h3>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {project.summary}
+          </p>
+
+          <div className="mt-5 flex flex-wrap gap-2">
+            {projects.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => onSelect(index)}
+                className={cn(
+                  "rounded-full border px-3 py-2 text-xs uppercase tracking-[0.16em] transition-all",
+                  index === activeProjectIndex
+                    ? "border-primary/30 bg-primary/10 text-foreground"
+                    : "border-border bg-background/70 text-muted-foreground hover:border-primary/20 hover:text-foreground"
+                )}
+              >
+                {item.title}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="signal-card rounded-[1.25rem] border border-border/80 p-4 sm:p-5">
+          <p className="text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground">
+            System Readout
+          </p>
+          <div className="mt-5 space-y-4">
+            <SignalMeter label="System Response" value={project.stats.systemResponse} />
+            <SignalMeter label="Product Clarity" value={project.stats.productClarity} />
+            <SignalMeter label="Real-World Fit" value={project.stats.realWorldFit} />
+          </div>
+          <div className="mt-5 rounded-[1rem] border border-border/70 bg-background/70 p-4">
+            <p className="text-[0.64rem] uppercase tracking-[0.18em] text-muted-foreground">
+              Outcome Snapshot
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-foreground/88">{project.impact}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function SignalMeter({ label, value }: { label: string; value: number }) {
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between gap-3 text-sm">
+        <span className="text-foreground">{label}</span>
+        <span className="text-muted-foreground">{value}</span>
+      </div>
+      <div className="h-2 overflow-hidden rounded-full bg-secondary">
+        <div
+          className="h-full rounded-full bg-[linear-gradient(90deg,rgba(203,119,46,0.95),rgba(64,84,163,0.78))] transition-all duration-500"
+          style={{ width: `${value}%` }}
+        />
       </div>
     </div>
   )
