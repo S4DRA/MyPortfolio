@@ -143,16 +143,15 @@ export function ProjectsSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">04.</span>
-            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Case Studies</h2>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Proof of Work</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="mb-8 max-w-3xl sm:mb-12">
-            <span className="section-kicker">Case studies, not classwork</span>
+            <span className="section-kicker">WHY this work is credible</span>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              What happens when technical projects are presented the way serious teams actually
-              evaluate talent? You get context, decisions, stack clarity, and a credible outcome
-              instead of a gallery of disconnected screenshots.
+              Each project starts with a real question, moves through a concrete build decision,
+              and ends with an outcome. That is how serious teams evaluate technical talent.
             </p>
           </div>
 
@@ -179,23 +178,23 @@ function ProjectCard({
   return (
     <div
       className={cn(
-        "premium-panel magnetic-card rounded-[1.5rem] border p-5 transition-all duration-500 hover:border-primary/20 hover:shadow-[0_22px_50px_rgba(18,25,38,0.1)] sm:p-6",
+        "signal-card signal-rail magnetic-card rounded-[1.3rem] border p-4 transition-all duration-500 hover:border-primary/20 hover:shadow-[0_22px_50px_rgba(18,25,38,0.1)] sm:rounded-[1.5rem] sm:p-6",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       )}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      <div className="mb-5 flex items-start justify-between gap-4">
+      <div className="mb-5 flex flex-col items-start gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="inline-flex rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
           {project.icon}
         </div>
-        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/70 px-3 py-1 text-[0.72rem] uppercase tracking-[0.2em] text-muted-foreground">
+        <span className="inline-flex items-center gap-1 rounded-full border border-border bg-background/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.16em] text-muted-foreground sm:text-[0.72rem] sm:tracking-[0.2em]">
           Why this matters
           <ArrowUpRight className="h-3.5 w-3.5" />
         </span>
       </div>
 
       <p className="text-sm font-medium leading-relaxed text-primary sm:text-[0.95rem]">{project.hook}</p>
-      <h3 className="mt-4 text-2xl font-semibold text-foreground">{project.title}</h3>
+      <h3 className="mt-4 text-[1.45rem] font-semibold leading-tight text-foreground sm:text-2xl">{project.title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-[0.98rem]">{project.summary}</p>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">

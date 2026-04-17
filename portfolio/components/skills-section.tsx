@@ -51,23 +51,23 @@ export function SkillsSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">03.</span>
-            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Capabilities</h2>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Execution Stack</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="mb-8 max-w-3xl sm:mb-12">
-            <span className="section-kicker">Why teams can move fast with me</span>
+            <span className="section-kicker">WHY teams move faster with me</span>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              The value is not a long tool list. It is the ability to cross boundaries between AI,
-              engineering, and interface work without losing clarity.
+              The differentiator is not a stack list. It is range with judgment: enough technical
+              depth to build the system, and enough product sense to make the system readable.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 sm:gap-12">
-            <div className="rootonset-surface rootonset-outline rounded-sm border p-6">
-              <h3 className="mb-2 text-lg font-semibold text-foreground sm:text-xl">Technical Depth</h3>
+            <div className="signal-panel rootonset-outline rounded-[1rem] border p-4 sm:rounded-sm sm:p-6">
+              <h3 className="mb-2 text-lg font-semibold text-foreground sm:text-xl">Core Systems</h3>
               <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                Strongest where logic, performance, and iteration speed matter.
+                The part of the stack where logic, modeling, and iteration speed create leverage.
               </p>
               <div className="space-y-6">
                 {skills.programming.map((skill, index) => (
@@ -93,10 +93,11 @@ export function SkillsSection() {
               </div>
             </div>
 
-            <div className="rootonset-surface rootonset-outline rounded-sm border p-6">
-              <h3 className="mb-2 text-lg font-semibold text-foreground sm:text-xl">Delivery Range</h3>
+            <div className="signal-panel rootonset-outline rounded-[1rem] border p-4 sm:rounded-sm sm:p-6">
+              <h3 className="mb-2 text-lg font-semibold text-foreground sm:text-xl">Product Surface</h3>
               <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                Tools and domains I use to move from idea, to prototype, to polished interface.
+                The tools and domains I use to turn backend logic into something people can see,
+                use, and trust.
               </p>
               <div className="flex flex-wrap gap-2.5 sm:gap-3">
                 {skills.technologies.map((tech, index) => (

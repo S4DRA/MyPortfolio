@@ -79,11 +79,11 @@ export function Navigation() {
           : "border-transparent bg-background/72 backdrop-blur"
       )}
     >
-      <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
-        <div className="flex items-center justify-between gap-6">
+      <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 sm:py-4">
+        <div className="flex items-center justify-between gap-3 sm:gap-6">
           <Link
             href="/"
-            className="font-display text-2xl font-semibold tracking-tight text-foreground"
+            className="max-w-[11.5rem] text-pretty font-display text-[1.15rem] font-semibold leading-tight tracking-tight text-foreground sm:max-w-none sm:text-2xl"
           >
             Sadra Ahadiyan
           </Link>
@@ -145,7 +145,7 @@ function MobileMenu({
     <div className="xl:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="rounded-md border border-border p-2 text-foreground"
+        className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-border bg-card/85 text-foreground shadow-sm backdrop-blur transition-all hover:border-primary/25 hover:bg-secondary"
         aria-label="Toggle menu"
       >
         <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,8 +157,13 @@ function MobileMenu({
         </svg>
       </button>
       {isOpen ? (
-        <div className="absolute left-0 right-0 top-full border-b border-border bg-background shadow-sm">
-          <ul className="flex flex-col gap-4 p-6">
+        <div className="absolute left-3 right-3 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.4rem] border border-border bg-background/95 shadow-[0_18px_45px_rgba(18,25,38,0.12)] backdrop-blur">
+          <div className="border-b border-border/70 px-5 py-4">
+            <p className="text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground">
+              Navigate the portfolio
+            </p>
+          </div>
+          <ul className="flex max-h-[70vh] flex-col gap-2 overflow-y-auto p-3">
             {navItems.map((item) => (
               <li key={item.href}>
                 {item.section ? (
@@ -166,25 +171,27 @@ function MobileMenu({
                     href={item.href}
                     onClick={() => setIsOpen(false)}
                     className={cn(
-                      "text-base transition-colors",
+                      "flex items-center justify-between rounded-xl px-4 py-3 text-base transition-all",
                       pathname === item.href || (pathname === "/" && item.section === activeSection)
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "bg-secondary text-foreground"
+                        : "text-muted-foreground hover:bg-secondary/55 hover:text-foreground"
                     )}
                   >
                     {item.label}
+                    <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Open</span>
                   </Link>
                 ) : (
                   <AnimatedPageLink
                     href={item.href}
                     className={cn(
-                      "text-base transition-colors",
+                      "flex items-center justify-between rounded-xl px-4 py-3 text-base transition-all",
                       pathname === item.href || (pathname === "/" && item.section === activeSection)
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "bg-secondary text-foreground"
+                        : "text-muted-foreground hover:bg-secondary/55 hover:text-foreground"
                     )}
                   >
                     {item.label}
+                    <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Open</span>
                   </AnimatedPageLink>
                 )}
               </li>

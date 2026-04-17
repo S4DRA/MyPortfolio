@@ -30,36 +30,39 @@ export function AboutSection() {
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">02.</span>
-            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Builder OS</h2>
+            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Why I&apos;m Dangerous</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] sm:gap-12">
-            <div className="space-y-6">
-              <span className="section-kicker">Why I build this way</span>
-              <p className="max-w-3xl text-xl leading-relaxed text-foreground sm:text-2xl">
-                What if the real edge is not just writing code, but connecting systems thinking,
-                interface taste, and execution speed into one workflow?
+            <div className="order-2 space-y-5 md:order-1 sm:space-y-6">
+              <span className="section-kicker">WHY this approach works</span>
+              <p className="max-w-3xl text-lg leading-relaxed text-foreground sm:text-2xl">
+                What happens when one person can think like an engineer, a product designer, and a
+                systems builder at the same time?
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                I study computer engineering at <span className="text-foreground">Bahcesehir University</span> in Istanbul, but I do not frame my work around the word student. I frame it around leverage: understanding the system, finding the pressure point, and building the clearest path from idea to usable product.
+                The result is leverage. I can move from technical ambiguity to a working system
+                quickly because I care about the model, the interface, and the decision-making
+                layer around them.
               </p>
               <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
-                My edge is the combination of AI systems, software engineering, interaction thinking, and storytelling. That mix helps me build work that is technically sound and immediately legible to recruiters, clients, founders, and collaborators.
+                That is why the work feels different. It is not just functional. It is framed,
+                structured, and presented like something ready to survive outside a classroom.
               </p>
               <div className="grid gap-4 sm:grid-cols-2">
                 <ValueCard
-                  title="What I build"
-                  description="AI-powered workflows, technical prototypes, and digital products that solve a visible problem instead of decorating a resume."
+                  title="How I create leverage"
+                  description="I find the pressure point, remove noise, and build the clearest version of the solution with enough polish to earn trust fast."
                 />
                 <ValueCard
-                  title="How I think"
-                  description="Start from the real-world tension, reduce complexity, then ship a product experience people can immediately understand."
+                  title="Why it matters"
+                  description="Recruiters, founders, and clients do not just see code. They see proof that I can think, decide, and ship at a higher level."
                 />
               </div>
             </div>
 
-            <div className="premium-panel rounded-[1.5rem] border p-4 sm:p-5">
+            <div className="order-1 signal-panel rounded-[1.35rem] border p-4 sm:order-2 sm:rounded-[1.5rem] sm:p-5">
               <div className="grid gap-5">
                 <div className="overflow-hidden rounded-[1.2rem] border border-border bg-secondary/50">
                   <Image
@@ -70,7 +73,7 @@ export function AboutSection() {
                     className="aspect-[4/5] w-full object-cover object-center"
                   />
                 </div>
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+                <div className="grid grid-cols-2 gap-3 sm:gap-5">
                   <StatItem label="Base" value="Istanbul" />
                   <StatItem label="Core Focus" value="AI + Product" />
                   <StatItem label="Strength" value="Systems + UX" />
@@ -87,9 +90,9 @@ export function AboutSection() {
 
 function StatItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-[1rem] border border-border bg-background/88 px-4 py-4 text-center shadow-[0_10px_24px_rgba(18,25,38,0.05)]">
-      <p className="text-lg font-semibold text-foreground sm:text-xl">{value}</p>
-      <p className="mt-1 text-xs text-muted-foreground sm:text-sm">{label}</p>
+    <div className="rounded-[0.95rem] border border-border bg-background/88 px-3 py-3 text-center shadow-[0_10px_24px_rgba(18,25,38,0.05)] sm:rounded-[1rem] sm:px-4 sm:py-4">
+      <p className="text-[0.95rem] font-semibold leading-snug text-foreground sm:text-xl">{value}</p>
+      <p className="mt-1 text-[0.68rem] text-muted-foreground sm:text-sm">{label}</p>
     </div>
   )
 }
@@ -102,7 +105,7 @@ function ValueCard({
   description: string
 }) {
   return (
-    <div className="rounded-[1.15rem] border border-border/80 bg-card/85 p-5 shadow-[0_12px_26px_rgba(18,25,38,0.05)]">
+    <div className="signal-card rounded-[1rem] border border-border/80 bg-card/85 p-4 shadow-[0_12px_26px_rgba(18,25,38,0.05)] sm:rounded-[1.15rem] sm:p-5">
       <p className="text-base font-semibold text-foreground">{title}</p>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
     </div>

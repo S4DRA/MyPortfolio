@@ -134,12 +134,13 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(circle at top left, rgba(203, 119, 46, 0.12), transparent 28%),
-      radial-gradient(circle at top right, rgba(52, 82, 156, 0.1), transparent 26%),
-      linear-gradient(180deg, rgba(255, 252, 246, 0.94), rgba(244, 239, 232, 0.96)),
-      linear-gradient(90deg, rgba(24, 34, 52, 0.025) 1px, transparent 1px),
-      linear-gradient(rgba(24, 34, 52, 0.025) 1px, transparent 1px);
-    background-size: auto, auto, auto, 34px 34px, 34px 34px;
+      radial-gradient(circle at top left, rgba(203, 119, 46, 0.14), transparent 24%),
+      radial-gradient(circle at top right, rgba(66, 102, 190, 0.11), transparent 24%),
+      linear-gradient(180deg, rgba(255, 252, 246, 0.98), rgba(243, 238, 229, 0.97)),
+      linear-gradient(90deg, rgba(24, 34, 52, 0.04) 1px, transparent 1px),
+      linear-gradient(rgba(24, 34, 52, 0.04) 1px, transparent 1px),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background-size: auto, auto, auto, 28px 28px, 28px 28px, auto;
     font-family: var(--font-sans);
     font-size: 1rem;
     font-weight: 400;
@@ -198,10 +199,78 @@
 
   .premium-panel {
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(247, 243, 236, 0.96)),
-      linear-gradient(135deg, rgba(203, 119, 46, 0.04), rgba(64, 84, 163, 0.04));
-    box-shadow: 0 18px 44px rgba(19, 28, 43, 0.07);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(247, 243, 236, 0.97)),
+      linear-gradient(135deg, rgba(203, 119, 46, 0.045), rgba(64, 84, 163, 0.055));
+    box-shadow: 0 18px 44px rgba(19, 28, 43, 0.08);
     backdrop-filter: blur(20px);
+  }
+
+  .signal-panel {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(246, 242, 235, 0.96)),
+      linear-gradient(135deg, rgba(64, 84, 163, 0.04), rgba(203, 119, 46, 0.06));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 20px 50px rgba(19, 28, 43, 0.08);
+  }
+
+  .signal-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(24, 34, 52, 0.05) 1px, transparent 1px),
+      linear-gradient(rgba(24, 34, 52, 0.05) 1px, transparent 1px);
+    background-size: 18px 18px;
+    opacity: 0.28;
+    pointer-events: none;
+  }
+
+  .signal-card {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(247, 243, 236, 0.94)),
+      linear-gradient(135deg, rgba(203, 119, 46, 0.03), rgba(64, 84, 163, 0.03));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 18px 40px rgba(19, 28, 43, 0.06);
+  }
+
+  .signal-card::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(203, 119, 46, 0.8), rgba(64, 84, 163, 0.28), transparent 85%);
+    opacity: 0.95;
+    pointer-events: none;
+  }
+
+  .signal-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid rgba(31, 41, 55, 0.08);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    color: rgba(31, 41, 55, 0.72);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .signal-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(203, 119, 46, 1), rgba(160, 87, 26, 1));
+    box-shadow: 0 0 0 6px rgba(203, 119, 46, 0.08);
   }
 
   .section-kicker {
@@ -228,6 +297,25 @@
 
   .magnetic-card:hover {
     transform: translateY(-6px);
+  }
+
+  .signal-rail {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .signal-rail::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(203, 119, 46, 0.08), rgba(64, 84, 163, 0.08), transparent);
+    opacity: 0;
+    transition: opacity 220ms ease;
+    pointer-events: none;
+  }
+
+  .signal-rail:hover::before {
+    opacity: 1;
   }
 
   .ambient-orb {
@@ -272,6 +360,35 @@
     mix-blend-mode: screen;
     opacity: 0.85;
     animation: scanline 7s ease-in-out infinite;
+  }
+
+  .scan-border {
+    position: relative;
+  }
+
+  .scan-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    pointer-events: none;
+  }
+
+  .pulse-chip {
+    animation: pulse-chip 2.8s ease-in-out infinite;
+  }
+
+  @keyframes pulse-chip {
+    0%, 100% {
+      transform: translateY(0);
+      box-shadow: 0 0 0 0 rgba(203, 119, 46, 0.18);
+    }
+
+    50% {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 8px rgba(203, 119, 46, 0);
+    }
   }
 
   @keyframes scanline {

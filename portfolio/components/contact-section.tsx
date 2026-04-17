@@ -52,15 +52,14 @@ export function ContactSection() {
           <div className="mb-6 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4">
             <div className="h-px max-w-[100px] flex-1 bg-border" />
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">06.</span>
-            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Let&apos;s Build</h2>
+            <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">Open Signal</h2>
             <div className="h-px max-w-[100px] flex-1 bg-border" />
           </div>
 
-          <span className="section-kicker">Conversion point</span>
+          <span className="section-kicker">WHY reach out now</span>
           <p className="mx-auto mt-4 mb-8 max-w-2xl px-2 text-sm leading-relaxed text-muted-foreground sm:mb-12 sm:text-base md:text-lg">
-            What could we ship together in the next few weeks? I am actively open to internships,
-            freelance product builds, and ambitious collaborations where AI, software, and strong
-            user experience need to come together fast.
+            If you need someone who can think in systems, move quickly, and still care about how
+            the final product lands, this is the point where we should talk.
           </p>
 
           <div className="mb-8 grid gap-4 text-left sm:mb-12 lg:grid-cols-3">
@@ -70,7 +69,7 @@ export function ContactSection() {
               return (
                 <div
                   key={opportunity.title}
-                  className="premium-panel magnetic-card rounded-[1.35rem] border p-5"
+                  className="signal-card magnetic-card rounded-[1.15rem] border p-4 sm:rounded-[1.35rem] sm:p-5"
                 >
                   <div className="inline-flex rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
                     <Icon className="h-5 w-5" />
@@ -85,35 +84,35 @@ export function ContactSection() {
           </div>
 
           <div className="mb-8 grid gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            <a href="mailto:sadra.ahadiyan@bahcesehir.edu.tr" className="premium-panel rounded-[1.2rem] border p-5 text-left transition-all hover:-translate-y-1 hover:border-primary/25">
+            <a href="mailto:sadra.ahadiyan@bahcesehir.edu.tr" className="signal-card rounded-[1rem] border p-4 text-left transition-all hover:-translate-y-1 hover:border-primary/25 sm:rounded-[1.2rem] sm:p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
               <p className="mt-3 break-all text-sm font-medium text-foreground sm:text-base">sadra.ahadiyan@bahcesehir.edu.tr</p>
             </a>
 
-            <a href="tel:+905315266501" className="premium-panel rounded-[1.2rem] border p-5 text-left transition-all hover:-translate-y-1 hover:border-primary/25">
+            <a href="tel:+905315266501" className="signal-card rounded-[1rem] border p-4 text-left transition-all hover:-translate-y-1 hover:border-primary/25 sm:rounded-[1.2rem] sm:p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
               <p className="mt-3 text-sm font-medium text-foreground sm:text-base">+90 531 526 6501</p>
             </a>
 
-            <div className="premium-panel rounded-[1.2rem] border p-5 text-left">
+            <div className="signal-card rounded-[1rem] border p-4 text-left sm:rounded-[1.2rem] sm:p-5">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Location</p>
               <p className="mt-3 text-sm font-medium text-foreground sm:text-base">Istanbul, Turkey</p>
             </div>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
             <a
               href="mailto:sadra.ahadiyan@bahcesehir.edu.tr?subject=Let's%20Build%20Something"
-              className="inline-flex items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:px-8 sm:text-base"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:px-8 sm:text-base"
             >
-              Start a Conversation
+              Let&apos;s Build Something Impactful
               <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-sm border border-border bg-card/85 px-6 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:px-8 sm:text-base"
+              className="inline-flex min-h-12 items-center justify-center rounded-sm border border-border bg-card/85 px-6 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:px-8 sm:text-base"
             >
               Connect on LinkedIn
             </a>

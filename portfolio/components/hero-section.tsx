@@ -27,16 +27,31 @@ const whyEngine = [
 
 const signalCards = [
   {
-    label: "Current focus",
-    value: "AI systems, productized software, and high-signal interfaces",
+    label: "Build zone",
+    value: "AI systems, productized software, and interfaces that feel deliberate",
   },
   {
     label: "Best fit",
-    value: "Internships, freelance MVPs, and early-stage technical products",
+    value: "Internships, freelance MVPs, and teams shipping ambitious technical products",
   },
   {
-    label: "Working style",
-    value: "Fast iteration, clear reasoning, and sharp user-facing execution",
+    label: "Working mode",
+    value: "Fast iteration, clear thinking, and execution that looks as strong as it works",
+  },
+]
+
+const quickFacts = [
+  {
+    label: "Currently building",
+    value: "AI workflows and product-grade interfaces",
+  },
+  {
+    label: "Best conversations",
+    value: "Internships, freelance MVPs, and high-upside builds",
+  },
+  {
+    label: "Bias",
+    value: "Fast execution, clean systems, strong presentation",
   },
 ]
 
@@ -62,7 +77,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-30"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-14 pt-22 sm:px-6 sm:pb-20 sm:pt-30"
     >
       <div className="ambient-orb ambient-orb-left" aria-hidden="true" />
       <div className="ambient-orb ambient-orb-right" aria-hidden="true" />
@@ -73,52 +88,51 @@ export function HeroSection() {
             showHero ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,420px)] lg:gap-14 xl:gap-18">
+          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,420px)] lg:gap-14 xl:gap-18">
             <div className="order-2 text-center lg:order-1 lg:text-left">
-              <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-card/80 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur sm:px-4 sm:text-[0.68rem] sm:tracking-[0.22em]">
-                <span className="h-2 w-2 rounded-full bg-primary" />
-                <span className="truncate">Builder Mode: AI Systems, Product Design, Frontend Execution</span>
+              <div className="signal-label pulse-chip max-w-full">
+                <span className="signal-dot" />
+                <span className="truncate">System Builder: AI, Software, Product Execution</span>
               </div>
 
-              <h1 className="mt-6 max-w-[11ch] text-[clamp(2.7rem,10vw,5.35rem)] leading-[0.95] tracking-[-0.04em] text-balance text-foreground sm:max-w-[12ch] sm:leading-[0.93] lg:max-w-[10.5ch]">
-                I build AI products and digital systems that make complex ideas feel inevitable.
+              <h1 className="mx-auto mt-5 max-w-[12ch] text-[clamp(2.45rem,11vw,5.35rem)] leading-[0.96] tracking-[-0.045em] text-balance text-foreground sm:mt-6 sm:max-w-[12ch] sm:leading-[0.93] lg:mx-0 lg:max-w-[10.5ch]">
+                I build systems that turn technical ambition into visible impact.
               </h1>
 
-              <p className="mt-5 max-w-2xl text-[0.98rem] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg md:text-[1.05rem]">
-                I am Sadra Ahadiyan, a computer engineering student already working like a product-minded builder:
-                shaping AI workflows, software systems, and polished interfaces that turn technical
-                ambition into something people can trust, use, and remember.
+              <p className="mx-auto mt-4 max-w-xl text-[0.95rem] leading-relaxed text-muted-foreground sm:mt-6 sm:max-w-2xl sm:text-lg md:text-[1.05rem] lg:mx-0">
+                AI workflows, software products, and user-facing systems designed to move from idea
+                to proof fast, with enough clarity that people instantly understand why they matter.
               </p>
 
-              <p className="mt-4 max-w-2xl text-sm uppercase tracking-[0.18em] text-foreground/70 sm:text-[0.86rem]">
-                Available for internships, freelance AI builds, and high-upside collaborations.
+              <p className="mx-auto mt-4 max-w-md text-[0.72rem] uppercase leading-relaxed tracking-[0.18em] text-foreground/70 sm:max-w-2xl sm:text-[0.86rem] lg:mx-0">
+                Available for internships, AI projects, and teams that need a builder who can ship.
               </p>
 
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row lg:items-start">
+              <div className="mt-7 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center lg:items-start">
                 <a
                   href="#projects"
-                  className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:w-auto sm:max-w-none"
+                  className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:w-auto sm:px-6"
                 >
-                  See the Case Studies
+                  Enter the Case Studies
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex w-full max-w-xs items-center justify-center rounded-sm border border-border bg-card/85 px-6 py-3 font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:w-auto sm:max-w-none"
+                  className="inline-flex min-h-12 w-full items-center justify-center rounded-sm border border-border bg-card/85 px-5 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:w-auto sm:px-6"
                 >
-                  Let&apos;s Build Something That Ships
+                  Let&apos;s Build Something Real
                 </a>
               </div>
 
-              <div className="mt-8 grid gap-4 text-left sm:mt-10 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="mt-8 grid gap-3 text-left sm:mt-10 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
                 {signalCards.map((card) => (
                   <MetricCard key={card.label} value={card.label} label={card.value} />
                 ))}
               </div>
             </div>
 
-            <div className="order-1 mx-auto w-full max-w-[320px] sm:max-w-[360px] lg:order-2 lg:justify-self-end lg:max-w-[420px]">
-              <div className="hero-portrait-shell rootonset-outline relative overflow-hidden rounded-[1.6rem] border p-3 shadow-[0_24px_90px_rgba(18,25,38,0.16)]">
+            <div className="order-1 mx-auto w-full max-w-[290px] sm:max-w-[360px] lg:order-2 lg:justify-self-end lg:max-w-[420px]">
+              <div className="hero-portrait-shell rootonset-outline scan-border relative overflow-hidden rounded-[1.35rem] border p-2.5 shadow-[0_24px_90px_rgba(18,25,38,0.16)] sm:rounded-[1.6rem] sm:p-3">
                 <div className="hero-portrait-glow absolute inset-0" aria-hidden="true" />
                 <div className="hero-scanline absolute inset-x-0 top-0 h-16" aria-hidden="true" />
                 <Image
@@ -127,31 +141,40 @@ export function HeroSection() {
                   width={900}
                   height={1100}
                   priority
-                  className="relative aspect-[4/5] w-full rounded-[1.2rem] object-cover object-center"
+                  className="relative aspect-[4/5] w-full rounded-[1rem] object-cover object-center sm:rounded-[1.2rem]"
                 />
               </div>
 
-              <div className="mt-4 overflow-hidden rounded-[1.25rem] border border-border/80 bg-[rgba(12,18,28,0.9)] text-left text-white shadow-[0_18px_45px_rgba(18,25,38,0.16)] backdrop-blur-xl">
-                <div className="border-b border-white/10 px-4 py-3 sm:px-5">
-                  <p className="text-[0.68rem] uppercase tracking-[0.28em] text-white/60">
-                    Builder Signal
+              <div className="signal-panel mt-3 overflow-hidden rounded-[1.15rem] border border-border/80 text-left text-foreground shadow-[0_18px_45px_rgba(18,25,38,0.16)] backdrop-blur-xl sm:mt-4 sm:rounded-[1.25rem]">
+                <div className="border-b border-border/70 px-4 py-3 sm:px-5">
+                  <p className="text-[0.68rem] uppercase tracking-[0.28em] text-muted-foreground">
+                    Mission Control
                   </p>
                 </div>
                 <div className="grid gap-4 px-4 py-4 sm:px-5">
                   <div>
-                    <p className="text-[0.72rem] uppercase tracking-[0.22em] text-white/50">
-                      Positioning
+                    <p className="text-[0.72rem] uppercase tracking-[0.22em] text-muted-foreground">
+                      What to know fast
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-white/88 sm:text-[0.95rem]">
-                      Engineer with product instincts. I turn ambitious technical concepts into
-                      systems that feel credible, usable, and worth funding.
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/88 sm:text-[0.95rem]">
+                      I build technical work that is not only functional, but positioned clearly
+                      enough to earn trust fast.
                     </p>
                   </div>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <SignalPill label="Ships" value="AI workflows" />
-                    <SignalPill label="Designs" value="user-facing systems" />
-                    <SignalPill label="Open to" value="internships" />
-                    <SignalPill label="Based in" value="Istanbul" />
+                  <div className="grid gap-3">
+                    {quickFacts.map((fact) => (
+                      <div
+                        key={fact.label}
+                        className="rounded-[1rem] border border-border/70 bg-background/72 px-3 py-3"
+                      >
+                        <p className="text-[0.62rem] uppercase tracking-[0.18em] text-muted-foreground">
+                          {fact.label}
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-foreground/90">
+                          {fact.value}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -164,10 +187,10 @@ export function HeroSection() {
             showWhy ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
           }`}
         >
-          <div className="premium-panel mt-12 rounded-[1.5rem] p-5 sm:mt-14 sm:p-8">
+          <div className="premium-panel mt-10 rounded-[1.4rem] p-4 sm:mt-14 sm:rounded-[1.5rem] sm:p-8">
             <div className="mb-5 flex items-center gap-3">
               <span className="section-kicker">WHY engine</span>
-              <div className="h-px flex-1 bg-border/80" />
+              <div className="hidden h-px flex-1 bg-border/80 sm:block" />
             </div>
             <div className="grid gap-4 lg:grid-cols-3">
               {whyEngine.map((item) => {
@@ -176,7 +199,7 @@ export function HeroSection() {
                 return (
                   <div
                     key={item.title}
-                    className="magnetic-card rounded-[1.25rem] border border-border/80 bg-background/88 p-5 shadow-[0_12px_32px_rgba(18,25,38,0.06)] backdrop-blur"
+                    className="signal-card magnetic-card rounded-[1.25rem] border border-border/80 bg-background/88 p-5 shadow-[0_12px_32px_rgba(18,25,38,0.06)] backdrop-blur"
                   >
                     <div className="mb-4 inline-flex rounded-xl border border-primary/15 bg-primary/8 p-3 text-primary">
                       <Icon className="h-5 w-5" />
@@ -197,7 +220,7 @@ export function HeroSection() {
             showMeta ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
           }`}
         >
-          <div className="flex flex-wrap items-center justify-center gap-3 border-t border-border/75 pt-6 text-sm text-muted-foreground lg:justify-start">
+          <div className="flex flex-wrap items-center justify-center gap-2.5 border-t border-border/75 pt-5 text-center text-[0.92rem] text-muted-foreground sm:gap-3 sm:pt-6 sm:text-sm lg:justify-start lg:text-left">
             <span className="font-medium text-foreground">This portfolio is built to answer three questions:</span>
             <span>Can he think in systems?</span>
             <span className="hidden sm:inline text-border">/</span>
@@ -213,18 +236,9 @@ export function HeroSection() {
 
 function MetricCard({ value, label }: { value: string; label: string }) {
   return (
-    <div className="magnetic-card rounded-[1.1rem] border border-border/75 bg-card/80 p-4 shadow-[0_10px_28px_rgba(18,25,38,0.05)] backdrop-blur">
+    <div className="signal-card magnetic-card rounded-[1rem] border border-border/75 bg-card/80 p-4 shadow-[0_10px_28px_rgba(18,25,38,0.05)] backdrop-blur sm:rounded-[1.1rem]">
       <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary">{value}</p>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{label}</p>
-    </div>
-  )
-}
-
-function SignalPill({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-3">
-      <p className="text-[0.62rem] uppercase tracking-[0.22em] text-white/45">{label}</p>
-      <p className="mt-1 text-sm text-white/88">{value}</p>
     </div>
   )
 }
