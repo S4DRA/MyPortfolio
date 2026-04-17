@@ -59,7 +59,7 @@ export function HeroSection() {
           }`}
         >
           <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,420px)] lg:gap-14 xl:gap-18">
-            <div className="text-center lg:text-left">
+            <div className="order-2 text-center lg:order-1 lg:text-left">
               <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-primary/20 bg-card/80 px-3 py-2 text-[0.62rem] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur sm:px-4 sm:text-[0.68rem] sm:tracking-[0.22em]">
                 <span className="h-2 w-2 rounded-full bg-primary" />
                 <span className="truncate">AI Systems, Product Thinking, Technical Execution</span>
@@ -108,7 +108,7 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="mx-auto w-full max-w-[320px] sm:max-w-[360px] lg:justify-self-end lg:max-w-[420px]">
+            <div className="order-1 mx-auto w-full max-w-[320px] sm:max-w-[360px] lg:order-2 lg:justify-self-end lg:max-w-[420px]">
               <div className="hero-portrait-shell rootonset-outline relative overflow-hidden rounded-[1.6rem] border p-3 shadow-[0_24px_90px_rgba(18,25,38,0.16)]">
                 <div className="hero-portrait-glow absolute inset-0" aria-hidden="true" />
                 <Image

@@ -43,12 +43,17 @@ export function ParticleBackground() {
     }
 
     const resize = () => {
-      canvas.width = window.innerWidth
-      canvas.height = window.innerHeight
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25)
+      canvas.width = Math.floor(window.innerWidth * dpr)
+      canvas.height = Math.floor(window.innerHeight * dpr)
+      canvas.style.width = `${window.innerWidth}px`
+      canvas.style.height = `${window.innerHeight}px`
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
     }
 
     const createScene = () => {
-      const lineCount = Math.max(7, Math.floor(canvas.height / 110))
+      const viewHeight = window.innerHeight
+      const lineCount = Math.max(6, Math.floor(viewHeight / 135))
       const colors = [
         "79, 96, 145",
         "103, 126, 182",
@@ -57,12 +62,12 @@ export function ParticleBackground() {
       ]
 
       waves = Array.from({ length: lineCount }, (_, index) => ({
-        baseY: ((index + 1) / (lineCount + 1)) * canvas.height,
-        amplitude: 20 + Math.random() * 34,
+        baseY: ((index + 1) / (lineCount + 1)) * window.innerHeight,
+        amplitude: 22 + Math.random() * 36,
         wavelength: 180 + Math.random() * 260,
         speed: 0.35 + Math.random() * 0.65,
-        thickness: 1.2 + Math.random() * 3.6,
-        alpha: 0.08 + Math.random() * 0.1,
+        thickness: 3.2 + Math.random() * 4.8,
+        alpha: 0.09 + Math.random() * 0.11,
         phase: Math.random() * Math.PI * 2,
         color: colors[index % colors.length],
       }))
@@ -100,40 +105,44 @@ export function ParticleBackground() {
     }
 
     const drawBackdrop = () => {
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height)
+      const viewWidth = window.innerWidth
+      const viewHeight = window.innerHeight
+      const gradient = ctx.createLinearGradient(0, 0, 0, viewHeight)
       gradient.addColorStop(0, "rgba(255, 252, 247, 0.98)")
       gradient.addColorStop(0.5, "rgba(248, 244, 237, 0.98)")
       gradient.addColorStop(1, "rgba(243, 238, 231, 0.99)")
       ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, viewWidth, viewHeight)
     }
 
     const drawAmbientGlow = () => {
+      const viewWidth = window.innerWidth
+      const viewHeight = window.innerHeight
       const glowA = ctx.createRadialGradient(
-        canvas.width * 0.24,
-        canvas.height * 0.18,
+        viewWidth * 0.24,
+        viewHeight * 0.18,
         0,
-        canvas.width * 0.24,
-        canvas.height * 0.18,
-        canvas.width * 0.28
+        viewWidth * 0.24,
+        viewHeight * 0.18,
+        viewWidth * 0.28
       )
       glowA.addColorStop(0, "rgba(125, 146, 212, 0.08)")
       glowA.addColorStop(1, "rgba(125, 146, 212, 0)")
       ctx.fillStyle = glowA
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, viewWidth, viewHeight)
 
       const glowB = ctx.createRadialGradient(
-        canvas.width * 0.78,
-        canvas.height * 0.74,
+        viewWidth * 0.78,
+        viewHeight * 0.74,
         0,
-        canvas.width * 0.78,
-        canvas.height * 0.74,
-        canvas.width * 0.26
+        viewWidth * 0.78,
+        viewHeight * 0.74,
+        viewWidth * 0.26
       )
       glowB.addColorStop(0, "rgba(196, 147, 108, 0.07)")
       glowB.addColorStop(1, "rgba(196, 147, 108, 0)")
       ctx.fillStyle = glowB
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
+      ctx.fillRect(0, 0, viewWidth, viewHeight)
     }
 
     const getRippleDistortion = (x: number, y: number) => {
@@ -154,10 +163,28 @@ export function ParticleBackground() {
       return offsetY
     }
 
-    const drawWave = (wave: WaveLine, index: number) => {
-      ctx.beginPath()
+    const getPointerDistortion = (x: number, y: number) => {
+      if (!pointer.active) return 0
 
-      for (let x = -40; x <= canvas.width + 40; x += 8) {
+      const dx = x - pointer.x
+      const dy = y - pointer.y
+      const distance = Math.hypot(dx, dy)
+      const influence = 220
+
+      if (distance >= influence) return 0
+
+      const falloff = 1 - distance / influence
+      const directional = dy / Math.max(influence, 1)
+      const smoothWave = Math.sin((dx / influence) * Math.PI * 0.9)
+
+      return falloff * 34 * directional + smoothWave * falloff * 16
+    }
+
+    const drawWave = (wave: WaveLine) => {
+      ctx.beginPath()
+      const viewWidth = window.innerWidth
+
+      for (let x = -40; x <= viewWidth + 40; x += 12) {
         const travel = x + frame * wave.speed * -1.8
         const primary =
           Math.sin(travel / wave.wavelength + wave.phase) * wave.amplitude
@@ -171,17 +198,7 @@ export function ParticleBackground() {
 
         let y = wave.baseY + primary + secondary + tertiary
 
-        if (pointer.active) {
-          const dx = x - pointer.x
-          const dy = y - pointer.y
-          const distance = Math.hypot(dx, dy)
-          const influence = 190
-
-          if (distance < influence) {
-            y += (1 - distance / influence) * 42 * Math.sign(dy || 1)
-          }
-        }
-
+        y += getPointerDistortion(x, y)
         y += getRippleDistortion(x, y)
 
         if (x <= -40) {
@@ -195,42 +212,9 @@ export function ParticleBackground() {
       ctx.lineWidth = wave.thickness
       ctx.lineCap = "round"
       ctx.lineJoin = "round"
-      ctx.shadowBlur = 18
-      ctx.shadowColor = `rgba(${wave.color}, ${wave.alpha * 0.22})`
+      ctx.shadowBlur = 12
+      ctx.shadowColor = `rgba(${wave.color}, ${wave.alpha * 0.18})`
       ctx.stroke()
-
-      ctx.beginPath()
-      for (let x = -40; x <= canvas.width + 40; x += 16) {
-        const travel = x + frame * wave.speed * -1.8
-        const primary =
-          Math.sin(travel / wave.wavelength + wave.phase) * wave.amplitude
-        const secondary =
-          Math.cos(travel / (wave.wavelength * 0.52) + wave.phase * 0.8) *
-          wave.amplitude *
-          0.28
-        const tertiary =
-          Math.sin(travel / (wave.wavelength * 1.9) - wave.phase * 0.6 + frame * 0.01) *
-          12
-        let y = wave.baseY + primary + secondary + tertiary
-
-        if (pointer.active) {
-          const dx = x - pointer.x
-          const dy = y - pointer.y
-          const distance = Math.hypot(dx, dy)
-          const influence = 190
-
-          if (distance < influence) {
-            y += (1 - distance / influence) * 42 * Math.sign(dy || 1)
-          }
-        }
-
-        y += getRippleDistortion(x, y)
-        ctx.moveTo(x, y)
-        ctx.arc(x, y, 0.8 + (index % 3) * 0.25, 0, Math.PI * 2)
-      }
-
-      ctx.fillStyle = `rgba(${wave.color}, ${Math.min(wave.alpha * 1.65, 0.22)})`
-      ctx.fill()
       ctx.shadowBlur = 0
     }
 
@@ -258,7 +242,7 @@ export function ParticleBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       drawBackdrop()
       drawAmbientGlow()
-      waves.forEach((wave, index) => drawWave(wave, index))
+      waves.forEach((wave) => drawWave(wave))
       drawRipples()
       animationId = window.requestAnimationFrame(render)
     }
