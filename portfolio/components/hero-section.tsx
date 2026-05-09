@@ -77,7 +77,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-14 pt-22 sm:px-6 sm:pb-20 sm:pt-30"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-20 sm:pt-30"
     >
       <div className="ambient-orb ambient-orb-left" aria-hidden="true" />
       <div className="ambient-orb ambient-orb-right" aria-hidden="true" />
@@ -89,13 +89,13 @@ export function HeroSection() {
           }`}
         >
           <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,420px)] lg:gap-14 xl:gap-18">
-            <div className="order-2 text-center lg:order-1 lg:text-left">
+            <div className="order-1 text-center lg:text-left">
               <div className="signal-label pulse-chip max-w-full">
                 <span className="signal-dot" />
                 <span className="truncate">System Builder: AI, Software, Product Execution</span>
               </div>
 
-              <h1 className="mx-auto mt-5 max-w-[12ch] text-[clamp(2.45rem,11vw,5.35rem)] leading-[0.96] tracking-[-0.045em] text-balance text-foreground sm:mt-6 sm:max-w-[12ch] sm:leading-[0.93] lg:mx-0 lg:max-w-[10.5ch]">
+              <h1 className="mx-auto mt-5 max-w-[13ch] text-[clamp(2.35rem,10vw,5.35rem)] leading-[0.98] tracking-[-0.035em] text-balance text-foreground sm:mt-6 sm:max-w-[12ch] sm:leading-[0.93] lg:mx-0 lg:max-w-[10.5ch]">
                 I build AI systems that turn complexity into decisive action.
               </h1>
 
@@ -131,8 +131,8 @@ export function HeroSection() {
               </div>
             </div>
 
-            <div className="order-1 mx-auto w-full max-w-[290px] sm:max-w-[360px] lg:order-2 lg:justify-self-end lg:max-w-[420px]">
-              <div className="hero-portrait-shell rootonset-outline scan-border relative overflow-hidden rounded-[1.35rem] border p-2.5 shadow-[0_24px_90px_rgba(18,25,38,0.16)] sm:rounded-[1.6rem] sm:p-3">
+            <div className="order-2 mx-auto w-full max-w-[250px] sm:max-w-[360px] lg:justify-self-end lg:max-w-[420px]">
+              <div className="hero-portrait-shell rootonset-outline scan-border relative overflow-hidden rounded-[1.35rem] border p-2 shadow-[0_24px_90px_rgba(18,25,38,0.16)] sm:rounded-[1.6rem] sm:p-3">
                 <div className="hero-portrait-glow absolute inset-0" aria-hidden="true" />
                 <div className="hero-scanline absolute inset-x-0 top-0 h-16" aria-hidden="true" />
                 <Image
@@ -161,7 +161,7 @@ export function HeroSection() {
                       enough to earn trust fast.
                     </p>
                   </div>
-                  <div className="grid gap-3">
+                  <div className="grid gap-3 sm:grid-cols-1">
                     {quickFacts.map((fact) => (
                       <div
                         key={fact.label}

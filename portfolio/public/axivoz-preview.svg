@@ -1,0 +1,37 @@
+<svg width="1920" height="997" viewBox="0 0 1920 997" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1920" height="997" fill="#030303"/>
+  <rect x="23" y="19" width="77" height="44" fill="#161616"/>
+  <text x="61.5" y="47" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="13" font-weight="700">Menu</text>
+
+  <g transform="translate(289 232)">
+    <circle cx="144" cy="145" r="139" fill="none" stroke="#3c1604" stroke-width="15"/>
+    <circle cx="144" cy="145" r="105" fill="none" stroke="#4c1c05" stroke-width="28"/>
+    <circle cx="144" cy="145" r="85" fill="#ff8208"/>
+    <path d="M144 47L227 219H196L177 179H111L93 219H63L144 47ZM121 154H166L144 95L121 154Z" fill="#ff6f00"/>
+    <path d="M28 230C84 280 207 280 262 230" stroke="#ff8000" stroke-width="19"/>
+    <path d="M26 229C79 267 205 267 263 229" stroke="#111111" stroke-width="9"/>
+    <path d="M20 238C72 306 220 307 273 238" stroke="#ff8000" stroke-width="13"/>
+  </g>
+
+  <text x="364" y="784" fill="#ff9a00" font-family="Arial, sans-serif" font-size="15" font-weight="700">Ready - gpt-4o-mini</text>
+  <text x="367" y="816" fill="#d4d4d4" font-family="Arial, sans-serif" font-size="13">Voice listener is offline.</text>
+
+  <rect x="823" y="27" width="1023" height="803" fill="#171717" stroke="#3a3a3a"/>
+  <rect x="1829" y="29" width="15" height="799" fill="#d8d8d8"/>
+  <path d="M1836 33L1832 39H1840L1836 33Z" fill="#888888"/>
+  <path d="M1836 824L1840 818H1832L1836 824Z" fill="#888888"/>
+  <text x="854" y="76" fill="#ff9a00" font-family="Arial, sans-serif" font-size="12" font-weight="700">System</text>
+  <rect x="853" y="92" width="947" height="104" fill="#121212"/>
+  <text x="886" y="116" fill="#ffa116" font-family="Arial, sans-serif" font-size="15">
+    <tspan x="886" dy="0">Welcome to Axivoz. Start from the chat box below the logo, or say hey Axivoz / hey Axi when voice mode is available. Closing the</tspan>
+    <tspan x="886" dy="21">window sends the app to the hidden icons area instead of shutting it down.</tspan>
+  </text>
+
+  <rect x="71" y="849" width="1776" height="123" fill="#111111" stroke="#5a5a5a"/>
+  <text x="95" y="881" fill="#c9c9c9" font-family="Arial, sans-serif" font-size="12">Type or tap Listen. Voice fills the input box and auto-sends after 3 seconds of silence.</text>
+  <rect x="92" y="900" width="1497" height="53" fill="#0e0e0e" stroke="#ff8500" stroke-width="2"/>
+  <rect x="1601" y="900" width="131" height="53" fill="#ff8500"/>
+  <text x="1666.5" y="931" text-anchor="middle" fill="#050505" font-family="Arial, sans-serif" font-size="12" font-weight="700">Send Prompt</text>
+  <rect x="1742" y="900" width="84" height="53" fill="#0c0c0c"/>
+  <text x="1784" y="931" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="12" font-weight="700">Listen</text>
+</svg>

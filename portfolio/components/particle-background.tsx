@@ -2,23 +2,58 @@
 
 import { useEffect, useRef } from "react"
 
-type WaveLine = {
-  baseY: number
-  amplitude: number
-  wavelength: number
+type CloudBand = {
+  y: number
+  height: number
   speed: number
-  thickness: number
+  offset: number
   alpha: number
-  phase: number
+}
+
+type LightningBolt = {
+  points: { x: number; y: number }[]
+  branches: { x: number; y: number }[][]
+  life: number
+  maxLife: number
+  width: number
   color: string
 }
 
-type Ripple = {
-  x: number
-  y: number
-  radius: number
-  life: number
-  maxLife: number
+const drawPartialPath = (
+  ctx: CanvasRenderingContext2D,
+  points: { x: number; y: number }[],
+  progress: number
+) => {
+  if (points.length < 2 || progress <= 0) return
+
+  const lengths = points.slice(1).map((point, index) => {
+    const previous = points[index]
+    return Math.hypot(point.x - previous.x, point.y - previous.y)
+  })
+  const totalLength = lengths.reduce((sum, length) => sum + length, 0)
+  let remaining = totalLength * Math.min(progress, 1)
+
+  ctx.beginPath()
+  ctx.moveTo(points[0].x, points[0].y)
+
+  for (let index = 1; index < points.length; index += 1) {
+    const previous = points[index - 1]
+    const point = points[index]
+    const length = lengths[index - 1]
+
+    if (remaining >= length) {
+      ctx.lineTo(point.x, point.y)
+      remaining -= length
+      continue
+    }
+
+    const segmentProgress = length === 0 ? 0 : remaining / length
+    ctx.lineTo(
+      previous.x + (point.x - previous.x) * segmentProgress,
+      previous.y + (point.y - previous.y) * segmentProgress
+    )
+    break
+  }
 }
 
 export function ParticleBackground() {
@@ -32,18 +67,13 @@ export function ParticleBackground() {
     if (!ctx) return
 
     let animationId = 0
-    let waves: WaveLine[] = []
-    let ripples: Ripple[] = []
     let frame = 0
-
-    const pointer = {
-      x: 0,
-      y: 0,
-      active: false,
-    }
+    let clouds: CloudBand[] = []
+    let bolts: LightningBolt[] = []
+    let nextStrike = 18
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.25)
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
       canvas.width = Math.floor(window.innerWidth * dpr)
       canvas.height = Math.floor(window.innerHeight * dpr)
       canvas.style.width = `${window.innerWidth}px`
@@ -52,198 +82,226 @@ export function ParticleBackground() {
     }
 
     const createScene = () => {
+      const viewWidth = window.innerWidth
       const viewHeight = window.innerHeight
-      const lineCount = Math.max(6, Math.floor(viewHeight / 135))
-      const colors = [
-        "79, 96, 145",
-        "103, 126, 182",
-        "162, 128, 177",
-        "194, 146, 108",
+
+      clouds = Array.from({ length: 7 }, (_, index) => ({
+        y: (index / 6) * viewHeight - viewHeight * 0.12,
+        height: 90 + Math.random() * 130,
+        speed: 0.18 + Math.random() * 0.42,
+        offset: Math.random() * viewWidth,
+        alpha: 0.07 + Math.random() * 0.1,
+      }))
+
+      bolts = []
+      nextStrike = 38 + Math.floor(Math.random() * 54)
+    }
+
+    const createBolt = () => {
+      const viewWidth = window.innerWidth
+      const viewHeight = window.innerHeight
+
+      const origins = [
+        {
+          x: Math.random() * viewWidth,
+          y: -30,
+          angle: Math.PI / 2 + (Math.random() - 0.5) * 1.1,
+        },
+        {
+          x: Math.random() * viewWidth,
+          y: viewHeight + 30,
+          angle: -Math.PI / 2 + (Math.random() - 0.5) * 1.1,
+        },
+        {
+          x: -30,
+          y: Math.random() * viewHeight,
+          angle: (Math.random() - 0.5) * 0.9,
+        },
+        {
+          x: viewWidth + 30,
+          y: Math.random() * viewHeight,
+          angle: Math.PI + (Math.random() - 0.5) * 0.9,
+        },
+        {
+          x: viewWidth * (0.32 + Math.random() * 0.36),
+          y: viewHeight * (0.24 + Math.random() * 0.48),
+          angle: Math.random() * Math.PI * 2,
+        },
       ]
 
-      waves = Array.from({ length: lineCount }, (_, index) => ({
-        baseY: ((index + 1) / (lineCount + 1)) * window.innerHeight,
-        amplitude: 22 + Math.random() * 36,
-        wavelength: 180 + Math.random() * 260,
-        speed: 0.35 + Math.random() * 0.65,
-        thickness: 3.2 + Math.random() * 4.8,
-        alpha: 0.09 + Math.random() * 0.11,
-        phase: Math.random() * Math.PI * 2,
-        color: colors[index % colors.length],
-      }))
-    }
+      const origin = origins[Math.floor(Math.random() * origins.length)]
+      const length = 160 + Math.random() * Math.min(viewWidth, viewHeight) * 1
+      const segments = 7 + Math.floor(Math.random() * 12)
+      const step = length / segments
+      const jagAmount = 12 + Math.random() * 34
+      const colorOptions = [
+        "103, 232, 249",
+        "45, 212, 191",
+        "147, 197, 253",
+      ]
+      const color = colorOptions[Math.floor(Math.random() * colorOptions.length)]
+      const points = Array.from({ length: segments }, (_, index) => {
+        const distance = index * step
+        const bend = Math.sin(index * 1.7 + frame * 0.03) * jagAmount * 0.35
+        const jag = index === 0 ? 0 : (Math.random() - 0.5) * jagAmount
+        const angle = origin.angle + (Math.random() - 0.5) * 0.22
+        const normal = angle + Math.PI / 2
 
-    const pushRipple = (x: number, y: number) => {
-      ripples.push({
-        x,
-        y,
-        radius: 0,
-        life: 0,
-        maxLife: 80,
+        return {
+          x: origin.x + Math.cos(angle) * distance + Math.cos(normal) * (jag + bend),
+          y: origin.y + Math.sin(angle) * distance + Math.sin(normal) * (jag + bend),
+        }
       })
 
-      if (ripples.length > 6) {
-        ripples = ripples.slice(-6)
+      const branches = points
+        .slice(1, -1)
+        .filter(() => Math.random() > 0.55)
+        .map((point) => {
+          const branchAngle = origin.angle + (Math.random() > 0.5 ? 1 : -1) * (0.7 + Math.random() * 0.9)
+          const branchLength = 28 + Math.random() * 105
+          const branchSegments = 2 + Math.floor(Math.random() * 4)
+
+        return Array.from({ length: branchSegments }, (_, index) => {
+          const distance = (index / Math.max(branchSegments - 1, 1)) * branchLength
+          const jag = index === 0 ? 0 : (Math.random() - 0.5) * 16
+
+          return {
+            x: point.x + Math.cos(branchAngle) * distance + jag,
+              y: point.y + Math.sin(branchAngle) * distance + jag * 0.45,
+            }
+          })
+        })
+
+      bolts.push({
+        points,
+        branches,
+        life: 0,
+        maxLife: 150 + Math.floor(Math.random() * 80),
+        width: 0.7 + Math.random() * 1.35,
+        color,
+      })
+
+      if (bolts.length > 18) {
+        bolts = bolts.slice(-18)
       }
-    }
-
-    const handlePointerMove = (event: PointerEvent) => {
-      pointer.x = event.clientX
-      pointer.y = event.clientY
-      pointer.active = true
-    }
-
-    const handlePointerLeave = () => {
-      pointer.active = false
-    }
-
-    const handlePointerDown = (event: PointerEvent) => {
-      pointer.x = event.clientX
-      pointer.y = event.clientY
-      pointer.active = true
-      pushRipple(event.clientX, event.clientY)
     }
 
     const drawBackdrop = () => {
       const viewWidth = window.innerWidth
       const viewHeight = window.innerHeight
       const gradient = ctx.createLinearGradient(0, 0, 0, viewHeight)
-      gradient.addColorStop(0, "rgba(255, 252, 247, 0.98)")
-      gradient.addColorStop(0.5, "rgba(248, 244, 237, 0.98)")
-      gradient.addColorStop(1, "rgba(243, 238, 231, 0.99)")
+      gradient.addColorStop(0, "rgba(6, 9, 18, 0.98)")
+      gradient.addColorStop(0.5, "rgba(12, 18, 32, 0.98)")
+      gradient.addColorStop(1, "rgba(18, 24, 34, 0.99)")
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, viewWidth, viewHeight)
+
+      ctx.strokeStyle = "rgba(125, 211, 252, 0.035)"
+      ctx.lineWidth = 1
+      const gridSize = 72
+      for (let x = (frame * 0.18) % gridSize; x < viewWidth; x += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(x, 0)
+        ctx.lineTo(x, viewHeight)
+        ctx.stroke()
+      }
+      for (let y = (frame * 0.12) % gridSize; y < viewHeight; y += gridSize) {
+        ctx.beginPath()
+        ctx.moveTo(0, y)
+        ctx.lineTo(viewWidth, y)
+        ctx.stroke()
+      }
     }
 
-    const drawAmbientGlow = () => {
+    const drawClouds = () => {
       const viewWidth = window.innerWidth
       const viewHeight = window.innerHeight
-      const glowA = ctx.createRadialGradient(
-        viewWidth * 0.24,
-        viewHeight * 0.18,
-        0,
-        viewWidth * 0.24,
-        viewHeight * 0.18,
-        viewWidth * 0.28
-      )
-      glowA.addColorStop(0, "rgba(125, 146, 212, 0.08)")
-      glowA.addColorStop(1, "rgba(125, 146, 212, 0)")
-      ctx.fillStyle = glowA
-      ctx.fillRect(0, 0, viewWidth, viewHeight)
 
-      const glowB = ctx.createRadialGradient(
-        viewWidth * 0.78,
-        viewHeight * 0.74,
-        0,
-        viewWidth * 0.78,
-        viewHeight * 0.74,
-        viewWidth * 0.26
-      )
-      glowB.addColorStop(0, "rgba(196, 147, 108, 0.07)")
-      glowB.addColorStop(1, "rgba(196, 147, 108, 0)")
-      ctx.fillStyle = glowB
-      ctx.fillRect(0, 0, viewWidth, viewHeight)
-    }
+      clouds.forEach((cloud, index) => {
+        cloud.offset = (cloud.offset + cloud.speed) % (viewWidth * 2)
+        const x = cloud.offset - viewWidth
+        const y = cloud.y + Math.sin(frame * 0.006 + index) * 16
+        const gradient = ctx.createLinearGradient(0, y, 0, y + cloud.height)
 
-    const getRippleDistortion = (x: number, y: number) => {
-      let offsetY = 0
+        gradient.addColorStop(0, `rgba(34, 49, 82, ${cloud.alpha * 0.35})`)
+        gradient.addColorStop(0.5, `rgba(44, 65, 104, ${cloud.alpha})`)
+        gradient.addColorStop(1, "rgba(8, 12, 22, 0)")
 
-      ripples.forEach((ripple) => {
-        const dx = x - ripple.x
-        const dy = y - ripple.y
-        const distance = Math.hypot(dx, dy)
-        const band = Math.abs(distance - ripple.radius)
-
-        if (band < 54) {
-          const wave = (1 - band / 54) * 26 * (1 - ripple.life / ripple.maxLife)
-          offsetY += Math.sin((distance - ripple.radius) * 0.06) * wave
-        }
-      })
-
-      return offsetY
-    }
-
-    const getPointerDistortion = (x: number, y: number) => {
-      if (!pointer.active) return 0
-
-      const dx = x - pointer.x
-      const dy = y - pointer.y
-      const distance = Math.hypot(dx, dy)
-      const influence = 220
-
-      if (distance >= influence) return 0
-
-      const falloff = 1 - distance / influence
-      const directional = dy / Math.max(influence, 1)
-      const smoothWave = Math.sin((dx / influence) * Math.PI * 0.9)
-
-      return falloff * 34 * directional + smoothWave * falloff * 16
-    }
-
-    const drawWave = (wave: WaveLine) => {
-      ctx.beginPath()
-      const viewWidth = window.innerWidth
-
-      for (let x = -40; x <= viewWidth + 40; x += 12) {
-        const travel = x + frame * wave.speed * -1.8
-        const primary =
-          Math.sin(travel / wave.wavelength + wave.phase) * wave.amplitude
-        const secondary =
-          Math.cos(travel / (wave.wavelength * 0.52) + wave.phase * 0.8) *
-          wave.amplitude *
-          0.28
-        const tertiary =
-          Math.sin(travel / (wave.wavelength * 1.9) - wave.phase * 0.6 + frame * 0.01) *
-          12
-
-        let y = wave.baseY + primary + secondary + tertiary
-
-        y += getPointerDistortion(x, y)
-        y += getRippleDistortion(x, y)
-
-        if (x <= -40) {
-          ctx.moveTo(x, y)
-        } else {
-          ctx.lineTo(x, y)
-        }
-      }
-
-      ctx.strokeStyle = `rgba(${wave.color}, ${wave.alpha})`
-      ctx.lineWidth = wave.thickness
-      ctx.lineCap = "round"
-      ctx.lineJoin = "round"
-      ctx.shadowBlur = 12
-      ctx.shadowColor = `rgba(${wave.color}, ${wave.alpha * 0.18})`
-      ctx.stroke()
-      ctx.shadowBlur = 0
-    }
-
-    const drawRipples = () => {
-      ctx.save()
-      ripples = ripples.filter((ripple) => ripple.life < ripple.maxLife)
-
-      ripples.forEach((ripple) => {
-        ripple.life += 1
-        ripple.radius += 7
-        const alpha = (1 - ripple.life / ripple.maxLife) * 0.16
-
+        ctx.fillStyle = gradient
         ctx.beginPath()
-        ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2)
-        ctx.strokeStyle = `rgba(115, 138, 196, ${alpha})`
-        ctx.lineWidth = 1.1
-        ctx.stroke()
+        ctx.ellipse(x, y, viewWidth * 0.78, cloud.height, 0.06, 0, Math.PI * 2)
+        ctx.ellipse(x + viewWidth * 0.58, y + 18, viewWidth * 0.7, cloud.height * 0.82, -0.04, 0, Math.PI * 2)
+        ctx.fill()
       })
 
-      ctx.restore()
+      const horizonGlow = ctx.createRadialGradient(
+        viewWidth * 0.72,
+        viewHeight * 0.22,
+        0,
+        viewWidth * 0.72,
+        viewHeight * 0.22,
+        viewWidth * 0.42
+      )
+      horizonGlow.addColorStop(0, "rgba(59, 130, 246, 0.16)")
+      horizonGlow.addColorStop(0.48, "rgba(20, 184, 166, 0.07)")
+      horizonGlow.addColorStop(1, "rgba(20, 184, 166, 0)")
+      ctx.fillStyle = horizonGlow
+      ctx.fillRect(0, 0, viewWidth, viewHeight)
+    }
+
+    const drawLightning = () => {
+      bolts = bolts.filter((bolt) => bolt.life < bolt.maxLife)
+
+      bolts.forEach((bolt) => {
+        bolt.life += 1
+        const progress = bolt.life / bolt.maxLife
+        const drawProgress = Math.min(1, progress / 0.76)
+        const holdFade = progress < 0.86 ? 1 : 1 - (progress - 0.86) / 0.14
+        const alpha = Math.max(0, holdFade)
+
+        ctx.save()
+        ctx.lineCap = "square"
+        ctx.lineJoin = "miter"
+        ctx.miterLimit = 3
+
+        drawPartialPath(ctx, bolt.points, drawProgress)
+        ctx.strokeStyle = `rgba(${bolt.color}, ${alpha * 0.78})`
+        ctx.lineWidth = bolt.width
+        ctx.stroke()
+
+        drawPartialPath(ctx, bolt.points, drawProgress)
+        ctx.strokeStyle = `rgba(226, 244, 255, ${alpha * 0.42})`
+        ctx.lineWidth = Math.max(0.45, bolt.width * 0.38)
+        ctx.stroke()
+
+        bolt.branches.forEach((branch) => {
+          const branchProgress = Math.max(0, (drawProgress - 0.32) / 0.68)
+          drawPartialPath(ctx, branch, branchProgress)
+          ctx.strokeStyle = `rgba(${bolt.color}, ${alpha * 0.45})`
+          ctx.lineWidth = Math.max(0.45, bolt.width * 0.42)
+          ctx.stroke()
+        })
+
+        ctx.restore()
+      })
     }
 
     const render = () => {
       frame += 1
+      nextStrike -= 1
+
+      if (nextStrike <= 0) {
+        createBolt()
+        if (Math.random() > 0.52) window.setTimeout(createBolt, 140 + Math.random() * 160)
+        if (Math.random() > 0.76) window.setTimeout(createBolt, 260 + Math.random() * 180)
+        nextStrike = 56 + Math.floor(Math.random() * 104)
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       drawBackdrop()
-      drawAmbientGlow()
-      waves.forEach((wave) => drawWave(wave))
-      drawRipples()
+      drawClouds()
+      drawLightning()
+
       animationId = window.requestAnimationFrame(render)
     }
 
@@ -255,16 +313,10 @@ export function ParticleBackground() {
     handleResize()
     render()
     window.addEventListener("resize", handleResize)
-    window.addEventListener("pointermove", handlePointerMove)
-    window.addEventListener("pointerdown", handlePointerDown)
-    document.addEventListener("pointerleave", handlePointerLeave)
 
     return () => {
       window.cancelAnimationFrame(animationId)
       window.removeEventListener("resize", handleResize)
-      window.removeEventListener("pointermove", handlePointerMove)
-      window.removeEventListener("pointerdown", handlePointerDown)
-      document.removeEventListener("pointerleave", handlePointerLeave)
       ctx.shadowBlur = 0
     }
   }, [])
@@ -274,7 +326,7 @@ export function ParticleBackground() {
       ref={canvasRef}
       aria-hidden="true"
       className="pointer-events-none fixed inset-0 z-0"
-      style={{ opacity: 0.76 }}
+      style={{ opacity: 0.72 }}
     />
   )
 }

@@ -1,8 +1,90 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowUpRight, ChevronRight } from "lucide-react"
+import Image from "next/image"
+import {
+  ArrowUpRight,
+  Bot,
+  Building2,
+  CalendarClock,
+  ChevronRight,
+  FileText,
+  Gauge,
+  Receipt,
+  ShieldCheck,
+  Users,
+  Wallet,
+} from "lucide-react"
+import { AnimatedPageLink } from "@/components/animated-page-link"
 import { cn } from "@/lib/utils"
+
+const flagshipProject = {
+  title: "Dampener",
+  eyebrow: "Flagship Build",
+  description:
+    "A modern cash-flow intelligence and financial management platform for people, teams, and businesses that need to understand their money clearly.",
+  summary:
+    "Dampener brings income, expenses, invoices, recurring transactions, budgets, forecasts, reports, exports, business workspaces, team access, and financial insights into one clean operating layer.",
+  highlights: [
+    "Cash-flow dashboards for income, expenses, and financial trends.",
+    "Invoices, recurring transactions, budgets, forecasts, reports, and exports.",
+    "Business workspaces with team access and decision-ready insights.",
+  ],
+  features: [
+    { label: "Dashboards", icon: Gauge },
+    { label: "Invoices", icon: Receipt },
+    { label: "Forecasts", icon: CalendarClock },
+    { label: "Reports", icon: FileText },
+    { label: "Workspaces", icon: Building2 },
+    { label: "Team Access", icon: Users },
+  ],
+  screenshots: [
+    {
+      src: "/dampener-homepage.png",
+      alt: "Dampener marketing homepage showing cash flow intelligence and platform sections",
+      label: "Landing Page",
+      className: "lg:col-span-2",
+    },
+    {
+      src: "/dampener-login.png",
+      alt: "Dampener login page with financial workspace preview",
+      label: "Secure Login",
+      className: "",
+    },
+    {
+      src: "/dampener-dashboard.png",
+      alt: "Dampener dashboard with sidebar navigation, financial metrics, and charts",
+      label: "Dashboard",
+      className: "",
+    },
+  ],
+}
+
+const secondaryProjects = [
+  {
+    title: "Axivoz",
+    eyebrow: "AI Desktop Assistant",
+    description:
+      "A personal AI assistant for the desktop that helps users control their computer through natural language, commands, task support, and productivity automation.",
+    summary:
+      "Axivoz is designed around the idea that the computer should feel easier to direct. Instead of forcing users through menus and repeated manual steps, it creates a conversational layer for launching tasks, handling commands, supporting workflows, and making everyday computer control feel more natural.",
+    highlights: [
+      "Natural-language desktop control for everyday computer actions.",
+      "Command execution and productivity support from one assistant interface.",
+      "Automation direction for repeated tasks, app workflows, and faster navigation.",
+    ],
+    workflow: [
+      "User asks Axivoz for help through the desktop assistant interface.",
+      "The assistant interprets the request as a task, command, or workflow.",
+      "Axivoz supports the action and keeps the interaction visible in one focused workspace.",
+    ],
+    tags: ["AI Assistant", "Desktop Automation", "Productivity", "Commands"],
+    features: ["Desktop AI assistant", "Task and command support", "Productivity automation"],
+    imageSrc: "/axivoz-preview.svg",
+    imageAlt: "Axivoz desktop assistant interface preview",
+    icon: Bot,
+  },
+]
 
 const projects = [
   {
@@ -169,28 +251,54 @@ export function ProjectsSection() {
   }, [])
 
   return (
-    <section id="projects" className="relative px-4 py-16 sm:px-6 sm:py-24 md:py-28" ref={sectionRef}>
+    <section id="projects" className="relative px-3 py-14 sm:px-6 sm:py-24 md:py-28" ref={sectionRef}>
       <div className="mx-auto max-w-6xl">
         <div className={`transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
           <div className="mb-8 flex items-center gap-3 sm:mb-12 sm:gap-4">
             <span className="font-mono text-xs text-muted-foreground sm:text-sm">04.</span>
-            <h2 className="text-xl text-foreground sm:text-3xl md:text-4xl">Proof of Work</h2>
+            <h2 className="text-2xl text-foreground sm:text-3xl md:text-4xl">Featured Projects</h2>
             <div className="h-px max-w-xs flex-1 bg-border" />
           </div>
 
           <div className="mb-8 max-w-3xl sm:mb-12">
             <span className="section-kicker">WHY this work is credible</span>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Can systems react faster than humans, predict intent earlier, or feel more intuitive
-              in motion? Each case study answers a real question instead of just presenting a build.
+              I build product-grade systems around real user needs: clearer money decisions,
+              smarter desktop workflows, faster response loops, and interfaces that make complex
+              work easier to act on.
             </p>
           </div>
 
-          <ProjectSpotlight
-            project={projects[activeProjectIndex]}
-            activeProjectIndex={activeProjectIndex}
-            onSelect={setActiveProjectIndex}
-          />
+          <div className="mb-10 grid items-start gap-5 lg:grid-cols-[minmax(0,1.6fr)_minmax(300px,0.8fr)]">
+            <FlagshipProjectCard isVisible={isVisible} />
+
+            <div className="grid gap-5 lg:sticky lg:top-24">
+              {secondaryProjects.map((project) => (
+                <SecondaryProjectCard key={project.title} project={project} isVisible={isVisible} />
+              ))}
+            </div>
+          </div>
+
+          <div className="mb-6 flex flex-col gap-3 sm:mb-8 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground">
+                Supporting Builds
+              </p>
+              <h3 className="mt-2 text-2xl text-foreground sm:text-3xl">More Proof of Work</h3>
+            </div>
+            <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+              These projects show the wider range behind the flagship work: AI, algorithms,
+              interaction design, research, and game concepts.
+            </p>
+          </div>
+
+          <div className="hidden sm:block">
+            <ProjectSpotlight
+              project={projects[activeProjectIndex]}
+              activeProjectIndex={activeProjectIndex}
+              onSelect={setActiveProjectIndex}
+            />
+          </div>
 
           <div className="grid gap-5 xl:grid-cols-2">
             {projects.map((project, index) => (
@@ -210,6 +318,232 @@ export function ProjectsSection() {
   )
 }
 
+function FlagshipProjectCard({ isVisible }: { isVisible: boolean }) {
+  return (
+    <article
+      className={cn(
+        "signal-panel scan-border relative overflow-hidden rounded-[1.25rem] border border-primary/20 p-4 shadow-[0_30px_80px_rgba(18,25,38,0.13)] transition-all duration-700 sm:rounded-[1.5rem] sm:p-7 lg:p-8",
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      )}
+    >
+      <div className="absolute inset-x-0 top-0 h-1 bg-[linear-gradient(90deg,rgba(203,119,46,0.95),rgba(64,84,163,0.75),rgba(37,99,235,0.35))]" />
+
+      <div className="relative z-10 grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(260px,0.72fr)]">
+        <div>
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="section-kicker">{flagshipProject.eyebrow}</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-background/74 px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
+              <ShieldCheck className="h-3.5 w-3.5 text-primary" />
+              Main Project
+            </span>
+          </div>
+
+          <h3 className="mt-5 text-4xl leading-none text-foreground sm:text-5xl md:text-6xl">
+            {flagshipProject.title}
+          </h3>
+          <p className="mt-4 max-w-3xl text-base leading-relaxed text-foreground/88 sm:text-lg">
+            {flagshipProject.description}
+          </p>
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {flagshipProject.summary}
+          </p>
+
+          <div className="mt-6 grid gap-3">
+            {flagshipProject.highlights.map((highlight) => (
+              <div
+                key={highlight}
+                className="rounded-[1rem] border border-border/75 bg-background/76 px-4 py-3 text-sm leading-relaxed text-foreground/90"
+              >
+                {highlight}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <AnimatedPageLink
+              href="/programming-projects"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-5 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary"
+            >
+              Explore Dampener
+              <ArrowUpRight className="h-4 w-4" />
+            </AnimatedPageLink>
+            <a
+              href="#contact"
+              className="inline-flex min-h-12 items-center justify-center rounded-sm border border-border bg-background/74 px-5 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary"
+            >
+              Talk About the Build
+            </a>
+          </div>
+        </div>
+
+        <div className="rounded-[1.15rem] border border-border/80 bg-background/74 p-4 shadow-[0_18px_44px_rgba(18,25,38,0.08)] sm:rounded-[1.25rem] sm:p-5">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <div>
+              <p className="text-[0.66rem] uppercase tracking-[0.22em] text-muted-foreground">
+                Platform Modules
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/88">
+                Built like a financial command center.
+              </p>
+            </div>
+            <div className="rounded-2xl border border-primary/15 bg-primary/10 p-3 text-primary">
+              <Wallet className="h-6 w-6" />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+            {flagshipProject.features.map((feature) => {
+              const Icon = feature.icon
+
+              return (
+                <div
+                  key={feature.label}
+                  className="rounded-[1rem] border border-border/75 bg-card/84 p-3"
+                >
+                  <Icon className="h-4 w-4 text-primary" />
+                  <p className="mt-3 text-sm font-medium leading-tight text-foreground">
+                    {feature.label}
+                  </p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 mt-8 border-t border-border/70 pt-6">
+        <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-[0.66rem] uppercase tracking-[0.22em] text-muted-foreground">
+              Product Preview
+            </p>
+            <h4 className="mt-2 text-2xl text-foreground sm:text-3xl">
+              Dampener in the browser
+            </h4>
+          </div>
+          <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
+            Screens from the live product experience: public positioning, secure access, and the
+            financial command dashboard.
+          </p>
+        </div>
+
+        <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 lg:mx-0 lg:grid lg:grid-cols-2 lg:overflow-visible lg:px-0 lg:pb-0">
+          {flagshipProject.screenshots.map((screenshot) => (
+            <figure
+              key={screenshot.src}
+              className={cn(
+                "min-w-[82vw] snap-center overflow-hidden rounded-[1rem] border border-border/75 bg-background/80 shadow-[0_18px_46px_rgba(0,0,0,0.24)] sm:min-w-[68vw] lg:min-w-0",
+                screenshot.className
+              )}
+            >
+              <div className="flex items-center justify-between border-b border-border/70 bg-card/80 px-4 py-3">
+                <figcaption className="text-[0.68rem] uppercase tracking-[0.2em] text-muted-foreground">
+                  {screenshot.label}
+                </figcaption>
+                <span className="h-2 w-2 rounded-full bg-primary/80" />
+              </div>
+              <Image
+                src={screenshot.src}
+                alt={screenshot.alt}
+                width={1920}
+                height={1200}
+                className="aspect-[16/9] w-full object-cover object-top"
+              />
+            </figure>
+          ))}
+        </div>
+      </div>
+    </article>
+  )
+}
+
+function SecondaryProjectCard({
+  project,
+  isVisible,
+}: {
+  project: (typeof secondaryProjects)[0]
+  isVisible: boolean
+}) {
+  const Icon = project.icon
+
+  return (
+    <article
+      className={cn(
+        "signal-card magnetic-card rounded-[1.25rem] border border-border/80 p-4 transition-all duration-700 sm:rounded-[1.35rem] sm:p-6",
+        isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+      )}
+      style={{ transitionDelay: "100ms" }}
+    >
+      <div className="mb-5 flex items-start justify-between gap-4">
+        <div className="rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
+          <Icon className="h-7 w-7" />
+        </div>
+        <span className="rounded-full border border-border bg-background/70 px-3 py-1 text-[0.66rem] uppercase tracking-[0.16em] text-muted-foreground">
+          {project.eyebrow}
+        </span>
+      </div>
+
+      <h3 className="text-3xl text-foreground">{project.title}</h3>
+      <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
+        {project.description}
+      </p>
+      <p className="mt-3 text-sm leading-relaxed text-foreground/86">
+        {project.summary}
+      </p>
+
+      {project.imageSrc ? (
+        <div className="mt-5 overflow-hidden rounded-[1rem] border border-border/75 bg-background/80 shadow-[0_16px_40px_rgba(0,0,0,0.24)]">
+          <Image
+            src={project.imageSrc}
+            alt={project.imageAlt}
+            width={1920}
+            height={997}
+            className="aspect-[16/9] w-full object-cover object-left-top"
+          />
+        </div>
+      ) : null}
+
+      <div className="mt-5 flex flex-wrap gap-2">
+        {project.tags.map((tag) => (
+          <span
+            key={tag}
+            className="rounded-full border border-border bg-background/78 px-3 py-1.5 text-xs text-muted-foreground"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="mt-6 grid gap-3">
+        {project.highlights.map((feature) => (
+          <div
+            key={feature}
+            className="rounded-[1rem] border border-border/75 bg-background/78 px-4 py-3 text-sm text-foreground/88"
+          >
+            {feature}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-5 rounded-[1rem] border border-primary/15 bg-primary/8 p-4">
+        <p className="text-[0.66rem] uppercase tracking-[0.2em] text-muted-foreground">
+          Interaction Flow
+        </p>
+        <div className="mt-3 grid gap-2">
+          {project.workflow.map((step, index) => (
+            <div key={step} className="flex gap-3 rounded-xl border border-border/70 bg-background/70 p-3">
+              <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-xs font-semibold text-primary">
+                {index + 1}
+              </span>
+              <p className="text-sm leading-relaxed text-foreground/86">{step}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </article>
+  )
+}
+
 function ProjectCard({
   project,
   index,
@@ -226,7 +560,7 @@ function ProjectCard({
   return (
     <div
       className={cn(
-        "signal-card signal-rail magnetic-card rounded-[1.3rem] border p-4 transition-all duration-500 hover:border-primary/20 hover:shadow-[0_22px_50px_rgba(18,25,38,0.1)] sm:rounded-[1.5rem] sm:p-6",
+        "signal-card signal-rail magnetic-card rounded-[1.2rem] border p-4 transition-all duration-500 hover:border-primary/20 hover:shadow-[0_22px_50px_rgba(18,25,38,0.1)] sm:rounded-[1.5rem] sm:p-6",
         isActive ? "border-primary/25 shadow-[0_24px_55px_rgba(18,25,38,0.11)]" : "",
         isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
       )}
@@ -245,7 +579,7 @@ function ProjectCard({
       </div>
 
       <p className="text-sm font-medium leading-relaxed text-primary sm:text-[0.95rem]">{project.hook}</p>
-      <h3 className="mt-4 text-[1.45rem] font-semibold leading-tight text-foreground sm:text-2xl">{project.title}</h3>
+      <h3 className="mt-4 text-[1.28rem] font-semibold leading-tight text-foreground sm:text-2xl">{project.title}</h3>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-[0.98rem]">{project.summary}</p>
 
       <div className="mt-6 grid gap-4 md:grid-cols-2">
@@ -289,7 +623,7 @@ function ProjectSpotlight({
   onSelect: (index: number) => void
 }) {
   return (
-    <div className="signal-panel mb-8 overflow-hidden rounded-[1.5rem] border border-border/80 p-5 sm:mb-12 sm:p-8">
+    <div className="signal-panel mb-8 overflow-hidden rounded-[1.25rem] border border-border/80 p-4 sm:mb-12 sm:rounded-[1.5rem] sm:p-8">
       <div className="relative z-10 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.8fr)]">
         <div>
           <p className="text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground">
@@ -303,14 +637,14 @@ function ProjectSpotlight({
             {project.summary}
           </p>
 
-          <div className="mt-5 flex flex-wrap gap-2">
+          <div className="no-scrollbar -mx-4 mt-5 flex snap-x gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
             {projects.map((item, index) => (
               <button
                 key={item.title}
                 type="button"
                 onClick={() => onSelect(index)}
                 className={cn(
-                  "rounded-full border px-3 py-2 text-xs uppercase tracking-[0.16em] transition-all",
+                  "shrink-0 snap-start rounded-full border px-3 py-2 text-xs uppercase tracking-[0.16em] transition-all",
                   index === activeProjectIndex
                     ? "border-primary/30 bg-primary/10 text-foreground"
                     : "border-border bg-background/70 text-muted-foreground hover:border-primary/20 hover:text-foreground"
@@ -352,7 +686,7 @@ function SignalMeter({ label, value }: { label: string; value: number }) {
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-secondary">
         <div
-          className="h-full rounded-full bg-[linear-gradient(90deg,rgba(203,119,46,0.95),rgba(64,84,163,0.78))] transition-all duration-500"
+          className="h-full rounded-full bg-[linear-gradient(90deg,rgba(103,232,249,0.9),rgba(45,212,191,0.72))] transition-all duration-500"
           style={{ width: `${value}%` }}
         />
       </div>
