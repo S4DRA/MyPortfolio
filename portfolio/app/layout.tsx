@@ -13,7 +13,7 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Sadra Ahadiyan | Product-Minded Software Builder',
+  title: 'Sadra Ahadiyan | Product-Focused Software and UI',
   description: 'Portfolio of Sadra Ahadiyan, a Computer Engineering student in Istanbul building product-focused software, interfaces, and AI-assisted workflows.',
   icons: {
     icon: '/rootonset.png',

@@ -94,7 +94,7 @@ export function HeroSection() {
 
           <div className="mt-5 border-l border-primary/35 pl-5">
             <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              Mission Control
+              Portfolio Note
             </p>
             <p className="mt-3 text-sm leading-relaxed text-foreground/82">
               A quieter portfolio about the work itself: what I built, what changed, and where I
