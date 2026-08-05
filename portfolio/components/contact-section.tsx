@@ -1,122 +1,106 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowRight, BriefcaseBusiness, Handshake, Rocket } from "lucide-react"
+import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 
-const opportunities = [
+const contactLinks = [
   {
-    title: "Internship",
-    description:
-      "Bring me into a team that wants an engineer who can think beyond implementation and contribute across product, AI, and frontend execution.",
-    icon: BriefcaseBusiness,
+    label: "Email",
+    value: "sadra.ahadiyan@bahcesehir.edu.tr",
+    href: "mailto:sadra.ahadiyan@bahcesehir.edu.tr",
+    icon: Mail,
   },
   {
-    title: "Freelance Build",
-    description:
-      "If you need a smart prototype, product concept, landing page, or AI-driven workflow, I can help shape and ship it quickly.",
-    icon: Rocket,
+    label: "LinkedIn",
+    value: "linkedin.com/in/sadra-ahadiyan",
+    href: "https://www.linkedin.com/in/sadra-ahadiyan",
+    icon: Linkedin,
   },
   {
-    title: "Collaboration",
-    description:
-      "Open to building with founders, researchers, designers, and developers working on ideas with ambition and real upside.",
-    icon: Handshake,
+    label: "GitHub",
+    value: "github.com/S4DRA",
+    href: "https://github.com/S4DRA",
+    icon: Github,
+  },
+  {
+    label: "CV",
+    value: "Download resume",
+    href: "/sadra-ahadiyan-cv.pdf",
+    icon: Download,
   },
 ]
 
 export function ContactSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
+        if (entry.isIntersecting) setIsVisible(true)
       },
       { threshold: 0.2 }
     )
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section id="contact" className="relative bg-secondary/45 px-4 py-16 sm:px-6 sm:py-24 md:py-28" ref={sectionRef}>
-      <div className="mx-auto max-w-4xl">
-        <div className={`text-center transition-all duration-700 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}`}>
-          <div className="mb-6 flex items-center justify-center gap-3 sm:mb-8 sm:gap-4">
-            <div className="h-px max-w-[100px] flex-1 bg-border" />
-            <span className="font-mono text-xs text-muted-foreground sm:text-sm">06.</span>
-            <h2 className="text-lg text-foreground sm:text-3xl md:text-4xl">Ready To Build Something Impactful?</h2>
-            <div className="h-px max-w-[100px] flex-1 bg-border" />
+    <section id="contact" className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 md:py-40" ref={sectionRef}>
+      <div className="mx-auto max-w-5xl">
+        <div
+          className={`transition-all duration-700 ${
+            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+          }`}
+        >
+          <div className="max-w-3xl">
+            <p className="text-sm text-primary">Contact</p>
+            <h2 className="mt-4 text-4xl text-foreground sm:text-6xl">
+              I am looking for the next place to contribute.
+            </h2>
+            <p className="mt-7 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              I am currently looking for opportunities where I can contribute across product,
+              design, software, or technical support. If my work feels relevant to your team, feel
+              free to reach out.
+            </p>
           </div>
 
-          <span className="section-kicker">WHY reach out now</span>
-          <p className="mx-auto mt-4 mb-8 max-w-2xl px-2 text-sm leading-relaxed text-muted-foreground sm:mb-12 sm:text-base md:text-lg">
-            If you need someone who can think in systems, move quickly, and still care about how
-            the final product lands, this is the point where we should talk.
-          </p>
-
-          <div className="mb-8 grid gap-4 text-left sm:mb-12 lg:grid-cols-3">
-            {opportunities.map((opportunity) => {
-              const Icon = opportunity.icon
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {contactLinks.map((link) => {
+              const Icon = link.icon
+              const isDownload = link.href.endsWith(".pdf")
 
               return (
-                <div
-                  key={opportunity.title}
-                  className="signal-card magnetic-card rounded-[1.15rem] border p-4 sm:rounded-[1.35rem] sm:p-5"
+                <a
+                  key={link.label}
+                  href={link.href}
+                  download={isDownload ? true : undefined}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="group flex min-h-24 items-center justify-between gap-5 border border-border/70 bg-card/45 p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-card/72 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 >
-                  <div className="inline-flex rounded-2xl border border-primary/15 bg-primary/8 p-3 text-primary">
+                  <span>
+                    <span className="block text-sm text-muted-foreground">{link.label}</span>
+                    <span className="mt-2 block break-all text-base font-medium text-foreground">
+                      {link.value}
+                    </span>
+                  </span>
+                  <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-sm border border-border/70 text-primary transition-colors group-hover:border-primary/40">
                     <Icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-4 text-xl text-foreground">{opportunity.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                    {opportunity.description}
-                  </p>
-                </div>
+                  </span>
+                </a>
               )
             })}
           </div>
 
-          <div className="mb-8 grid gap-4 sm:mb-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            <a href="mailto:sadra.ahadiyan@bahcesehir.edu.tr" className="signal-card rounded-[1rem] border p-4 text-left transition-all hover:-translate-y-1 hover:border-primary/25 sm:rounded-[1.2rem] sm:p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
-              <p className="mt-3 break-all text-sm font-medium text-foreground sm:text-base">sadra.ahadiyan@bahcesehir.edu.tr</p>
-            </a>
-
-            <a href="tel:+905315266501" className="signal-card rounded-[1rem] border p-4 text-left transition-all hover:-translate-y-1 hover:border-primary/25 sm:rounded-[1.2rem] sm:p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
-              <p className="mt-3 text-sm font-medium text-foreground sm:text-base">+90 531 526 6501</p>
-            </a>
-
-            <div className="signal-card rounded-[1rem] border p-4 text-left sm:rounded-[1.2rem] sm:p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Location</p>
-              <p className="mt-3 text-sm font-medium text-foreground sm:text-base">Istanbul, Turkey</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
-            <a
-              href="mailto:sadra.ahadiyan@bahcesehir.edu.tr?subject=Let's%20Build%20Something"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary sm:px-8 sm:text-base"
-            >
-              Let&apos;s Build Something Impactful
-              <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-12 items-center justify-center rounded-sm border border-border bg-card/85 px-6 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:bg-secondary sm:px-8 sm:text-base"
-            >
-              Connect on LinkedIn
-            </a>
-          </div>
+          <a
+            href="mailto:sadra.ahadiyan@bahcesehir.edu.tr?subject=Portfolio%20Opportunity"
+            className="mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            Send an email
+            <ArrowRight className="h-4 w-4" />
+          </a>
         </div>
       </div>
     </section>

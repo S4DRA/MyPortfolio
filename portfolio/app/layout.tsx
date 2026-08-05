@@ -13,9 +13,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Sadra Ahadiyan | AI Systems Builder and Software Engineer',
-  description: 'Portfolio of Sadra Ahadiyan. I build AI systems, software products, and technical experiences designed to solve real problems and create measurable impact.',
-  generator: 'v0.app',
+  title: 'Sadra Ahadiyan | Product-Minded Software Builder',
+  description: 'Portfolio of Sadra Ahadiyan, a Computer Engineering student in Istanbul building product-focused software, interfaces, and AI-assisted workflows.',
   icons: {
     icon: '/rootonset.png',
     apple: '/apple-icon.png',

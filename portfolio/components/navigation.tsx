@@ -15,27 +15,26 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { label: "Home", href: "/", section: "hero" },
+  { label: "Work", href: "/#projects", section: "projects" },
+  { label: "Experience", href: "/#experience", section: "experience" },
+  { label: "About", href: "/#about", section: "about" },
+  { label: "Contact", href: "/#contact", section: "contact" },
   ...portfolioPages.map((page) => ({
     label: page.title,
     href: page.href,
   })),
-  { label: "Projects", href: "/#projects", section: "projects" },
-  { label: "Contact", href: "/#contact", section: "contact" },
 ]
 
 const desktopNavItems: NavItem[] = [
-  { label: "Home", href: "/", section: "hero" },
+  { label: "Work", href: "/#projects", section: "projects" },
+  { label: "Experience", href: "/#experience", section: "experience" },
   { label: "About", href: "/#about", section: "about" },
-  { label: "Projects", href: "/#projects", section: "projects" },
   { label: "Contact", href: "/#contact", section: "contact" },
-  { label: "Work Experience", href: "/work-experience" },
-  { label: "About Me", href: "/about-me" },
 ]
 
 const mobileBottomItems = [
   { label: "Home", href: "/#hero", section: "hero", icon: Home },
-  { label: "Projects", href: "/#projects", section: "projects", icon: BriefcaseBusiness },
+  { label: "Work", href: "/#projects", section: "projects", icon: BriefcaseBusiness },
   { label: "About", href: "/#about", section: "about", icon: UserRound },
   { label: "Contact", href: "/#contact", section: "contact", icon: Mail },
 ]
@@ -196,10 +195,10 @@ function MobileMenu({
         <div className="fixed inset-x-3 top-[4.75rem] z-50 overflow-hidden rounded-[1.45rem] border border-border/90 bg-background/96 shadow-[0_24px_70px_rgba(0,0,0,0.42)] backdrop-blur-xl">
           <div className="flex items-center justify-between border-b border-border/70 px-5 py-4">
             <div>
-              <p className="text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground">
-                Portfolio Menu
-              </p>
-              <p className="mt-1 text-sm text-foreground/85">Jump to the work fast.</p>
+                <p className="text-[0.66rem] uppercase tracking-[0.24em] text-muted-foreground">
+                  Portfolio Menu
+                </p>
+              <p className="mt-1 text-sm text-foreground/85">Jump to the main sections.</p>
             </div>
             <button
               type="button"
