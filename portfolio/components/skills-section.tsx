@@ -1,7 +1,4 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-
+import { Scene } from "@/components/cinematic/scene"
 const skillGroups = [
   {
     title: "Primary strengths",
@@ -25,28 +22,11 @@ const skillGroups = [
 ]
 
 export function SkillsSection() {
-  const [isVisible, setIsVisible] = useState(true)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="skills" className="relative z-10 px-4 py-20 sm:px-6 sm:py-28 md:py-36" ref={sectionRef}>
+    <Scene order={11} id="skills" className="relative z-10 px-4 py-20 sm:px-6 sm:py-28 md:py-36">
       <div className="mx-auto max-w-6xl">
         <div
-          className={`transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className="transition-all duration-700 translate-y-0 opacity-100"
         >
           <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
             <div>
@@ -84,6 +64,6 @@ export function SkillsSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Scene>
   )
 }

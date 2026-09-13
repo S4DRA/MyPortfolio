@@ -1,7 +1,6 @@
-"use client"
-
+import { Scene } from "@/components/cinematic/scene"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import Link from "next/link"
 import { ArrowRight, Download } from "lucide-react"
 
 const facts = [
@@ -11,23 +10,14 @@ const facts = [
 ]
 
 export function HeroSection() {
-  const [isReady, setIsReady] = useState(true)
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => setIsReady(true), 80)
-    return () => window.clearTimeout(timeout)
-  }, [])
-
   return (
-    <section
+    <Scene order={0}
       id="hero"
       className="relative z-10 flex min-h-screen items-center overflow-hidden px-4 pb-18 pt-28 sm:px-6 sm:pb-24 sm:pt-32"
     >
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] lg:gap-16">
         <div
-          className={`max-w-4xl transition-all duration-700 ${
-            isReady ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
+          className="max-w-4xl transition-all duration-700 translate-y-0 opacity-100"
         >
           <p className="max-w-xl text-sm leading-relaxed text-primary sm:text-base">
           </p>
@@ -47,13 +37,13 @@ export function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <a
-              href="#projects"
+            <Link
+              href="/#projects"
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               View Selected Work
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
             <a
               href="/sadra-ahadiyan-cv.pdf"
               download
@@ -75,9 +65,7 @@ export function HeroSection() {
         </div>
 
         <div
-          className={`mx-auto w-full max-w-[320px] transition-all delay-100 duration-700 sm:max-w-[380px] lg:justify-self-end ${
-            isReady ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-          }`}
+          className="mx-auto w-full max-w-[320px] transition-all delay-100 duration-700 sm:max-w-[380px] lg:justify-self-end translate-y-0 opacity-100"
         >
           <div className="hero-portrait-shell scan-border relative overflow-hidden rounded-[1.15rem] border border-border/60 p-2 shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
             <div className="hero-portrait-glow absolute inset-0" aria-hidden="true" />
@@ -87,6 +75,7 @@ export function HeroSection() {
               alt="Portrait of Sadra Ahadiyan"
               width={900}
               height={1100}
+              sizes="(min-width: 640px) 380px, 320px"
               priority
               className="relative aspect-[4/5] w-full rounded-[0.85rem] object-cover object-center"
             />
@@ -103,6 +92,6 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Scene>
   )
 }

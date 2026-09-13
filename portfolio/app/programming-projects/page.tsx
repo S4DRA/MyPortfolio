@@ -1,3 +1,4 @@
+import { getProjectShowcases } from "@/lib/portfolio/projects"
 import type { Metadata } from "next"
 import { PortfolioPage } from "@/components/portfolio-page"
 
@@ -40,26 +41,7 @@ export default function ProgrammingProjectsPage() {
           ],
         },
       ]}
-      showcases={[
-        {
-          title: "Smart Office Security Camera",
-          description:
-            "An AI-based monitoring system using vision models and alerting logic to detect suspicious events in real time.",
-          tags: ["Python", "YOLOv5", "Telegram API"],
-        },
-        {
-          title: "User Rating Prediction System",
-          description:
-            "A C++ modeling project focused on interpreting rating behavior and generating useful predictions.",
-          tags: ["C++", "Algorithms", "Prediction"],
-        },
-        {
-          title: "Interaction App Prototype",
-          description:
-            "A university project centered on application structure, interface behavior, and multi-step user interaction.",
-          tags: ["UI Logic", "Prototype", "Research"],
-        },
-      ]}
+      showcases={getProjectShowcases("programming-projects")}
     />
   )
 }

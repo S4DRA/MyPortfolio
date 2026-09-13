@@ -1,3 +1,4 @@
+import { Scene } from "@/components/cinematic/scene"
 import { ArrowUpRight } from "lucide-react"
 import { AnimatedPageLink } from "@/components/animated-page-link"
 import { portfolioPages } from "@/lib/portfolio-pages"
@@ -28,7 +29,7 @@ const experience = [
 
 export function PagesSection() {
   return (
-    <section id="experience" className="relative z-10 bg-secondary/28 px-4 py-20 sm:px-6 sm:py-28 md:py-36">
+    <Scene order={10} id="experience" className="relative z-10 bg-secondary/28 px-4 py-20 sm:px-6 sm:py-28 md:py-36">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
           <div>
@@ -89,6 +90,6 @@ export function PagesSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Scene>
   )
 }

@@ -3,6 +3,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Viewport } from 'next'
 import { PageTransitionProvider } from '@/components/page-transition-provider'
 import { Toaster } from '@/components/ui/toaster'
+import { CinematicShell } from '@/components/cinematic/cinematic-shell'
+import 'lenis/dist/lenis.css'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
   description: 'Portfolio of Sadra Ahadiyan, a Computer Engineering student in Istanbul building product-focused software, interfaces, and AI-assisted workflows.',
   icons: {
     icon: '/rootonset.png',
-    apple: '/apple-icon.png',
+    apple: '/icons/apple-touch-icon.png',
   },
 }
 
@@ -29,7 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-sans antialiased">
-        <PageTransitionProvider>{children}</PageTransitionProvider>
+        <CinematicShell smoothScroll>
+          <PageTransitionProvider>{children}</PageTransitionProvider>
+        </CinematicShell>
         <Toaster />
         <Analytics />
       </body>

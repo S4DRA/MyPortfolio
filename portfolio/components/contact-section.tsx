@@ -1,6 +1,4 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
+import { Scene } from "@/components/cinematic/scene"
 import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react"
 
 const contactLinks = [
@@ -31,28 +29,11 @@ const contactLinks = [
 ]
 
 export function ContactSection() {
-  const [isVisible, setIsVisible] = useState(true)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="contact" className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 md:py-40" ref={sectionRef}>
+    <Scene order={12} id="contact" className="relative z-10 px-4 py-24 sm:px-6 sm:py-32 md:py-40">
       <div className="mx-auto max-w-5xl">
         <div
-          className={`transition-all duration-700 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className="transition-all duration-700 translate-y-0 opacity-100"
         >
           <div className="max-w-3xl">
             <p className="text-sm text-primary">Contact</p>
@@ -103,6 +84,6 @@ export function ContactSection() {
           </a>
         </div>
       </div>
-    </section>
+    </Scene>
   )
 }

@@ -1,3 +1,4 @@
+import { getProjectShowcases } from "@/lib/portfolio/projects"
 import type { Metadata } from "next"
 import { PortfolioPage } from "@/components/portfolio-page"
 
@@ -40,26 +41,7 @@ export default function GameProjectsPage() {
           ],
         },
       ]}
-      showcases={[
-        {
-          title: "DasaPhase",
-          description:
-            "A surreal game concept about a boy waking late for school and slipping into a mysterious dreamlike world.",
-          tags: ["Narrative", "Concept", "Atmosphere"],
-        },
-        {
-          title: "School-to-Dream Transition",
-          description:
-            "A level progression idea built around contrast, turning an ordinary environment into something uncanny and symbolic.",
-          tags: ["Level Design", "Mood", "Pacing"],
-        },
-        {
-          title: "Interactive Worldbuilding",
-          description:
-            "A direction for creating lore and emotional context through environment design rather than exposition alone.",
-          tags: ["Worldbuilding", "Story", "Immersion"],
-        },
-      ]}
+      showcases={getProjectShowcases("game-projects")}
     />
   )
 }

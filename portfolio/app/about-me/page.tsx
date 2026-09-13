@@ -22,6 +22,7 @@ export default function AboutMePage() {
               width={900}
               height={1100}
               className="aspect-[4/5] w-full rounded-sm object-cover object-center"
+              sizes="(min-width: 640px) 360px, calc(100vw - 80px)"
               priority
             />
           </div>

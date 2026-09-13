@@ -10,6 +10,8 @@ import {
   useState,
 } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import { useReducedMotion } from "@/hooks/use-experience"
+import { subscribeFrame } from "@/lib/animation/frame"
 import { portfolioPages } from "@/lib/portfolio-pages"
 
 type PageTransitionContextValue = {
@@ -44,6 +46,7 @@ export function PageTransitionProvider({
 }: {
   children: React.ReactNode
 }) {
+  const reducedMotion = useReducedMotion()
   const router = useRouter()
   const pathname = usePathname()
   const [phase, setPhase] = useState<"idle" | "cover" | "reveal">("idle")
@@ -68,6 +71,7 @@ export function PageTransitionProvider({
   const navigateWithTransition = useCallback(
     (href: string) => {
       if (isTransitioning || href === pathname) return
+      if (reducedMotion) { router.push(href); return }
 
       clearTimers()
       pendingPathRef.current = href
@@ -79,7 +83,7 @@ export function PageTransitionProvider({
         router.push(href)
       }, 560)
     },
-    [clearTimers, isTransitioning, pathname, router]
+    [clearTimers, isTransitioning, pathname, router, reducedMotion]
   )
 
   useEffect(() => {
@@ -103,7 +107,7 @@ export function PageTransitionProvider({
   useEffect(() => clearTimers, [clearTimers])
 
   useEffect(() => {
-    if (!isTransitioning) return
+    if (!isTransitioning || reducedMotion) return
 
     const canvas = transitionCanvasRef.current
     if (!canvas) return
@@ -111,7 +115,6 @@ export function PageTransitionProvider({
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let animationId = 0
     let particles: TransitionParticle[] = []
 
     const resize = () => {
@@ -186,8 +189,6 @@ export function PageTransitionProvider({
           }
         }
       })
-
-      animationId = window.requestAnimationFrame(drawParticles)
     }
 
     const handleResize = () => {
@@ -197,14 +198,15 @@ export function PageTransitionProvider({
 
     handleResize()
     drawParticles()
+    const unsubscribe = subscribeFrame(drawParticles)
     window.addEventListener("resize", handleResize)
 
     return () => {
-      window.cancelAnimationFrame(animationId)
+      unsubscribe()
       window.removeEventListener("resize", handleResize)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
     }
-  }, [isTransitioning])
+  }, [isTransitioning, reducedMotion])
 
   const value = useMemo(
     () => ({ navigateWithTransition, isTransitioning }),
@@ -223,6 +225,7 @@ export function PageTransitionProvider({
       {children}
       <div
         aria-hidden="true"
+        data-page-transition={phase}
         className={`pointer-events-none fixed inset-0 z-[100] overflow-hidden transition-opacity duration-200 ${
           phase === "idle" ? "opacity-0" : "opacity-100"
         }`}

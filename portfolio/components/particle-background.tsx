@@ -1,6 +1,8 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import { useReducedMotion } from "@/hooks/use-experience"
+import { cappedDpr, subscribeFrame } from "@/lib/animation/frame"
 
 type CloudBand = {
   y: number
@@ -57,6 +59,7 @@ const drawPartialPath = (
 }
 
 export function ParticleBackground() {
+  const reducedMotion = useReducedMotion()
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -66,14 +69,21 @@ export function ParticleBackground() {
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    let animationId = 0
+    const pendingStrikes = new Set<number>()
+    const scheduleStrike = (delay: number) => {
+      const timer = window.setTimeout(() => {
+        pendingStrikes.delete(timer)
+        if (!document.hidden) createBolt()
+      }, delay)
+      pendingStrikes.add(timer)
+    }
     let frame = 0
     let clouds: CloudBand[] = []
     let bolts: LightningBolt[] = []
     let nextStrike = 18
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+      const dpr = cappedDpr()
       canvas.width = Math.floor(window.innerWidth * dpr)
       canvas.height = Math.floor(window.innerHeight * dpr)
       canvas.style.width = `${window.innerWidth}px`
@@ -287,13 +297,15 @@ export function ParticleBackground() {
     }
 
     const render = () => {
+      // React can detach a route before its passive-effect cleanup runs.
+      if (!canvas.isConnected) return
       frame += 1
       nextStrike -= 1
 
       if (nextStrike <= 0) {
         createBolt()
-        if (Math.random() > 0.52) window.setTimeout(createBolt, 140 + Math.random() * 160)
-        if (Math.random() > 0.76) window.setTimeout(createBolt, 260 + Math.random() * 180)
+        if (Math.random() > 0.52) scheduleStrike(140 + Math.random() * 160)
+        if (Math.random() > 0.76) scheduleStrike(260 + Math.random() * 180)
         nextStrike = 56 + Math.floor(Math.random() * 104)
       }
 
@@ -301,30 +313,31 @@ export function ParticleBackground() {
       drawBackdrop()
       drawClouds()
       drawLightning()
-
-      animationId = window.requestAnimationFrame(render)
     }
 
     const handleResize = () => {
       resize()
       createScene()
+      render()
     }
 
     handleResize()
-    render()
+    const unsubscribe = reducedMotion ? undefined : subscribeFrame(render)
     window.addEventListener("resize", handleResize)
 
     return () => {
-      window.cancelAnimationFrame(animationId)
+      unsubscribe?.()
+      pendingStrikes.forEach(timer => window.clearTimeout(timer))
       window.removeEventListener("resize", handleResize)
       ctx.shadowBlur = 0
     }
-  }, [])
+  }, [reducedMotion])
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
+      data-background-motion={reducedMotion ? "static" : "animated"}
       className="pointer-events-none fixed inset-0 z-0"
       style={{ opacity: 0.72 }}
     />

@@ -1,3 +1,4 @@
+import { getProjectShowcases } from "@/lib/portfolio/projects"
 import type { Metadata } from "next"
 import { PortfolioPage } from "@/components/portfolio-page"
 
@@ -40,28 +41,7 @@ export default function WebsiteDesignPage() {
           ],
         },
       ]}
-      showcases={[
-        {
-          title: "Exairon Website Sample",
-          description:
-            "This sample presents a landing page for Exairon with a strong hero section, partner logos, and feature-led messaging. The dark blue and orange contrast gives it a clear brand identity, while the structure supports quick reading through headline, proof, and product explanation sections.",
-          tags: ["Landing Page", "Product Website", "Branding"],
-          imageSrc: "/website-1.png",
-          imageAlt: "Exairon website landing page sample",
-        },
-        {
-          title: "Portfolio Experience",
-          description:
-            "A polished personal site direction that mixes atmosphere, motion, and project-first storytelling.",
-          tags: ["Portfolio", "Motion", "Storytelling"],
-        },
-        {
-          title: "Creative Studio Site",
-          description:
-            "A more expressive web concept where typography, image rhythm, and transitions define the mood.",
-          tags: ["Creative", "Editorial", "Responsive"],
-        },
-      ]}
+      showcases={getProjectShowcases("website-design")}
     />
   )
 }

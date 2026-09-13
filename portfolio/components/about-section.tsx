@@ -1,7 +1,4 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-
+import { Scene } from "@/components/cinematic/scene"
 const principles = [
   {
     title: "I think about the product before the interface.",
@@ -21,28 +18,11 @@ const principles = [
 ]
 
 export function AboutSection() {
-  const [isVisible, setIsVisible] = useState(true)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true)
-      },
-      { threshold: 0.2 }
-    )
-
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
-
   return (
-    <section id="about" className="relative z-10 px-4 py-20 sm:px-6 sm:py-28 md:py-36" ref={sectionRef}>
+    <Scene order={1} id="about" className="relative z-10 px-4 py-20 sm:px-6 sm:py-28 md:py-36">
       <div className="mx-auto max-w-6xl">
         <div
-          className={`grid gap-12 transition-all duration-700 lg:grid-cols-[0.72fr_1.28fr] lg:gap-18 ${
-            isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-          }`}
+          className="grid gap-12 transition-all duration-700 lg:grid-cols-[0.72fr_1.28fr] lg:gap-18 translate-y-0 opacity-100"
         >
           <div>
             <p className="text-sm text-primary">Short introduction</p>
@@ -81,6 +61,6 @@ export function AboutSection() {
           </div>
         </div>
       </div>
-    </section>
+    </Scene>
   )
 }

@@ -1,3 +1,4 @@
+import { getProjectShowcases } from "@/lib/portfolio/projects"
 import type { Metadata } from "next"
 import { PortfolioPage } from "@/components/portfolio-page"
 
@@ -40,56 +41,7 @@ export default function LogoPage() {
           ],
         },
       ]}
-      showcases={[
-        {
-          title: "3. Bahcesehir University Iranian Students Community",
-          description:
-            "This circular badge feels official and community-driven. The outer rings, bilingual naming, and central Iranian imagery make it read more like an institutional emblem than a startup logo, which suits a student association well.",
-          tags: ["Emblem", "Community", "Institutional"],
-          imageSrc: "/3.png",
-          imageAlt: "Circular logo for Bahcesehir University Iranian Students Community",
-        },
-        {
-          title: "4. ROOTONSET Neon Wordmark",
-          description:
-            "The glowing treatment gives this version a strong gaming or music-brand energy. The mountain-like silhouette around the lettering makes the word feel carved into a peak, which adds scale and drama.",
-          tags: ["Wordmark", "Neon", "High Energy"],
-          imageSrc: "/4.png",
-          imageAlt: "Neon ROOTONSET wordmark on a black background",
-        },
-        {
-          title: "5. ROOTONSET Black and White",
-          description:
-            "This black-and-white version strips the concept back to form and contrast. It keeps the same towering perspective, which is a good sign that the core shape is memorable even without color or glow effects.",
-          tags: ["Wordmark", "Monochrome", "Form Study"],
-          imageSrc: "/5.png",
-          imageAlt: "Black and white ROOTONSET wordmark",
-        },
-        {
-          title: "6. Minimal Peak Symbol",
-          description:
-            "This mark is extremely reduced: just a few vertical forms building to a central peak. It reads like a skyline, a crown, or a stylized monogram, so it has flexibility, but it may need more surrounding brand context to feel unique.",
-          tags: ["Minimal", "Abstract", "Architectural"],
-          imageSrc: "/6.jpg",
-          imageAlt: "Minimal black symbol made of five rising vertical shapes",
-        },
-        {
-          title: "7. Experimental Lightning Mark",
-          description:
-            "This feels raw, aggressive, and motion-heavy. The central shape suggests a slashed letterform with electric or flame-like accents, which creates attitude fast, though it is less immediately legible than the more structured pieces.",
-          tags: ["Experimental", "Dynamic", "Edgy"],
-          imageSrc: "/7.jpg",
-          imageAlt: "Abstract black and white symbol with jagged electric accents",
-        },
-        {
-          title: "8. ROOTONSET Soft Gradient Variant",
-          description:
-            "This version softens the neon direction into something more polished and product-ready. The gradient and drop-shadow still give it depth, but the lighter background makes it feel more versatile for broader brand applications.",
-          tags: ["Wordmark", "Gradient", "Refined"],
-          imageSrc: "/8.jpg",
-          imageAlt: "ROOTONSET wordmark with a silver and purple-red gradient",
-        },
-      ]}
+      showcases={getProjectShowcases("logo")}
     />
   )
 }

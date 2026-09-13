@@ -138,7 +138,7 @@ export function Navigation() {
         </div>
       </nav>
 
-      <div className="fixed inset-x-3 bottom-3 z-50 xl:hidden">
+      <div className="portfolio-bottom-nav fixed inset-x-3 bottom-3 z-50 xl:hidden">
         <div className="mx-auto grid max-w-md grid-cols-4 gap-1 rounded-[1.35rem] border border-border/80 bg-background/92 p-1.5 shadow-[0_18px_50px_rgba(0,0,0,0.42)] backdrop-blur-xl">
           {mobileBottomItems.map((item) => {
             const Icon = item.icon
@@ -211,7 +211,7 @@ function MobileMenu({
               </svg>
             </button>
           </div>
-          <ul className="no-scrollbar flex max-h-[calc(100vh-8.5rem)] flex-col gap-2 overflow-y-auto p-3 pb-5">
+          <ul data-lenis-prevent className="no-scrollbar flex max-h-[calc(100vh-8.5rem)] flex-col gap-2 overflow-y-auto p-3 pb-5">
             {navItems.map((item, index) => {
               const active = pathname === item.href || (pathname === "/" && item.section === activeSection)
               const itemClassName = cn(

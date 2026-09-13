@@ -115,6 +115,7 @@ export function PortfolioPage({
                       alt={card.imageAlt ?? card.title}
                       width={1200}
                       height={900}
+                      sizes="(min-width: 1024px) 360px, calc(100vw - 96px)"
                       className="h-auto w-full object-cover"
                       />
                   </div>

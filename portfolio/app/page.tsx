@@ -7,10 +7,11 @@ import { ProjectsSection } from "@/components/projects-section"
 import { PagesSection } from "@/components/pages-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { CinematicPage } from "@/components/cinematic/cinematic-page"
 
 export default function HomePage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background pb-24 text-foreground xl:pb-0">
+    <CinematicPage className="relative min-h-screen overflow-hidden bg-background pb-24 text-foreground xl:pb-0">
       <ParticleBackground />
       <Navigation />
       <HeroSection />
@@ -20,6 +21,6 @@ export default function HomePage() {
       <SkillsSection />
       <ContactSection />
       <Footer />
-    </main>
+    </CinematicPage>
   )
 }
