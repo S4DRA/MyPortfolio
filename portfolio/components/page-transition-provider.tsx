@@ -157,8 +157,8 @@ export function PageTransitionProvider({
         const tailY = particle.y - Math.sin(angle) * tailLength
 
         const trail = ctx.createLinearGradient(particle.x, particle.y, tailX, tailY)
-        trail.addColorStop(0, `rgba(2, 6, 23, ${particle.opacity * 0.55})`)
-        trail.addColorStop(1, "rgba(2, 6, 23, 0)")
+        trail.addColorStop(0, `rgba(219, 250, 141, ${particle.opacity * 0.55})`)
+        trail.addColorStop(1, "rgba(219, 250, 141, 0)")
 
         ctx.beginPath()
         ctx.moveTo(particle.x, particle.y)
@@ -170,7 +170,7 @@ export function PageTransitionProvider({
 
         ctx.beginPath()
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(2, 6, 23, ${particle.opacity})`
+        ctx.fillStyle = `rgba(219, 250, 141, ${particle.opacity})`
         ctx.fill()
 
         for (let i = index + 1; i < particles.length; i += 1) {
@@ -183,7 +183,7 @@ export function PageTransitionProvider({
             ctx.beginPath()
             ctx.moveTo(particle.x, particle.y)
             ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = `rgba(2, 6, 23, ${0.05 * (1 - distance / 110)})`
+            ctx.strokeStyle = `rgba(219, 250, 141, ${0.05 * (1 - distance / 110)})`
             ctx.lineWidth = 0.4
             ctx.stroke()
           }
@@ -231,7 +231,7 @@ export function PageTransitionProvider({
         }`}
       >
         <div
-          className={`absolute inset-0 bg-[rgba(249,247,242,0.68)] backdrop-blur-[2px] transition-opacity duration-300 ${
+          className={`absolute inset-0 bg-[rgba(12,16,12,0.84)] backdrop-blur-[2px] transition-opacity duration-300 ${
             isCover ? "opacity-100" : isReveal ? "opacity-0" : "opacity-0"
           }`}
         />
@@ -274,7 +274,7 @@ export function PageTransitionProvider({
 
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
           <div
-            className={`absolute h-[20rem] w-[20rem] rounded-full border border-foreground/10 bg-[radial-gradient(circle,rgba(255,255,255,0.98)_0%,rgba(245,241,233,0.96)_58%,rgba(234,229,220,0.84)_100%)] shadow-[0_30px_120px_rgba(15,23,42,0.12)] transition-all duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] sm:h-[28rem] sm:w-[28rem] ${
+            className={`absolute h-[20rem] w-[20rem] rounded-full border border-foreground/10 bg-[radial-gradient(circle,rgba(18,23,17,0.98)_0%,rgba(27,35,25,0.97)_58%,rgba(42,56,34,0.95)_100%)] shadow-[0_30px_120px_rgba(15,23,42,0.12)] transition-all duration-[700ms] ease-[cubic-bezier(0.19,1,0.22,1)] sm:h-[28rem] sm:w-[28rem] ${
               isCover
                 ? "scale-[6.5] opacity-100"
                 : isReveal
@@ -329,7 +329,7 @@ export function PageTransitionProvider({
               {destinationLabel}
             </p>
             <p className="mt-3 text-sm text-muted-foreground sm:text-base">
-              Preparing the next page
+              A new perspective
             </p>
           </div>
         </div>
