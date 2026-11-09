@@ -185,11 +185,6 @@
   p, a, button, input, textarea, li, span {
     font-kerning: normal;
   }
-
-  * {
-    letter-spacing: 0 !important;
-  }
-
   :focus-visible {
     outline: 2px solid color-mix(in oklab, var(--primary) 78%, white 12%);
     outline-offset: 3px;
