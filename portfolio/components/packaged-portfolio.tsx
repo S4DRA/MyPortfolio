@@ -4,8 +4,9 @@ import { ArrowDown, ArrowUpRight, Download } from "lucide-react"
 import { projects } from "@/lib/portfolio/projects"
 import type { PortfolioProject } from "@/lib/portfolio/types"
 import { PackMotion } from "@/components/pack-motion"
+import { ProjectMedia } from "@/components/project-media"
 
-const selectedIds = ["dampener", "val", "merkat", "axivoz"]
+const selectedIds = ["val", "fxck-it", "conduit", "merkat", "dampener", "axivoz"]
 const selected = selectedIds
   .map(id => projects.find(project => project.id === id))
   .filter((project): project is PortfolioProject => Boolean(project))
@@ -69,38 +70,36 @@ function Cover() {
 }
 
 function WorkPiece({ project, index }: { project: PortfolioProject; index: number }) {
-  const visual = project.gallery?.[0] ?? project.heroAsset
   const intro = project.tagline ?? project.summary
   const details = [
     project.problem ? { label:"THE PROBLEM", text: project.problem } : null,
     project.solution ? { label:"THE BUILD", text: project.solution } : null,
     project.decision ? { label:"THE DECISION", text: project.decision } : null,
+    project.outcomes?.length ? { label:"SHIPPED & VERIFIED", text: project.outcomes.join(" ") } : null,
   ].filter((item): item is {label:string;text:string} => Boolean(item))
-  const href = project.links?.find(link => link.internal)?.href
-  const external = project.links?.find(link => !link.internal)?.href
   return (
     <article className={`pack-piece pack-piece--${project.id}`} data-pack-reveal>
       <div className="pack-piece-meta">
         <span>{String(index+1).padStart(2,"0")}</span><span>{project.category}</span>
       </div>
-      <div className="pack-piece-art">
-        {visual ? (
-          <Image src={visual.src} alt={visual.alt} width={1400} height={1050}
-            sizes="(min-width: 900px) 45vw, 100vw" className="pack-piece-image" />
-        ) : (
-          <div className="pack-piece-typeset" aria-hidden="true">
-            <span>{project.title}</span>
-            <small>{project.category}</small>
-          </div>
-        )}
-        <div className="pack-piece-corner" aria-hidden="true"><span>SA / LAB</span><span>{String(index+1).padStart(2,"0")}</span></div>
-      </div>
+      <ProjectMedia title={project.title} gallery={project.gallery ?? (project.heroAsset ? [project.heroAsset] : undefined)} index={index} />
       <div className="pack-piece-caption">
         <div className="pack-piece-title-group"><h3>{project.title}</h3><span aria-hidden="true">↗</span></div>
         <p>{intro ?? "A project in development. More information and visuals are on the way."}</p>
+        {project.status && <p className="pack-piece-published"><span aria-hidden="true">●</span> {project.status}</p>}
+        {project.technologies && <p className="pack-piece-tools">{project.technologies.slice(0, 5).join(" · ")}</p>}
         <div className="pack-piece-actions">
-          {href && <Link href={href}>View project <ArrowUpRight size={15} aria-hidden="true" /></Link>}
-          {external && <a href={external} target="_blank" rel="noopener noreferrer">Source <ArrowUpRight size={15} aria-hidden="true" /></a>}
+          {project.links?.filter(link => link.href !== "/programming-projects").slice(0, 3).map(link => (
+            link.internal ? (
+              <Link key={link.href} href={link.href}>
+                {link.label} <ArrowUpRight size={15} aria-hidden="true" />
+              </Link>
+            ) : (
+              <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+                {link.label} <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            )
+          ))}
           {details.length > 0 && (
             <details className="pack-piece-details">
               <summary>Behind the work <span aria-hidden="true">+</span></summary>
@@ -111,7 +110,7 @@ function WorkPiece({ project, index }: { project: PortfolioProject; index: numbe
               </div>
             </details>
           )}
-          {!href && !external && details.length === 0 && <span className="pack-piece-quiet">Work in progress</span>}
+          {(!project.links?.length && details.length === 0) && <span className="pack-piece-quiet">Work in progress</span>}
         </div>
       </div>
     </article>
