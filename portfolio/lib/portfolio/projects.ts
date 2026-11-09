@@ -30,8 +30,8 @@ export const projects: PortfolioProject[] = [
     "projectUrl": "https://conduit-blush.vercel.app",
     "gallery": [
       {
-        "src": "https://conduit-blush.vercel.app/brand/conduit-custom-wordmark.svg",
-        "alt": "Official Conduit wordmark from the published product",
+        "src": "/project-media/conduit-wordmark.svg",
+        "alt": "Official black Conduit wordmark from the published product",
         "label": "Published Conduit identity"
       }
     ],
@@ -76,9 +76,9 @@ export const projects: PortfolioProject[] = [
     "repositoryUrl": "https://github.com/S4DRA/Merkat",
     "gallery": [
       {
-        "src": "https://merkat-umber.vercel.app/brand/merkat-white-on-orange.png",
-        "alt": "Original Merkat white capsule M symbol on orange",
-        "label": "Original Merkat brand identity"
+        "src": "/project-media/merkat-icon.png",
+        "alt": "Original Merkat orange app icon with white capsule M",
+        "label": "Official Merkat app icon"
       },
       {
         "src": "https://merkat-umber.vercel.app/icons/merkat-512.png",
@@ -243,8 +243,8 @@ export const projects: PortfolioProject[] = [
     "repositoryUrl": "https://github.com/S4DRA/Doshab",
     "gallery": [
       {
-        "src": "https://doshab.vercel.app/brand/val-mark-512.png",
-        "alt": "Official VAL whale logo",
+        "src": "/project-media/val-mark.png",
+        "alt": "Official VAL whale logo mark",
         "label": "Published VAL brand mark"
       },
       {
@@ -308,9 +308,14 @@ export const projects: PortfolioProject[] = [
     "projectUrl": "https://fxck-it.vercel.app",
     "gallery": [
       {
-        "src": "https://fxck-it.vercel.app/avatars/kawaii-set-1.webp",
-        "alt": "Original in-game FxCK IT! sticker avatar artwork",
-        "label": "In-game character sticker artwork"
+        "src": "/project-media/fxck-cover.svg",
+        "alt": "FxCK IT! editorial cover using original in-game ghost and pumpkin drawings",
+        "label": "Original game artwork / portfolio arrangement"
+      },
+      {
+        "src": "/project-media/fxck-ghost.svg",
+        "alt": "Original FxCK IT! ghost sticker on a colorful background",
+        "label": "In-game ghost character artwork"
       }
     ],
     "links": [
