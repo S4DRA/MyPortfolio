@@ -30,9 +30,9 @@ export function FolioHeader() {
       <details className="pack-mobile-menu">
         <summary aria-label="Open navigation">Menu<span aria-hidden="true">+</span></summary>
         <nav aria-label="Mobile navigation">
-          <a href="#work">Work <span>01</span></a>
-          <a href="#about">About <span>02</span></a>
-          <a href="#contact">Contact <span>03</span></a>
+          <a href="/#work">Work <span>01</span></a>
+          <a href="/#about">About <span>02</span></a>
+          <a href="/#contact">Contact <span>03</span></a>
           <a href="/programming-projects">Other work <span>↗</span></a>
         </nav>
       </details>
