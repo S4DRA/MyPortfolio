@@ -25,6 +25,22 @@
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 800; letter-spacing:-.075em!important; line-height:.92;
 }
+/*
+ * The legacy site sets explicit white heading colors in globals.css.
+ * Inheriting from each section's actual surface keeps both the dark and
+ * the light/mint parts readable in dark-mode devices and all browsers.
+ */
+.pack-root :is(h1, h2, h3, h4, h5, h6) { color: inherit; }
+.pack-root { color-scheme: light; }
+.pack-root .pack-contact,
+.pack-root .pack-cover-intro,
+.pack-root .pack-inner-footer { color-scheme: dark; }
+.pack-root .pack-contact :is(h1,h2,h3,h4,h5,h6),
+.pack-root .pack-cover-intro :is(h1,h2,h3,h4,h5,h6) { color: var(--pack-white); }
+.pack-root .pack-portrait-sticker,
+.pack-root .pack-photo-edge,
+.pack-root .pack-piece-art,
+.pack-root .pack-mobile-menu nav { color: var(--pack-ink); }
 .pack-root a { text-decoration:none; color:inherit; }
 .pack-root button, .pack-root a, .pack-root summary { -webkit-tap-highlight-color: transparent; }
 .pack-root a:focus-visible, .pack-root summary:focus-visible {outline: 3px solid #2f765c;outline-offset:4px;}
@@ -221,7 +237,8 @@
 .pack-footer nav a:hover {color:var(--pack-mint);}
 
 /* Motion is opt-in and progressive: everything is visible without script. */
-.pack-motion-ready [data-pack-reveal]:not(.pack-visible) {opacity:0;transform:translateY(28px);}
+/* Motion must never hide actual content if an observer is delayed or unavailable. */
+.pack-motion-ready [data-pack-reveal]:not(.pack-visible) {opacity:1;transform:translateY(15px);}
 .pack-motion-ready [data-pack-reveal] {transition:opacity .7s cubic-bezier(.2,.75,.2,1), transform .7s cubic-bezier(.2,.75,.2,1);}
 .pack-motion-ready [data-pack-reveal].pack-visible {opacity:1;transform:translateY(0);}
 @media (max-width: 1100px) {
