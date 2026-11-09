@@ -1,9 +1,9 @@
 import type { ReactNode } from "react"
-import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { FolioHeader } from "@/components/packaged-portfolio"
 import { PackMotion } from "@/components/pack-motion"
+import { PublishedImage } from "@/components/project-media"
 
 type Metric = {label:string;value:string}
 type ContentSection = {title:string;description:string;items:string[]}
@@ -58,8 +58,7 @@ export function PortfolioPage({eyebrow,title,intro,metrics,sections,showcases,he
               </div>
               {item.imageSrc ?
                 <div className="pack-inner-item-image">
-                  <Image src={item.imageSrc} alt={item.imageAlt ?? item.title}
-                    width={1200} height={1000} sizes="(min-width: 900px) 32vw, 90vw"/>
+                  <PublishedImage src={item.imageSrc} alt={item.imageAlt ?? item.title} />
                 </div> :
                 <div className="pack-inner-item-type" aria-hidden="true"><span>{String(index+1).padStart(2,"0")}</span><ArrowUpRight size={25}/></div>
               }
