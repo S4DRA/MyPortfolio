@@ -17,14 +17,14 @@ const moreAreas = [
   { title: "Identity", href: "/logo", number: "04" },
 ]
 
-function FolioHeader() {
+export function FolioHeader() {
   return (
     <header className="pack-header">
       <Link className="pack-brand" href="/#top" aria-label="Sadra Ahadiyan homepage">sa<span>.</span></Link>
       <nav className="pack-desktop-links" aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="/#work">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
       </nav>
       <span className="pack-header-edition">PORTFOLIO / 2026</span>
       <details className="pack-mobile-menu">
