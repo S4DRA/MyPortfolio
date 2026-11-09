@@ -1,0 +1,337 @@
+/*
+ * SADRA / PACK EDITION
+ * A deliberately flat, tactile, typographic system inspired by independent
+ * packaging design. No gradients, glowing orbs, glass panels, pill badges,
+ * endless centered headings or decorative AI-style UI.
+ */
+.pack-root {
+  --pack-ink: #111816;
+  --pack-paper: #eeeFE9;
+  --pack-white: #f9faf4;
+  --pack-mint: #b4f4d4;
+  --pack-gum: #8ee7b8;
+  --pack-soft: #d9e8d9;
+  --pack-line: #b9c3b8;
+  color: var(--pack-ink);
+  background: var(--pack-paper);
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  line-height: 1.4;
+  overflow: clip;
+  isolation: isolate;
+}
+.pack-root *, .pack-root *::before, .pack-root *::after { box-sizing:border-box; }
+.pack-root h1, .pack-root h2, .pack-root h3, .pack-root p { margin:0; }
+.pack-root h1, .pack-root h2, .pack-root h3 {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 800; letter-spacing:-.075em!important; line-height:.92;
+}
+.pack-root a { text-decoration:none; color:inherit; }
+.pack-root button, .pack-root a, .pack-root summary { -webkit-tap-highlight-color: transparent; }
+.pack-root a:focus-visible, .pack-root summary:focus-visible {outline: 3px solid #2f765c;outline-offset:4px;}
+.pack-root ::selection { background:var(--pack-ink); color:var(--pack-mint); }
+.pack-root :target { scroll-margin-top:74px; }
+.pack-skip {position:fixed;z-index:200;top:-90px;left:20px;padding:12px 20px;background:var(--pack-ink);color:var(--pack-white)!important;}
+.pack-skip:focus {top:20px;}
+
+/* A single slim masthead: no role, status or redundant descriptive copy. */
+.pack-header {
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  width:100%;min-height:79px;padding:0 clamp(19px,3.35vw,64px);
+  background:var(--pack-paper);border-bottom:1.5px solid var(--pack-ink);
+  z-index:40;gap:20px;
+}
+.pack-brand, .pack-footer-brand {font-size:37px!important;font-weight:900;line-height:1;letter-spacing:-.12em!important;}
+.pack-brand span, .pack-footer-brand span {color:#399d75;}
+.pack-desktop-links {display:flex;gap:clamp(27px,4vw,72px);align-items:center;margin-left:auto;}
+.pack-desktop-links a {font-size:15px;font-weight:700;position:relative;padding:12px 0;}
+.pack-desktop-links a::after {content:"";height:2px;position:absolute;bottom:5px;left:0;right:100%;background:currentColor;transition:right .25s ease;}
+.pack-desktop-links a:hover::after {right:0;}
+.pack-header-edition {font:11px/1.3 "Courier New",monospace;margin-left:clamp(25px,3.5vw,70px);letter-spacing:.05em!important;}
+.pack-mobile-menu {display:none;}
+
+/* Cover: name and portrait are the composition, not scattered UI badges. */
+.pack-cover {padding:23px clamp(19px,3.35vw,64px) 0;max-width:1920px;margin:0 auto;}
+.pack-cover-head {
+  display:flex;justify-content:space-between;align-items:start;gap:25px;
+  padding:0 2px 21px;color:#34423b;
+  font:11px/1.4 "Courier New",monospace;letter-spacing:.035em!important;
+}
+.pack-cover-head > span {text-align:right;}
+.pack-cover-title {position:relative;z-index:2;margin:0 0 17px!important;}
+.pack-cover-title > span {display:block;font-weight:900;white-space:nowrap;line-height:.79;}
+.pack-cover-title > span:first-child {font-size:clamp(100px,17.4vw,320px);letter-spacing:-.092em!important;}
+.pack-cover-title > span:nth-child(2) {font-size:clamp(75px,12.35vw,230px);letter-spacing:-.099em!important;margin-top:14px;}
+.pack-title-stop {color:#399d75;}
+.pack-cover-bottom {
+  display:grid;grid-template-columns: 1.05fr 1fr;gap:0;align-items:stretch;
+  border:1.5px solid var(--pack-ink);min-height:clamp(410px,37vw,620px);
+  margin-top:29px;
+}
+.pack-portrait {position:relative;min-height:410px;background:var(--pack-mint);overflow:hidden;border-right:1.5px solid var(--pack-ink);}
+.pack-portrait::before {
+  content:"";position:absolute;width:70%;aspect-ratio:1;border:1.6px solid #2d694d;
+  border-radius:50%;top:7%;left:14%;
+}
+.pack-portrait-image {
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:center 40%;filter:grayscale(1) contrast(1.12);mix-blend-mode:multiply;
+  transition:filter .6s ease,transform .7s cubic-bezier(.16,1,.3,1);
+}
+.pack-portrait:hover .pack-portrait-image {filter:grayscale(.45) contrast(1.1);transform:scale(1.025);}
+.pack-portrait-sticker {
+  position:absolute;left:30px;top:24px;display:flex;align-items:center;justify-content:center;
+  width:86px;height:86px;border:1.5px solid #102319;background:var(--pack-mint);
+  border-radius:50%;transform:rotate(-12deg);
+}
+.pack-portrait-sticker span {font-weight:900;letter-spacing:-.09em!important;font-size:31px;}
+.pack-portrait-sticker i {font-size:17px;font-style:normal;transform:translateY(-12px);}
+.pack-photo-edge {position:absolute;bottom:20px;left:24px;font:10px monospace;letter-spacing:.02em!important;background:var(--pack-mint);padding:6px 8px;}
+.pack-cover-intro {
+  background:var(--pack-ink);color:var(--pack-white);
+  padding:clamp(32px,5.5vw,88px);display:flex;flex-direction:column;justify-content:space-between;gap:35px;
+}
+.pack-intro-main {font-size:clamp(2.5rem,4.7vw,5.9rem);font-weight:800;letter-spacing:-.065em!important;line-height:1.03;max-width:780px;}
+.pack-intro-main i {font-family:Georgia,serif;font-weight:400;letter-spacing:-.07em!important;color:var(--pack-mint);}
+.pack-intro-secondary {font-size:clamp(15px,1.2vw,19px);line-height:1.6;max-width:420px;color:#d0d9d1;}
+.pack-scroll-link {
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1.5px solid #708174;padding-top:19px;max-width:300px;
+  font-size:15px;font-weight:700;transition:color .2s;
+}
+.pack-scroll-link:hover {color:var(--pack-mint);}
+.pack-scroll-link svg {transition:transform .25s;}
+.pack-scroll-link:hover svg {transform:translateY(6px);}
+
+/* Work: no template card grid; a staggered index of large artifact surfaces. */
+.pack-work {padding:clamp(105px,10.8vw,195px) clamp(19px,3.35vw,64px) clamp(100px,9vw,175px);max-width:1920px;margin:auto;}
+.pack-section-top {
+  display:grid;grid-template-columns:1.8fr .65fr;gap:40px;align-items:end;
+  border-top:1.5px solid var(--pack-ink);padding:23px 0 clamp(50px,7vw,110px);
+}
+.pack-root .pack-section-top h2 {font-size:clamp(6rem,17vw,20rem);font-weight:900;letter-spacing:-.095em!important;line-height:.8;}
+.pack-heading-mark {color:#379a73;display:inline-block;font-weight:400;transform:translateY(-10px);}
+.pack-section-top p {font-size:clamp(18px,1.7vw,27px);line-height:1.35;max-width:390px;letter-spacing:-.028em!important;padding-bottom:8px;}
+.pack-piece-grid {
+  display:grid;grid-template-columns:minmax(0,1.11fr) minmax(0,.89fr);
+  align-items:start;column-gap:clamp(24px,5vw,100px);row-gap:clamp(90px,12vw,175px);
+}
+.pack-piece:nth-child(2) {margin-top:clamp(110px,18vw,275px);}
+.pack-piece:nth-child(4) {margin-top:clamp(70px,10vw,150px);}
+.pack-piece-meta {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--pack-ink);padding:13px 0 15px;
+  font:11px/1.4 "Courier New",monospace;text-transform:uppercase;letter-spacing:.02em!important;
+}
+.pack-piece-meta span:nth-child(2) {max-width:70%;text-align:right;}
+.pack-piece-art {
+  position:relative;min-height:370px;aspect-ratio:1.22;
+  display:flex;align-items:center;justify-content:center;padding:clamp(20px,4vw,60px);
+  background:#bee8d2;border:1px solid #19231d;overflow:hidden;
+}
+.pack-piece--dampener .pack-piece-art {background:#bddac8;}
+.pack-piece--val .pack-piece-art {background:#92d7ae;}
+.pack-piece--merkat .pack-piece-art {background:#d8e4d5;}
+.pack-piece--axivoz .pack-piece-art {background:#99d1c0;}
+.pack-piece-image {
+  width:100%;height:auto;max-height:96%;object-fit:contain;position:relative;z-index:1;
+  box-shadow:13px 15px 0 rgba(13,36,25,.16);
+  transition:transform .6s cubic-bezier(.16,1,.3,1),box-shadow .6s;
+}
+.pack-piece-art:hover .pack-piece-image {transform:translate(-5px,-7px);box-shadow:19px 22px 0 rgba(13,36,25,.18);}
+.pack-piece-typeset {width:100%;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;}
+.pack-piece-typeset > span {
+  font-size:clamp(4rem,8vw,10rem);font-weight:900;letter-spacing:-.115em!important;
+  line-height:1;max-width:100%;text-align:center;overflow-wrap:anywhere;
+}
+.pack-piece--merkat .pack-piece-typeset > span {font-size:clamp(3.6rem,7vw,9rem);}
+.pack-piece-typeset small {font:11px/1.5 "Courier New",monospace;text-transform:uppercase;letter-spacing:.09em!important;margin-top:25px;}
+.pack-piece-corner {
+  position:absolute;top:13px;left:15px;right:15px;z-index:2;display:flex;justify-content:space-between;
+  font:10px "Courier New",monospace;letter-spacing:.02em!important;
+}
+.pack-piece-caption {padding-top:22px;}
+.pack-piece-title-group {display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.pack-root .pack-piece-title-group h3 {font-size:clamp(2.8rem,5vw,6.9rem);font-weight:800;letter-spacing:-.075em!important;line-height:.92;}
+.pack-piece-title-group > span {font-size:clamp(2rem,3.2vw,3.5rem);line-height:1;color:#307e5a;}
+.pack-piece-caption > p {max-width:640px;font-size:clamp(15px,1.25vw,19px);line-height:1.53;margin:18px 0 23px;color:#3c4a42;}
+.pack-piece-actions {display:flex;align-items:start;flex-wrap:wrap;gap:16px 24px;border-top:1px solid #9faf9e;padding-top:14px;}
+.pack-piece-actions > a {display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:5px;transition:color .2s;}
+.pack-piece-actions > a:hover {color:#2a7d54;}
+.pack-piece-details {width:100%;margin-top:4px;}
+.pack-piece-details summary {display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;cursor:pointer;font-size:14px;font-weight:700;list-style:none;}
+.pack-piece-details summary::-webkit-details-marker {display:none;}
+.pack-piece-details[open] summary span {transform:rotate(45deg);}
+.pack-piece-details summary span {transition:transform .2s;font-size:22px;font-weight:400;}
+.pack-piece-detail-body {padding:14px 0 7px;border-top:1px solid #b9c5b9;}
+.pack-piece-detail-body > div {display:grid;grid-template-columns:110px 1fr;gap:16px;margin-bottom:18px;}
+.pack-piece-detail-body b {font:11px/1.5 "Courier New",monospace;letter-spacing:.015em!important;}
+.pack-piece-detail-body p {font-size:14px;line-height:1.55;max-width:560px;}
+.pack-piece-quiet {color:#566859;font:11px "Courier New",monospace;}
+.pack-archive {margin-top:clamp(120px,16vw,275px);display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;border-top:1.5px solid var(--pack-ink);padding-top:25px;}
+.pack-archive-heading h3 {font-size:clamp(2.4rem,4.4vw,6.1rem);font-weight:800;letter-spacing:-.075em!important;max-width:520px;}
+.pack-archive-heading p {font-size:16px;line-height:1.5;max-width:380px;margin-top:20px;color:#45554a;}
+.pack-archive-links {border-top:1px solid #9eada0;}
+.pack-archive-links a {display:grid;grid-template-columns:45px 1fr 29px;gap:15px;align-items:center;border-bottom:1px solid #9eada0;padding:20px 4px;transition:background .25s,padding .25s;}
+.pack-archive-links a:hover {background:var(--pack-mint);padding-inline:17px;}
+.pack-archive-links a > span:nth-child(2) {font-size:clamp(1.4rem,2.5vw,2.7rem);font-weight:800;letter-spacing:-.06em!important;}
+.pack-archive-number {font:11px "Courier New",monospace;}
+.pack-archive-links svg {justify-self:end;}
+
+/* About: one honest statement, not another skills/about/mission repetition. */
+.pack-about {
+  display:grid;grid-template-columns:28% 72%;background:var(--pack-mint);
+  border-block:1.5px solid var(--pack-ink);min-height:630px;
+}
+.pack-about-side {
+  display:flex;flex-direction:column;align-items:start;justify-content:space-between;
+  border-right:1.5px solid var(--pack-ink);padding:clamp(24px,3.5vw,67px);
+}
+.pack-about-side > span:first-child {font:12px "Courier New",monospace;}
+.pack-about-glyph {font-size:clamp(5rem,13vw,16rem);font-weight:900;line-height:.7;letter-spacing:-.14em!important;white-space:nowrap;}
+.pack-about-body {padding:clamp(34px,5vw,95px);display:flex;flex-direction:column;justify-content:space-between;gap:50px;}
+.pack-root .pack-about-body h2 {
+  font-size:clamp(3.4rem,6.5vw,9rem);font-weight:800;line-height:.94;max-width:1020px;
+}
+.pack-about-body h2 em {font-family:Georgia,serif;font-weight:400;letter-spacing:-.075em!important;}
+.pack-about-columns {display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,110px);}
+.pack-about-columns p {font-size:clamp(16px,1.35vw,21px);line-height:1.5;max-width:440px;}
+.pack-about-links {display:flex;flex-wrap:wrap;gap:15px 25px;margin-top:30px;}
+.pack-about-links a {display:inline-flex;align-items:center;gap:8px;padding-bottom:5px;border-bottom:1px solid var(--pack-ink);font-size:14px;font-weight:700;}
+.pack-about-links a:hover {opacity:.6;}
+
+/* Contact: functional email address becomes the interface. */
+.pack-contact {background:#111816;color:var(--pack-white);padding:25px clamp(19px,3.35vw,64px) 0;}
+.pack-contact-top {display:flex;justify-content:space-between;gap:25px;border-top:1px solid #657268;padding-top:14px;font:11px "Courier New",monospace;letter-spacing:.04em!important;}
+.pack-root .pack-contact h2 {font-size:clamp(5.2rem,12.2vw,16rem);font-weight:900;letter-spacing:-.095em!important;line-height:.87;margin:80px 0 90px;}
+.pack-contact h2 em {color:var(--pack-mint);font-family:Georgia,serif;font-weight:400;letter-spacing:-.1em!important;}
+.pack-email {
+  display:flex;justify-content:space-between;align-items:center;gap:25px;
+  border-bottom:1.5px solid #bcc7bc;padding:20px 0 25px;
+  font-size:clamp(1rem,3vw,3.7rem);letter-spacing:-.05em!important;overflow-wrap:anywhere;
+  transition:color .2s;
+}
+.pack-email:hover {color:var(--pack-mint);}
+.pack-email svg {flex-shrink:0;}
+.pack-footer {
+  display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap;
+  padding:60px 0 25px;font:12px/1.5 "Courier New",monospace;color:#acb9ac;
+}
+.pack-footer-brand {color:var(--pack-white)!important;font-family:Arial,sans-serif!important;}
+.pack-footer nav {display:flex;gap:23px;}
+.pack-footer nav a:hover {color:var(--pack-mint);}
+
+/* Motion is opt-in and progressive: everything is visible without script. */
+.pack-motion-ready [data-pack-reveal]:not(.pack-visible) {opacity:0;transform:translateY(28px);}
+.pack-motion-ready [data-pack-reveal] {transition:opacity .7s cubic-bezier(.2,.75,.2,1), transform .7s cubic-bezier(.2,.75,.2,1);}
+.pack-motion-ready [data-pack-reveal].pack-visible {opacity:1;transform:translateY(0);}
+@media (max-width: 1100px) {
+  .pack-cover-title > span:first-child {font-size:17.2vw;}
+  .pack-cover-title > span:nth-child(2) {font-size:12.2vw;}
+  .pack-cover-bottom {min-height:380px;}
+  .pack-portrait {min-height:380px;}
+  .pack-cover-intro {padding:37px;}
+  .pack-intro-main {font-size:clamp(2.35rem,4.2vw,3.9rem);}
+  .pack-piece-art {min-height:300px;}
+  .pack-about {grid-template-columns:23% 77%;}
+  .pack-about-body {padding:40px;}
+}
+@media (max-width: 800px) {
+  .pack-header {min-height:70px;padding-inline:20px;}
+  .pack-header-edition {display:none;}
+  .pack-desktop-links {display:none;}
+  .pack-mobile-menu {display:block;margin-left:auto;position:relative;}
+  .pack-mobile-menu > summary {
+    list-style:none;display:flex;align-items:center;gap:15px;font-weight:700;
+    font-size:14px;cursor:pointer;min-height:48px;padding:0 4px;
+  }
+  .pack-mobile-menu > summary::-webkit-details-marker {display:none;}
+  .pack-mobile-menu > summary span {font-size:23px;font-weight:400;transition:transform .25s;}
+  .pack-mobile-menu[open] > summary span {transform:rotate(45deg);}
+  .pack-mobile-menu nav {
+    position:absolute;right:-20px;top:calc(100% + 10px);z-index:90;
+    width:min(430px,100vw);border:1.5px solid var(--pack-ink);
+    background:var(--pack-mint);padding:10px 22px 22px;
+    box-shadow:-8px 8px 0 var(--pack-ink);
+  }
+  .pack-mobile-menu nav a {display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:clamp(25px,6vw,43px);font-weight:800;letter-spacing:-.055em!important;padding:15px 0;border-bottom:1px solid #5c8b72;}
+  .pack-mobile-menu nav a span {font:12px "Courier New",monospace;}
+  .pack-cover {padding-inline:20px;}
+  .pack-cover-head {font-size:10px;}
+  .pack-cover-bottom {grid-template-columns:1fr 1fr;min-height:335px;}
+  .pack-portrait {min-height:335px;}
+  .pack-cover-intro {padding:25px;}
+  .pack-intro-main {font-size:clamp(1.9rem,4.6vw,3.5rem);}
+  .pack-intro-secondary {font-size:14px;}
+  .pack-scroll-link {font-size:13px;}
+  .pack-piece-grid {column-gap:25px;}
+  .pack-piece-art {min-height:250px;}
+  .pack-piece-typeset > span {font-size:clamp(2.6rem,7vw,5rem);}
+  .pack-piece--merkat .pack-piece-typeset > span {font-size:clamp(2.7rem,6.3vw,5rem);}
+  .pack-piece-caption > p {font-size:14px;}
+  .pack-about {grid-template-columns:1fr;}
+  .pack-about-side {flex-direction:row;align-items:center;border-right:0;border-bottom:1.5px solid var(--pack-ink);padding:22px;}
+  .pack-about-glyph {font-size:50px;}
+  .pack-about-body {padding:50px 28px;}
+  .pack-root .pack-about-body h2 {font-size:clamp(3.2rem,7vw,5rem);}
+}
+@media (max-width: 620px) {
+  .pack-header {min-height:63px;}
+  .pack-brand {font-size:33px!important;}
+  .pack-cover {padding:17px 16px 0;}
+  .pack-cover-head {padding-bottom:19px;font-size:9px;}
+  .pack-cover-title > span:first-child {font-size:23vw;letter-spacing:-.095em!important;}
+  .pack-cover-title > span:nth-child(2) {font-size:13.25vw;letter-spacing:-.085em!important;margin-top:7px;}
+  .pack-cover-bottom {margin-top:20px;display:flex;flex-direction:column;min-height:unset;}
+  .pack-portrait {min-height:unset;aspect-ratio:1.25;border-right:0;border-bottom:1.5px solid var(--pack-ink);}
+  .pack-portrait-image {object-position:center 34%;}
+  .pack-portrait-sticker {top:17px;left:17px;width:59px;height:59px;}
+  .pack-portrait-sticker span {font-size:22px;}
+  .pack-portrait-sticker i {font-size:12px;}
+  .pack-photo-edge {font-size:9px;bottom:12px;left:11px;}
+  .pack-cover-intro {min-height:250px;padding:28px 24px;gap:25px;}
+  .pack-intro-main {font-size:clamp(2.2rem,9vw,3.5rem);max-width:480px;}
+  .pack-intro-secondary {font-size:14px;max-width:410px;}
+  .pack-scroll-link {max-width:none;font-size:14px;padding-top:12px;}
+  .pack-work {padding:94px 16px 100px;}
+  .pack-section-top {grid-template-columns:1fr;gap:28px;padding-bottom:50px;}
+  .pack-root .pack-section-top h2 {font-size:clamp(5.6rem,24vw,10rem);letter-spacing:-.11em!important;}
+  .pack-section-top p {font-size:18px;line-height:1.36;max-width:340px;margin-left:auto;}
+  .pack-piece-grid {display:flex;flex-direction:column;gap:80px;}
+  .pack-piece {width:100%;}
+  .pack-piece:nth-child(2), .pack-piece:nth-child(4) {margin-top:0;}
+  .pack-piece-art {aspect-ratio:1.25;min-height:260px;padding:27px;}
+  .pack-piece-typeset > span {font-size:clamp(3.3rem,15vw,6rem);}
+  .pack-piece--merkat .pack-piece-typeset > span {font-size:clamp(3.1rem,14vw,5rem);}
+  .pack-piece-image {max-height:95%;}
+  .pack-root .pack-piece-title-group h3 {font-size:clamp(2.8rem,12.5vw,4.8rem);}
+  .pack-piece-meta {font-size:10px;}
+  .pack-archive {display:block;margin-top:115px;}
+  .pack-archive-heading h3 {font-size:clamp(2.8rem,10vw,4rem);}
+  .pack-archive-links {margin-top:45px;}
+  .pack-archive-links a {padding-block:18px;}
+  .pack-about-body {padding:58px 20px;}
+  .pack-root .pack-about-body h2 {font-size:clamp(3rem,10.5vw,5rem);}
+  .pack-about-columns {grid-template-columns:1fr;gap:22px;}
+  .pack-about-columns p {font-size:16px;}
+  .pack-about-links {margin-top:22px;}
+  .pack-contact {padding:20px 18px 0;}
+  .pack-contact-top {font-size:9px;}
+  .pack-root .pack-contact h2 {font-size:clamp(4rem,15vw,6.5rem);margin:75px 0 85px;}
+  .pack-email {font-size:clamp(1.04rem,4.9vw,2rem);padding-bottom:22px;gap:10px;}
+  .pack-email svg {width:21px;height:21px;}
+  .pack-footer {padding:45px 0 29px;gap:16px;display:grid;grid-template-columns:1fr auto;}
+  .pack-footer > span {grid-column:1/-1;grid-row:2;font-size:10px;}
+  .pack-footer nav {gap:14px;font-size:10px;}
+  .pack-piece-detail-body > div {display:block;}
+  .pack-piece-detail-body b {display:block;margin-bottom:7px;}
+}
+@media (max-width: 355px) {
+  .pack-cover-title > span:nth-child(2) {font-size:12.6vw;}
+  .pack-cover-head > span {display:none;}
+  .pack-intro-main {font-size:2rem;}
+  .pack-root .pack-contact h2 {font-size:3.7rem;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .pack-root *, .pack-root *::before, .pack-root *::after {animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  .pack-motion-ready [data-pack-reveal] {opacity:1!important;transform:none!important;}
+}
