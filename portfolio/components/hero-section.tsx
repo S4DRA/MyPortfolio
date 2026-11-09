@@ -1,96 +1,49 @@
-import { Scene } from "@/components/cinematic/scene"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Download } from "lucide-react"
-
-const facts = [
-  ["Based in", "Istanbul"],
-  ["Studying", "Computer Engineering"],
-  ["Open to", "Product, UI/UX, software, support, and AI-focused roles"],
-]
+import { ArrowDownRight, ArrowUpRight, Download } from "lucide-react"
+import { Scene } from "@/components/cinematic/scene"
 
 export function HeroSection() {
   return (
-    <Scene order={0}
-      id="hero"
-      className="relative z-10 flex min-h-screen items-center overflow-hidden px-4 pb-18 pt-28 sm:px-6 sm:pb-24 sm:pt-32"
-    >
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] lg:gap-16">
-        <div
-          className="max-w-4xl transition-all duration-700 translate-y-0 opacity-100"
-        >
-          <p className="max-w-xl text-sm leading-relaxed text-primary sm:text-base">
-          </p>
-
-          <h1 className="mt-5 max-w-[14ch] text-5xl leading-[0.98] text-foreground text-balance sm:text-6xl lg:text-7xl xl:text-8xl">
-            I design and build product-focused software with AI-powered workflows.
+    <Scene id="hero" order={0} className="atelier-hero">
+      <div className="atelier-hero-top atelier-enter">
+        <span className="atelier-status"><span className="atelier-status-dot" />AVAILABLE FOR OPPORTUNITIES</span>
+        <span>ISTANBUL, TR <span className="atelier-divider">/</span> EST. 2001</span>
+      </div>
+      <div className="atelier-hero-grid">
+        <div className="atelier-hero-copy">
+          <p className="atelier-kicker atelier-enter" style={{animationDelay:"100ms"}}><span>✳</span> CREATIVE DEVELOPER & PRODUCT DESIGNER</p>
+          <h1 className="atelier-hero-title atelier-enter" style={{animationDelay:"160ms"}}>
+            Thinking in <em>systems.</em><br />
+            Designing for <span>people<span className="atelier-period">.</span></span>
           </h1>
-
-          <p className="mt-7 max-w-2xl text-base leading-relaxed text-foreground/84 sm:text-xl">
-            I combine product thinking, interface design, and rapid development to turn early
-            ideas into clear, usable digital products.
-          </p>
-
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Computer Engineering student based in Istanbul, open to product, UI/UX, software,
-            technical support, and AI-focused opportunities.
-          </p>
-
-          <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
-            <Link
-              href="/#projects"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-foreground bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:-translate-y-0.5 hover:border-primary hover:bg-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              View Selected Work
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <a
-              href="/sadra-ahadiyan-cv.pdf"
-              download
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-border bg-card/75 px-6 py-3 text-sm font-medium text-foreground transition-all hover:-translate-y-0.5 hover:border-primary/35 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              Download CV
-              <Download className="h-4 w-4" />
-            </a>
+          <div className="atelier-hero-detail atelier-enter" style={{animationDelay:"260ms"}}>
+            <span className="atelier-detail-index">01 / THE IDEA</span>
+            <p>I'm Sadra — a computer engineering student and product-minded builder. I turn complex ideas into digital experiences that feel clear, useful, and alive.</p>
           </div>
-
-          <dl className="mt-12 grid max-w-3xl gap-5 border-t border-border/70 pt-6 sm:grid-cols-3">
-            {facts.map(([label, value]) => (
-              <div key={label}>
-                <dt className="text-xs text-muted-foreground">{label}</dt>
-                <dd className="mt-2 text-sm leading-relaxed text-foreground/90">{value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        <div
-          className="mx-auto w-full max-w-[320px] transition-all delay-100 duration-700 sm:max-w-[380px] lg:justify-self-end translate-y-0 opacity-100"
-        >
-          <div className="hero-portrait-shell scan-border relative overflow-hidden rounded-[1.15rem] border border-border/60 p-2 shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
-            <div className="hero-portrait-glow absolute inset-0" aria-hidden="true" />
-            <div className="hero-scanline absolute inset-x-0 top-0 h-16" aria-hidden="true" />
-            <Image
-              src="/myPhoto.jpg"
-              alt="Portrait of Sadra Ahadiyan"
-              width={900}
-              height={1100}
-              sizes="(min-width: 640px) 380px, 320px"
-              priority
-              className="relative aspect-[4/5] w-full rounded-[0.85rem] object-cover object-center"
-            />
-          </div>
-
-          <div className="mt-5 border-l border-primary/35 pl-5">
-            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-              Portfolio Note
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-foreground/82">
-              A quieter portfolio about the work itself: what I built, what changed, and where I
-              want to contribute next.
-            </p>
+          <div className="atelier-hero-buttons atelier-enter" style={{animationDelay:"330ms"}}>
+            <Link href="/#projects" className="atelier-button-main">Explore my work <ArrowDownRight size={18} aria-hidden="true" /></Link>
+            <a href="/sadra-ahadiyan-cv.pdf" download className="atelier-button-subtle">Download CV <Download size={16} aria-hidden="true" /></a>
           </div>
         </div>
+        <div className="atelier-hero-visual atelier-enter" style={{animationDelay:"280ms"}}>
+          <div className="atelier-portrait-frame" data-pointer-tilt>
+            <div className="atelier-photo-backdrop" aria-hidden="true" />
+            <div className="atelier-photo-arc" aria-hidden="true" />
+            <Image src="/myPhoto.jpg" alt="Sadra Ahadiyan" width={900} height={1100} sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 85vw" priority className="atelier-portrait-image" />
+            <div className="atelier-photo-top"><span>FIG. 01</span><span>PERSON / PROCESS</span></div>
+            <div className="atelier-photo-bottom"><span>DESIGN ↔ BUILD</span><span>↗</span></div>
+          </div>
+          <div className="atelier-portrait-caption"><span className="atelier-asterisk">✳</span><span>Curious by nature.<br />Intentional by design.</span><span>SA / 26</span></div>
+        </div>
+      </div>
+      <div className="atelier-hero-bottom atelier-enter" style={{animationDelay:"470ms"}}>
+        <span>SCROLL TO DISCOVER <span className="atelier-scroll-arrow">↓</span></span>
+        <div className="atelier-hero-social">
+          <a href="https://github.com/S4DRA" target="_blank" rel="noopener noreferrer">GITHUB <ArrowUpRight size={13} aria-hidden="true" /></a>
+          <a href="https://www.linkedin.com/in/sadra-ahadiyan" target="_blank" rel="noopener noreferrer">LINKEDIN <ArrowUpRight size={13} aria-hidden="true" /></a>
+        </div>
+        <span className="atelier-hero-edition">INDEPENDENT PORTFOLIO / VOL. 01</span>
       </div>
     </Scene>
   )
