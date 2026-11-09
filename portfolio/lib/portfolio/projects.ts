@@ -885,6 +885,7 @@ export function getProjectShowcases(route: string) {
       description: [project.summary ?? project.tagline ?? "", project.status ?? ""].filter(Boolean).join(" — "),
       tags: project.technologies ?? [],
       ...(image ? { imageSrc: image.src, imageAlt: image.alt } : {}),
+      ...(project.projectUrl ? { href: project.projectUrl } : {}),
       order: -100 + index,
     }]
   })
