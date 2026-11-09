@@ -7,6 +7,7 @@ import { CinematicShell } from '@/components/cinematic/cinematic-shell'
 import 'lenis/dist/lenis.css'
 import './globals.css'
 import './pack-portfolio.css'
+import './pack-inner.css'
 
 export const viewport: Viewport = {
   width: 'device-width',
