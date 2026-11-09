@@ -324,3 +324,159 @@
   .atelier-home *, .atelier-home *::before,.atelier-home *::after {scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
   .atelier-motion-ready .atelier-home [data-reveal] {opacity:1!important;transform:none!important;}
 }
+
+
+/* Portfolio case study layout — visual-first without losing existing project content. */
+.atelier-section-container {max-width:1520px;margin:0 auto;padding:0 clamp(22px,4.3vw,76px);}
+.atelier-projects {padding:clamp(100px,10vw,170px) 0;border-top:1px solid #384136;}
+.atelier-section-index {
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  border-top:1px solid #3e473c;padding-top:18px;
+  font:10px/1.5 monospace;color:#b6c2af;letter-spacing:.13em!important;
+}
+.atelier-section-index span:first-child {color:#dbfa8d;}
+.atelier-project-intro-grid {display:grid;grid-template-columns:minmax(0,1.3fr) minmax(220px,.56fr);gap:35px;align-items:end;margin:45px 0 100px;}
+.atelier-project-intro h2,.atelier-more-heading h2 {
+  font-size:clamp(3.9rem,8.7vw,10.6rem);letter-spacing:-.08em!important;line-height:.9;
+}
+.atelier-project-intro h2 em,.atelier-more-heading h2 em {font:italic 400 1em/.9 Georgia,serif;color:#dbfa8d;letter-spacing:-.085em!important;}
+.atelier-project-intro-grid > div {padding-bottom:9px;max-width:330px;justify-self:end;}
+.atelier-project-intro-grid p,.atelier-more-heading p {font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:#bdc9b6;}
+.atelier-intro-rule {height:1px;background:#4a5547;display:block;margin-top:33px;}
+.atelier-intro-caption {display:flex;justify-content:space-between;align-items:center;margin-top:14px;font:10px monospace;letter-spacing:.1em!important;color:#aabb9f;}
+.atelier-intro-caption span {font-size:21px;color:#dbfa8d;}
+.atelier-featured-stack {display:grid;gap:125px;}
+.atelier-featured-project {
+  display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.82fr);
+  gap:clamp(40px,6vw,110px);align-items:center;
+}
+.atelier-featured-project.atelier-project-reverse {grid-template-columns:minmax(0,.82fr) minmax(0,1.08fr);}
+.atelier-project-reverse .atelier-project-image-panel {order:2;}
+.atelier-project-reverse .atelier-project-info {order:1;}
+.atelier-project-image-panel {
+  position:relative;min-height:520px;aspect-ratio:1.13;
+  padding:55px clamp(16px,3vw,38px);
+  border:1px solid #3f4c3d;overflow:hidden;border-radius:3px;
+  background:
+    radial-gradient(ellipse 80% 85% at 70% 25%,rgba(194,237,135,.22),transparent 65%),
+    linear-gradient(135deg,#303d30,#151d18);
+  display:flex;align-items:center;justify-content:center;
+}
+.atelier-project-reverse .atelier-project-image-panel {
+  background:radial-gradient(ellipse 80% 90% at 30% 60%,rgba(131,185,175,.23),transparent 65%),linear-gradient(135deg,#1c332b,#171c1b);
+}
+.atelier-project-image-panel::after {
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(224,240,214,.04) 1px,transparent 1px),
+    linear-gradient(rgba(224,240,214,.04) 1px,transparent 1px);
+  background-size:32px 32px;
+}
+.atelier-project-image-meta {
+  position:absolute;inset:20px 20px auto;z-index:2;
+  display:flex;justify-content:space-between;gap:15px;
+  font:10px monospace;color:#e1eedd;letter-spacing:.08em!important;
+}
+.atelier-featured-image {
+  display:block;max-width:100%;max-height:88%;width:auto;height:auto;
+  border:1px solid rgba(242,244,229,.26);border-radius:5px;
+  box-shadow:0 45px 75px rgba(0,0,0,.37);
+  object-fit:contain;object-position:center;
+  transition:transform .8s cubic-bezier(.16,1,.3,1),box-shadow .6s;
+}
+.atelier-project-image-panel:hover .atelier-featured-image {transform:translateY(-9px) scale(1.02);box-shadow:0 52px 95px rgba(0,0,0,.48);}
+.atelier-project-missing-art {font-size:clamp(7rem,15vw,17rem);line-height:1;letter-spacing:-.13em!important;font-weight:800;opacity:.55;}
+.atelier-image-caption {
+  position:absolute;bottom:19px;left:22px;right:20px;z-index:2;
+  font:10px monospace;color:#d8e1d0;letter-spacing:.1em!important;
+}
+.atelier-project-info {align-self:center;}
+.atelier-project-info-top {
+  display:flex;align-items:center;justify-content:space-between;gap:15px;
+  border-bottom:1px solid #4a5646;padding-bottom:17px;
+  font:10px monospace;color:#b3c1ab;text-transform:uppercase;letter-spacing:.1em!important;
+}
+.atelier-project-info-top span:first-child {color:#dbfa8d;}
+.atelier-home .atelier-project-info h3 {font-size:clamp(4.8rem,8vw,9rem);font-weight:600;margin:27px 0 20px;letter-spacing:-.085em!important;}
+.atelier-heading-dot {color:#dbfa8d;}
+.atelier-project-tagline {font-size:clamp(19px,2vw,27px);line-height:1.4;color:#f3f1e9;font-weight:500;letter-spacing:-.015em!important;}
+.atelier-project-data {display:grid;grid-template-columns:74px 1fr;gap:17px;border-top:1px solid #3c453a;margin-top:32px;padding-top:20px;}
+.atelier-project-data span {font:10px monospace;color:#a8b59e;letter-spacing:.09em!important;}
+.atelier-project-data p {font-size:14px;line-height:1.7;color:#bfc9b8;}
+.atelier-project-links {display:flex;flex-wrap:wrap;gap:22px;align-items:center;margin:30px 0;}
+.atelier-project-link-primary {
+  display:inline-flex;align-items:center;gap:19px;min-height:48px;background:#dbfa8d;
+  color:#11150f!important;padding:13px 17px;border-radius:2px;font-size:13px;font-weight:700;
+  transition:transform .2s,background .2s;
+}
+.atelier-project-link-primary:hover {transform:translateY(-3px);background:#f1fcca;}
+.atelier-project-link-plain {display:inline-flex;align-items:center;gap:8px;border-bottom:1px solid #849580;padding:9px 0;font-size:13px;color:#e4ebe0;}
+.atelier-project-link-plain:hover {color:#dbfa8d;}
+.atelier-case-details {border-top:1px solid #3e483d;}
+.atelier-case-details summary,.atelier-more-detail summary {
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  padding:19px 0;font-size:13px;color:#d9e4d4;
+}
+.atelier-case-details summary::-webkit-details-marker,.atelier-more-detail summary::-webkit-details-marker {display:none;}
+.atelier-case-details[open] summary svg,.atelier-more-detail[open] summary svg {transform:rotate(45deg);}
+.atelier-case-details summary svg,.atelier-more-detail summary svg {transition:transform .25s;}
+.atelier-case-details dl > div {display:grid;grid-template-columns:115px 1fr;gap:15px;padding:17px 0;border-top:1px solid #303a30;}
+.atelier-case-details dt {font:11px/1.6 monospace;color:#b4c0af;}
+.atelier-case-details dd {font-size:13px;line-height:1.65;color:#d3dad0;}
+.atelier-more-work {margin-top:clamp(130px,15vw,250px);}
+.atelier-more-heading {display:grid;grid-template-columns:1.2fr .55fr;align-items:end;gap:25px;margin:46px 0 50px;}
+.atelier-more-heading h2 {font-size:clamp(3.6rem,7.1vw,8rem);}
+.atelier-more-heading p {max-width:340px;justify-self:end;}
+.atelier-more-list {border-top:1px solid #455343;}
+.atelier-more-row {
+  display:grid;grid-template-columns:50px minmax(170px,.95fr) minmax(240px,1fr) 30px;
+  column-gap:clamp(20px,3.8vw,65px);align-items:center;
+  padding:30px 0;border-bottom:1px solid #3b453a;
+  transition:background .3s,padding .3s;
+}
+.atelier-more-row:hover {background:rgba(219,250,141,.035);padding-left:12px;padding-right:12px;}
+.atelier-more-index {font:12px monospace;color:#a7b29e;}
+.atelier-more-name {display:flex;gap:20px;align-items:center;}
+.atelier-more-name svg {flex-shrink:0;color:#dbfa8d;}
+.atelier-home .atelier-more-name h3 {font-size:clamp(1.6rem,2.6vw,3.5rem);letter-spacing:-.05em!important;}
+.atelier-more-summary p {font-size:14px;line-height:1.5;color:#c2ccbd;}
+.atelier-more-summary > span {display:block;color:#8f9d89;font:10px monospace;margin-top:13px;text-transform:uppercase;}
+.atelier-more-arrow {color:#dbfa8d;font-size:24px;align-self:center;justify-self:end;}
+.atelier-more-detail {grid-column:2 / 4;margin-top:10px;border-top:1px solid #364235;}
+.atelier-more-detail summary {font-size:12px;padding:12px 0;}
+.atelier-more-detail p {font-size:13px;line-height:1.7;color:#b9c5b4;max-width:700px;margin:6px 0 15px;}
+.atelier-more-detail > div {display:flex;flex-wrap:wrap;gap:7px;}
+.atelier-more-detail > div span {font:10px monospace;padding:7px 10px;border:1px solid #53604c;color:#d0e3c6;}
+.atelier-github-link {display:inline-flex;gap:35px;align-items:center;border-bottom:1px solid #daedca;margin-top:43px;padding-bottom:13px;font-size:18px;font-weight:600;}
+.atelier-github-link:hover {color:#dbfa8d;}
+@media(max-width:1050px){
+ .atelier-featured-project,.atelier-featured-project.atelier-project-reverse {grid-template-columns:1fr 1fr;gap:33px;}
+ .atelier-project-image-panel {aspect-ratio:.95;min-height:390px;padding:35px 18px;}
+ .atelier-home .atelier-project-info h3 {font-size:clamp(4rem,7vw,6rem);}
+ .atelier-more-row {grid-template-columns:36px minmax(130px,1fr) minmax(210px,1fr) 20px;column-gap:15px;}
+}
+@media(max-width:740px){
+ .atelier-section-container {padding-inline:22px;}
+ .atelier-project-intro-grid,.atelier-more-heading {grid-template-columns:1fr;gap:23px;margin-bottom:55px;}
+ .atelier-project-intro-grid > div,.atelier-more-heading p {max-width:580px;justify-self:start;}
+ .atelier-featured-stack {gap:105px;}
+ .atelier-featured-project,.atelier-featured-project.atelier-project-reverse {display:flex;flex-direction:column;gap:29px;align-items:stretch;}
+ .atelier-project-reverse .atelier-project-image-panel,.atelier-project-reverse .atelier-project-info {order:initial;}
+ .atelier-project-image-panel {aspect-ratio:1.12;min-height:290px;padding:43px 22px;}
+ .atelier-home .atelier-project-info h3 {font-size:clamp(4.1rem,14vw,6rem);}
+ .atelier-project-tagline {font-size:21px;}
+ .atelier-more-row {grid-template-columns:25px minmax(0,1fr) 20px;column-gap:13px;row-gap:12px;padding:24px 0;}
+ .atelier-more-name {gap:11px;}
+ .atelier-more-name svg {width:17px;}
+ .atelier-more-summary {grid-column:2 / 4;grid-row:2;}
+ .atelier-more-summary p {font-size:13px;}
+ .atelier-more-arrow {grid-column:3;grid-row:1;}
+ .atelier-more-detail {grid-column:2 / 4;grid-row:3;}
+ .atelier-projects {padding-block:90px;}
+ .atelier-more-work {margin-top:120px;}
+ .atelier-section-index span:last-child {font-size:9px;text-align:right;}
+ .atelier-case-details dl > div {grid-template-columns:1fr;gap:6px;}
+}
+@media (hover:none),(pointer:coarse){
+ .atelier-project-image-panel:hover .atelier-featured-image {transform:none;}
+ .atelier-more-row:hover {padding-inline:0;}
+}
