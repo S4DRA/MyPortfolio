@@ -130,3 +130,13 @@
 }
 .pack-inner-image-fallback span {font-size:clamp(1.7rem,3vw,3rem);font-weight:800;letter-spacing:-.065em!important;}
 .pack-inner-image-fallback small {font:11px/1.5 "Courier New",monospace;max-width:260px;}
+
+
+.pack-inner-item-live {
+ display:inline-flex;align-items:center;gap:10px;
+ font-size:14px;font-weight:800;
+ border-bottom:1.5px solid #183e2d;padding-bottom:7px;margin-top:22px;
+ color:#17402a!important;
+ transition:color .2s,border-color .2s;
+}
+.pack-inner-item-live:hover {color:#277851!important;border-color:#277851;}
