@@ -17,8 +17,8 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Sadra Ahadiyan | Product-Focused Software and UI',
-  description: 'Portfolio of Sadra Ahadiyan, a Computer Engineering student in Istanbul building product-focused software, interfaces, and AI-assisted workflows.',
+  title: 'Sadra Ahadiyan — Software, Products & Interactive Experiences',
+  description: 'Independent projects by Sadra Ahadiyan: VAL, FxCK IT!, Conduit, Merkat, Dampener and more. Software engineering, interaction design and real products.',
   icons: {
     icon: '/rootonset.png',
     apple: '/icons/apple-touch-icon.png',
