@@ -1,40 +1,107 @@
 import type { PortfolioProject } from "./types"
 
-// Existing copy is preserved. Missing primary-project content is intentionally absent.
+// Published projects are grounded in project repositories and verified Vercel production domains.
+// A READY deployment does not guarantee every authenticated workflow has been validated.
 export const projects: PortfolioProject[] = [
   {
     "id": "conduit",
     "slug": "conduit",
     "index": "01",
     "title": "Conduit",
-    "category": "Product design + engineering",
+    "category": "Collaboration / productivity",
+    "year": "2026",
+    "status": "Published web preview · product in development",
+    "tagline": "A connected workspace for communication, tasks, projects and progress.",
+    "summary": "A web-based collaboration product exploring the path from conversation to actionable work: shared spaces, task ownership, project visibility and connected activity.",
+    "role": "Product direction, full-stack application development and interaction design.",
+    "problem": "Teams lose context when messages, tasks and project tracking live in disconnected tools.",
+    "solution": "A unified product direction that connects conversations to tasks, people, workspaces and project milestones through a responsive web experience.",
+    "decision": "Treat communication and task context as connected objects instead of separate destinations. The published landing page demonstrates the interaction model.",
+    "outcomes": [
+      "Published a responsive cinematic product website and an installable-web-app foundation. The landing page uses illustrative examples, not real customer metrics."
+    ],
+    "technologies": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Prisma",
+      "PWA"
+    ],
+    "projectUrl": "https://conduit-blush.vercel.app",
+    "gallery": [
+      {
+        "src": "https://conduit-blush.vercel.app/brand/conduit-custom-wordmark.svg",
+        "alt": "Official Conduit wordmark from the published product",
+        "label": "Published Conduit identity"
+      }
+    ],
+    "links": [
+      {
+        "label": "Open published website",
+        "href": "https://conduit-blush.vercel.app",
+        "internal": false
+      }
+    ],
     "featured": true,
     "archive": false,
     "order": 1,
-    "contentState": "placeholder",
-    "missing": [
-      "summary",
-      "case study",
-      "assets",
-      "links"
-    ]
+    "contentState": "existing"
   },
   {
     "id": "merkat",
     "slug": "merkat",
     "index": "02",
     "title": "Merkat",
-    "category": "Communication / social product",
+    "category": "Social communication / planning",
+    "year": "2026",
+    "status": "Public preview · hosted functionality under verification",
+    "tagline": "Talk. Plan. Meet. A mobile-first social space for conversations that lead to real plans.",
+    "summary": "A communication product centered on chats, friendships and shared plans. Username/password accounts, persistent direct messages, unread states and accepted friendships are implemented in its documented development foundation; hosted end-to-end verification remains in progress.",
+    "role": "Product concept, UX, brand direction and full-stack engineering.",
+    "problem": "Everyday chat, friendships and planning can become disconnected, especially on mobile.",
+    "solution": "A Next.js and PostgreSQL application for account identity, friend relationships and direct conversations, designed around a clear mobile navigation system and a future chat-to-plan calendar workflow.",
+    "decision": "Keep the center action focused on starting conversations. Treat group coordination and calendar integration as product direction unless verified in the published environment.",
+    "outcomes": [
+      "Published a hosted preview with the original Merkat brand.",
+      "Documented persistent direct messaging, friendship and recovery workflows for development environments. Public hosting is not presented as fully verified."
+    ],
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Supabase Realtime"
+    ],
+    "projectUrl": "https://merkat-umber.vercel.app",
+    "repositoryUrl": "https://github.com/S4DRA/Merkat",
+    "gallery": [
+      {
+        "src": "https://merkat-umber.vercel.app/brand/merkat-white-on-orange.png",
+        "alt": "Original Merkat white capsule M symbol on orange",
+        "label": "Original Merkat brand identity"
+      },
+      {
+        "src": "https://merkat-umber.vercel.app/icons/merkat-512.png",
+        "alt": "Merkat square app icon",
+        "label": "Published app icon"
+      }
+    ],
+    "links": [
+      {
+        "label": "Open public preview",
+        "href": "https://merkat-umber.vercel.app",
+        "internal": false
+      },
+      {
+        "label": "GitHub repository",
+        "href": "https://github.com/S4DRA/Merkat",
+        "internal": false
+      }
+    ],
     "featured": true,
     "archive": false,
     "order": 2,
-    "contentState": "placeholder",
-    "missing": [
-      "summary",
-      "case study",
-      "assets",
-      "links"
-    ]
+    "contentState": "existing"
   },
   {
     "id": "dampener",
@@ -146,13 +213,56 @@ export const projects: PortfolioProject[] = [
     "slug": "val",
     "index": "04",
     "title": "VAL",
-    "category": "Social communication platform",
-    "summary": "A Discord-like product direction around groups, friends, invites, text channels, voice channels, and notifications.",
-    "evidence": "The work is about product structure as much as UI: keeping navigation, permissions, and communication states clear across desktop and mobile.",
+    "category": "Social platform / Windows desktop",
+    "year": "2026",
+    "status": "Published web app and Windows download",
+    "tagline": "A place for friends, groups, messages and voice rooms—on the web and on Windows.",
+    "summary": "VAL brings friends, shared spaces and communication into one product. It includes a responsive public site, account flows, channels and messaging, and a Windows installer with a published update path.",
+    "role": "Product design and cross-platform engineering.",
+    "problem": "Communities need familiar communication tools without losing the feeling of a shared place.",
+    "solution": "A Next.js communication platform with spaces, direct messages and voice-oriented collaboration, paired with an installable Windows desktop client.",
+    "decision": "Keep the same account and product structure across browser and desktop, while giving desktop users a proper installer and release-update experience.",
+    "outcomes": [
+      "Published web application and Windows download page.",
+      "Desktop release handling checks the current published installer rather than displaying a hard-coded version."
+    ],
     "technologies": [
       "Next.js",
-      "Product Design",
-      "Communication"
+      "TypeScript",
+      "Prisma",
+      "Supabase",
+      "Windows desktop"
+    ],
+    "projectUrl": "https://doshab.vercel.app",
+    "repositoryUrl": "https://github.com/S4DRA/Doshab",
+    "gallery": [
+      {
+        "src": "https://doshab.vercel.app/brand/val-mark-512.png",
+        "alt": "Official VAL whale logo",
+        "label": "Published VAL brand mark"
+      },
+      {
+        "src": "https://doshab.vercel.app/brand/val-mark-256.png",
+        "alt": "VAL small-format whale mark",
+        "label": "Brand icon"
+      }
+    ],
+    "links": [
+      {
+        "label": "Explore VAL",
+        "href": "https://doshab.vercel.app",
+        "internal": false
+      },
+      {
+        "label": "Windows download",
+        "href": "https://doshab.vercel.app/download",
+        "internal": false
+      },
+      {
+        "label": "GitHub repository",
+        "href": "https://github.com/S4DRA/Doshab",
+        "internal": false
+      }
     ],
     "featured": true,
     "archive": false,
@@ -162,6 +272,52 @@ export const projects: PortfolioProject[] = [
       "kind": "secondary",
       "icon": "MessageCircle"
     }
+  },
+  {
+    "id": "fxck-it",
+    "slug": "fxck-it",
+    "index": "05",
+    "title": "FxCK IT!",
+    "category": "Multiplayer party game",
+    "year": "2026",
+    "status": "Public playable release · October 2026",
+    "tagline": "One letter, too many answers, and your friends judging every word.",
+    "summary": "A spooky browser word-party game inspired by Esm Famil. Players join six-character rooms, pick avatars, fill category sheets, vote on answers and reveal their scores together.",
+    "role": "Game concept, interaction design, full-stack development and deployment.",
+    "problem": "Traditional word games are hard to coordinate remotely when every player needs a shared timer, private answers and fair judging.",
+    "solution": "Room-code multiplayer with host-managed rounds and categories, player voting, server-authoritative scoring, account-free guest identity, private photo avatars and durable game state.",
+    "decision": "Keep the game social: the players, not an AI referee, judge answers. Server authority enforces the timer, score rules and private drafts.",
+    "outcomes": [
+      "Published at fxck-it.vercel.app using Vercel Hobby and Supabase Free.",
+      "Supports up to 16 room seats by default, configurable categories, voting, private photos and reliable reconnects.",
+      "Independent browser gameplay and multi-client recovery were verified for the October 2026 release; physical-phone validation is still separate."
+    ],
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "Realtime",
+      "Multiplayer"
+    ],
+    "projectUrl": "https://fxck-it.vercel.app",
+    "gallery": [
+      {
+        "src": "https://fxck-it.vercel.app/avatars/kawaii-set-1.webp",
+        "alt": "Original in-game FxCK IT! sticker avatar artwork",
+        "label": "In-game character sticker artwork"
+      }
+    ],
+    "links": [
+      {
+        "label": "Play the published game",
+        "href": "https://fxck-it.vercel.app",
+        "internal": false
+      }
+    ],
+    "featured": true,
+    "archive": false,
+    "order": 5,
+    "contentState": "existing"
   },
   {
     "id": "smart-office-security-camera",
