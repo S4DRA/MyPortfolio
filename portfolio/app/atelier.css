@@ -480,3 +480,52 @@
  .atelier-project-image-panel:hover .atelier-featured-image {transform:none;}
  .atelier-more-row:hover {padding-inline:0;}
 }
+
+
+/* Keep the whole existing multi-page portfolio in one visual language. */
+:root,.dark {
+  --background:#101211;
+  --foreground:#f3f1e9;
+  --card:#1b1f1c;
+  --card-foreground:#f3f1e9;
+  --popover:#1c211b;
+  --popover-foreground:#f3f1e9;
+  --primary:#dbfa8d;
+  --primary-foreground:#101211;
+  --secondary:#252b23;
+  --secondary-foreground:#e8ebdc;
+  --muted:#242923;
+  --muted-foreground:#aaaFA4;
+  --border:#3c4439;
+  --input:#20241f;
+  --ring:#dbfa8d;
+}
+body {
+  background:#101211!important;
+  background-image:radial-gradient(ellipse 55rem 35rem at 75% 2%,rgba(219,250,141,.035),transparent 90%)!important;
+  color:#f3f1e9;
+}
+body h1,body h2,body h3,body h4,body h5,body h6 {
+  font-family:"Helvetica Neue",Arial,sans-serif;
+  letter-spacing:-.045em!important;
+}
+/* More specific selectors prevent old homepage typography from overriding the new case-study grid. */
+.atelier-home #projects .atelier-project-intro h2 {
+  font-size:clamp(3.9rem,8.7vw,10.6rem);line-height:.91;letter-spacing:-.08em!important;
+}
+.atelier-home #projects .atelier-more-heading h2 {
+  font-size:clamp(3.6rem,7.1vw,8rem);line-height:.93;letter-spacing:-.07em!important;
+}
+.atelier-home #projects .atelier-project-info h3 {
+  font-size:clamp(4.8rem,8vw,9rem);letter-spacing:-.085em!important;
+}
+.atelier-home #projects .atelier-more-name h3 {
+  font-size:clamp(1.6rem,2.6vw,3.5rem);letter-spacing:-.05em!important;
+}
+.atelier-home #projects .atelier-more-name {min-width:0;}
+.atelier-home #projects .atelier-more-name h3 {overflow-wrap:break-word;}
+@media(max-width:740px) {
+  .atelier-home #projects .atelier-project-info h3 {font-size:clamp(4.1rem,14vw,6rem);}
+  .atelier-home #projects .atelier-project-intro h2 {font-size:clamp(3.25rem,11vw,5.6rem);}
+  .atelier-home #projects .atelier-more-heading h2 {font-size:clamp(3rem,10vw,5rem);}
+}
