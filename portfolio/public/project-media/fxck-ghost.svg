@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="720" viewBox="0 0 720 720" role="img" aria-label="FxCK IT original ghost sticker">
+<rect width="720" height="720" fill="#ff5baa"/>
+<circle cx="360" cy="358" r="288" fill="#fff21b"/>
+<g transform="translate(144 132) scale(4.45)" fill="none" stroke="#100e17" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M20 58V36Q20 7 49 7q30 0 30 29v18q16-12 17-1 1 17-21 23 9 20-5 19-11-1-16-14-9 20-22 13-7-4 0-16C9 85 5 71 6 63q2-10 14-5Z" fill="#fffefa"/>
+<ellipse cx="36" cy="37" rx="3.7" ry="5.5" fill="#100e17" stroke="none"/>
+<ellipse cx="64" cy="37" rx="3.7" ry="5.5" fill="#100e17" stroke="none"/>
+<ellipse cx="50" cy="57" rx="7" ry="9" fill="#100e17" stroke="none"/>
+<ellipse cx="27" cy="53" rx="7" ry="4" fill="#ffb7d8" stroke="none"/>
+<ellipse cx="73" cy="53" rx="7" ry="4" fill="#ffb7d8" stroke="none"/>
+</g>
+</svg>

@@ -13,6 +13,7 @@ export type ProjectShowcase = {
   tags: string[]
   imageSrc?: string
   imageAlt?: string
+  href?: string
   order: number
 }
 
