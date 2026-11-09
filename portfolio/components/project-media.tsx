@@ -59,3 +59,21 @@ export function ProjectMedia({ title, gallery, index }: { title: string; gallery
     </div>
   )
 }
+
+
+export function PublishedImage({src, alt}:{src:string;alt:string}) {
+  const [broken, setBroken] = useState(false)
+
+  if (broken) {
+    return <div className="pack-inner-image-fallback" role="img" aria-label={alt}>
+      <span>Portfolio visual</span>
+      <small>View the published project for the full experience.</small>
+    </div>
+  }
+
+  return (
+    // The media comes from its actual published project.
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={src} alt={alt} loading="lazy" decoding="async" onError={() => setBroken(true)} />
+  )
+}
