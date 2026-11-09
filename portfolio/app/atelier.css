@@ -1,0 +1,326 @@
+/* Visual rebuild: editorial type, restrained color and purposeful motion. */
+.atelier-home {
+  --background: #101211;
+  --foreground: #f3f1e9;
+  --card: #1b1f1c;
+  --card-foreground: #f3f1e9;
+  --muted: #242923;
+  --muted-foreground: #aaaFA4;
+  --primary: #dbfa8d;
+  --primary-foreground: #101211;
+  --secondary: #252b23;
+  --secondary-foreground: #e8ebdc;
+  --border: #3c4439;
+  --input: #20241f;
+  --ring: #dbfa8d;
+  color: var(--foreground);
+  background: #101211;
+  font-family: "Helvetica Neue", "Arial", sans-serif;
+  position: relative;
+  isolation: isolate;
+}
+.atelier-home::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 36rem 36rem at 87% 7%, rgba(157,199,101,.055), transparent 75%),
+    radial-gradient(ellipse 50rem 50rem at 10% 34%, rgba(244,241,230,.025), transparent 80%);
+}
+.atelier-home h1, .atelier-home h2, .atelier-home h3, .atelier-home h4 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -.045em !important;
+  font-weight: 600;
+  line-height: 1.045;
+}
+.atelier-home a, .atelier-home button { -webkit-tap-highlight-color: transparent; }
+.atelier-home [data-scene] { scroll-margin-top: 92px; }
+.atelier-home ::selection { background: #dbfa8d; color: #11140f; }
+.atelier-skip {
+  position: fixed; top: -150px; left: 16px; z-index: 100;
+  background: #dbfa8d; color:#11140f; padding: 14px 20px;
+}
+.atelier-skip:focus { top: 18px; }
+.atelier-header {
+  position: fixed; top: 0; inset-inline: 0; z-index: 70;
+  color: #f3f1e9; border-bottom: 1px solid rgba(242,244,232,.12);
+  background: rgba(16,18,17,.76);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  transition: background .35s, border-color .35s;
+}
+.atelier-header.is-scrolled { background: rgba(14,17,14,.94); border-color: rgba(242,244,232,.2); }
+.atelier-header-inner {
+  min-height: 86px; max-width: 1660px; margin: auto; padding: 0 clamp(22px,4.3vw,76px);
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+}
+.atelier-brand { display: inline-flex; align-items:center; gap:14px; flex-shrink: 0; }
+.atelier-brand-symbol {
+  border: 1px solid rgba(241,241,225,.45); border-radius:50%;
+  width: 43px; height: 43px; display:grid; place-items:center;
+  font-size: 25px; font-weight: 700; position:relative; letter-spacing:-.09em!important;
+  line-height: 1;
+}
+.atelier-brand-symbol span { position:absolute; font-size: 11px; color:#dbfa8d; right: 5px; top: 3px; }
+.atelier-brand-type {
+  display:flex; flex-direction:column; gap:0; font-size:14px; font-weight:800;
+  letter-spacing:-.02em!important; line-height:1.2;
+}
+.atelier-brand-type > span { font-weight:500; }
+.atelier-brand-type small {font-family: "IBM Plex Mono",monospace; color:#a8b29d; font-size:9px; letter-spacing:.14em!important; margin-top:4px;}
+.atelier-desktop-nav { display:flex; gap:clamp(24px,2.7vw,44px); align-items:center; }
+.atelier-desktop-nav a {
+  font-size:13px; font-weight:600; position: relative; line-height:2; transition:color .2s;
+}
+.atelier-desktop-nav a span { color:#8f9c88; font:10px monospace; margin-right:7px; }
+.atelier-desktop-nav a::after {
+  content:""; position:absolute; height:1px; bottom:-7px; left:0; right:100%;
+  background:#dbfa8d; transition:right .3s cubic-bezier(.19,1,.22,1);
+}
+.atelier-desktop-nav a:hover { color:#dbfa8d; }
+.atelier-desktop-nav a:hover::after {right:0;}
+.atelier-header-actions { display:flex; align-items:center; gap:12px; }
+.atelier-nav-contact {
+  display:inline-flex; justify-content:center; align-items:center; gap:18px;
+  background:#dbfa8d; color:#141611!important; border:1px solid #dbfa8d;
+  padding:12px 19px; min-height:45px; border-radius:3px;
+  font-size:13px; font-weight:700;
+  transition:background .2s, transform .3s;
+}
+.atelier-nav-contact:hover {background:#f3f1e9;transform:translateY(-2px);}
+.atelier-menu-button {
+  display:none; width:44px;height:44px;align-items:center;justify-content:center;
+  border:1px solid #5a6553; border-radius:3px; color:#f3f1e9;
+}
+.atelier-reading-progress {
+  height:2px; background:#dbfa8d; width:100%;
+  transform-origin:left center; transform:scaleX(var(--atelier-scroll-progress,0));
+  position:absolute;bottom:-1px;left:0;pointer-events:none;
+}
+.atelier-mobile-menu {display:none;}
+/* Hero */
+.atelier-hero {
+  min-height: min(900px,100svh);
+  padding: 120px clamp(22px,4.3vw,76px) 24px;
+  max-width:1660px;margin:0 auto;display:flex;flex-direction:column;
+}
+.atelier-hero-top,.atelier-hero-bottom {
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  font:10px/1.5 "IBM Plex Mono",monospace;letter-spacing:.12em!important;
+  color:#a2ad9f;
+}
+.atelier-status {display:inline-flex;align-items:center;gap:10px;color:#d6decf;}
+.atelier-status-dot {width:7px;height:7px;border-radius:50%;background:#dbfa8d;box-shadow:0 0 0 4px rgba(219,250,141,.11);}
+.atelier-divider {color:#586554;margin:0 10px;}
+.atelier-hero-grid {
+  display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.67fr);
+  gap:clamp(30px,5vw,85px);align-items:center;flex:1;
+  padding:clamp(50px,7vh,105px) 0 clamp(45px,5vh,70px);
+}
+.atelier-hero-copy {min-width:0;}
+.atelier-kicker, .atelier-micro {
+  font:11px/1.6 "IBM Plex Mono",monospace;
+  font-weight:500; letter-spacing:.13em!important; color:#c6d3b6;
+}
+.atelier-kicker span {color:#dbfa8d;font-size:18px;vertical-align:middle;margin-right:8px;}
+.atelier-home .atelier-hero-title {
+  font-size:clamp(3.6rem,7.6vw,8.7rem);
+  line-height:.97; max-width:970px; margin:30px 0 0;
+  letter-spacing:-.075em!important;font-weight:600;
+}
+.atelier-hero-title em {
+  font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.09em!important;
+  color:#dbfa8d;
+}
+.atelier-hero-title > span {white-space:nowrap;}
+.atelier-period {color:#dbfa8d;}
+.atelier-hero-detail {display:flex;gap:35px;align-items:start;max-width:640px;margin-top:40px;}
+.atelier-detail-index {flex:0 0 auto;font:10px/1.5 monospace;letter-spacing:.12em!important;color:#8e9e88;padding-top:8px;}
+.atelier-hero-detail p {font-size:clamp(15px,1.18vw,19px);line-height:1.65;color:#c1c8ba;max-width:470px;}
+.atelier-hero-buttons {display:flex;align-items:center;gap:25px;margin-top:34px;flex-wrap:wrap;}
+.atelier-button-main {
+  display:inline-flex;align-items:center;justify-content:space-between;gap:35px;
+  padding:16px 20px;background:#dbfa8d;color:#11150f!important;border-radius:3px;
+  font-size:14px;font-weight:700; min-height:55px; transition:transform .25s,background .25s;
+}
+.atelier-button-main:hover {transform:translateY(-3px);background:#eefcc1;}
+.atelier-button-subtle {display:inline-flex;align-items:center;gap:12px;border-bottom:1px solid #687462;padding:12px 0;font-size:13px;font-weight:600;transition:color .2s;}
+.atelier-button-subtle:hover {color:#dbfa8d;}
+.atelier-hero-visual {position:relative;width:100%;max-width:510px;justify-self:end;}
+.atelier-portrait-frame {
+  min-height:380px;aspect-ratio: .79;overflow:hidden;position:relative;
+  border:1px solid rgba(227,242,208,.2);background:#29342b;
+  transform:perspective(1100px) rotateY(calc(var(--pointer-x,0) * 5deg)) rotateX(calc(var(--pointer-y,0) * -5deg));
+  transition:transform .38s ease-out;will-change:transform;
+}
+.atelier-photo-backdrop {
+  position:absolute;inset:0;background:
+    radial-gradient(ellipse 72% 70% at 72% 35%,#596a49 0%,#313f31 50%,transparent 100%),
+    linear-gradient(130deg,#242e27,#48523f 54%,#202d25);
+}
+.atelier-photo-arc {
+  position:absolute;width:95%;aspect-ratio:1;border:1px solid rgba(219,250,141,.25);
+  border-radius:50%;top:13%;left:9%;box-shadow:0 0 0 85px rgba(209,247,141,.018);
+}
+.atelier-portrait-image {
+  position:absolute!important;inset:0;height:100%;width:100%;object-fit:cover;object-position:center;
+  mix-blend-mode:luminosity;filter:grayscale(1) contrast(1.08);
+  transition:filter .6s,transform .75s cubic-bezier(.16,1,.3,1);
+}
+.atelier-portrait-frame:hover .atelier-portrait-image {filter:grayscale(.15) contrast(1.03);transform:scale(1.035);}
+.atelier-photo-top,.atelier-photo-bottom {
+  pointer-events:none;position:absolute;left:18px;right:18px;
+  display:flex;justify-content:space-between;gap:15px;
+  font:10px monospace;letter-spacing:.12em!important;text-shadow:0 1px 8px #141814;
+  color:#f7faec;
+}
+.atelier-photo-top {top:20px;}
+.atelier-photo-bottom {bottom:20px;align-items:end;}
+.atelier-photo-bottom span:last-child {font-size:24px;color:#dbfa8d;}
+.atelier-portrait-caption {display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;color:#b8c3b2;font-size:13px;line-height:1.45;}
+.atelier-asterisk {font-size:39px;color:#dbfa8d;line-height:1;}
+.atelier-portrait-caption span:last-child {font:10px monospace;color:#889684;margin-left:auto;}
+.atelier-hero-bottom {border-top:1px solid #424a40;padding-top:20px;}
+.atelier-scroll-arrow {display:inline-block;font-size:19px;color:#dbfa8d;margin-left:10px;animation:atelier-nudge 2s ease-in-out infinite;}
+.atelier-hero-social {display:flex;gap:24px;}
+.atelier-hero-social a {display:flex;align-items:center;gap:5px;color:#e6e9df;transition:color .2s;}
+.atelier-hero-social a:hover {color:#dbfa8d;}
+/* Stronger editorial hierarchy for the existing sections */
+.atelier-home #about,.atelier-home #projects,.atelier-home #experience,.atelier-home #skills,.atelier-home #contact {
+  padding-top:clamp(95px,10vw,175px);padding-bottom:clamp(95px,10vw,175px);
+}
+.atelier-home #about {border-top:1px solid #3b433a;}
+.atelier-home #about > div,.atelier-home #projects > div,.atelier-home #experience > div,.atelier-home #skills > div,.atelier-home #contact > div {
+  max-width:1450px;
+}
+.atelier-home #about h2,.atelier-home #experience h2,.atelier-home #skills h2,.atelier-home #contact h2 {
+  font-size:clamp(2.4rem,4.7vw,5.6rem);line-height:1.04;
+}
+.atelier-home #about h3,.atelier-home #experience h3,.atelier-home #skills h3 {
+  letter-spacing:-.03em!important;
+}
+.atelier-home #about .text-primary,.atelier-home #projects .text-primary,.atelier-home #experience .text-primary,.atelier-home #skills .text-primary,.atelier-home #contact .text-primary {
+  text-transform:uppercase;letter-spacing:.13em!important;font-size:11px;font-family:monospace;
+}
+.atelier-home #projects {border-top:1px solid #3b433a;}
+.atelier-home #projects h2 {font-size:clamp(2.9rem,6.7vw,7.5rem);line-height:.98;letter-spacing:-.065em!important;max-width:900px;}
+.atelier-home #projects h3 {font-size:clamp(3.2rem,6vw,6.5rem);line-height:1;}
+.atelier-home #projects article {transition:transform .5s cubic-bezier(.19,1,.22,1);}
+.atelier-home #projects figure {
+  border-radius:4px;border:1px solid #414b3e;box-shadow:0 25px 90px rgba(0,0,0,.25);
+  transition:box-shadow .4s,border-color .4s,transform .5s;
+}
+.atelier-home #projects figure:hover {
+  transform:translateY(-6px);border-color:#819b63;box-shadow:0 30px 100px rgba(0,0,0,.38);
+}
+.atelier-home #projects figure img {transition:transform .8s cubic-bezier(.16,1,.3,1);}
+.atelier-home #projects figure:hover img {transform:scale(1.04);}
+.atelier-home #projects figcaption {font-size:11px;letter-spacing:.03em!important;background:#161b16;border-color:#394337;}
+.atelier-home #projects article dl {border-color:#445041;}
+.atelier-home #projects article dl > div {border-bottom:1px solid #303a30;padding-bottom:14px;}
+.atelier-home #projects article dl > div:last-child {border-bottom:none;}
+.atelier-home #projects article a, .atelier-home #experience a, .atelier-home #contact a {
+  transition:color .25s,transform .25s,background .25s,border-color .25s;
+}
+.atelier-home #projects article a:hover,.atelier-home #experience a:hover {transform:translateY(-3px);}
+.atelier-home #experience {
+  background:linear-gradient(180deg,#1c211b,#151b16)!important;
+  border-block:1px solid #374137;
+}
+.atelier-home #experience article {transition:padding-left .3s;}
+.atelier-home #experience article:hover {padding-left:10px;}
+.atelier-home #skills {border-bottom:1px solid #394238;}
+.atelier-home #contact h2 {max-width:900px;}
+.atelier-home #contact a[href^="mailto"] {background:#dbfa8d;color:#101510;border-color:#dbfa8d;font-weight:700;}
+.atelier-home #contact a[href^="mailto"]:hover {background:#effbc8;}
+.atelier-home footer {border-color:#3b4439;background:#0b0e0b;min-height:130px;}
+/* A consistent accessible arrival animation. The source content remains visible without JS. */
+@keyframes atelier-arrive { from {opacity:0;transform:translateY(26px);} to{opacity:1;transform:translateY(0);} }
+@keyframes atelier-nudge {0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.atelier-enter {animation:atelier-arrive .9s both cubic-bezier(.19,1,.22,1);}
+.atelier-home [data-reveal] {opacity:1;}
+.atelier-motion-ready .atelier-home [data-reveal]:not(.atelier-revealed) {opacity:0;transform:translateY(30px);}
+.atelier-motion-ready .atelier-home [data-reveal] {
+  transition:opacity .85s cubic-bezier(.18,1,.26,1),transform .85s cubic-bezier(.18,1,.26,1);
+}
+.atelier-motion-ready .atelier-home [data-reveal].atelier-revealed {opacity:1;transform:translateY(0);}
+/* Responsive: touch receives equivalent information and navigation, not hover-dependence. */
+@media (max-width: 1150px) {
+  .atelier-hero-grid {grid-template-columns:minmax(0,1.1fr) minmax(280px,.7fr);gap:35px;}
+  .atelier-home .atelier-hero-title {font-size:clamp(3.2rem,7vw,6.6rem);}
+  .atelier-hero-detail {gap:20px;}
+  .atelier-desktop-nav {gap:18px;}
+}
+@media (max-width: 900px) {
+  .atelier-header-inner {min-height:74px;}
+  .atelier-desktop-nav {display:none;}
+  .atelier-menu-button {display:flex;}
+  .atelier-mobile-menu {
+    display:block;position:fixed;z-index:65;inset:74px 0 0;background:#151915;
+    opacity:0;visibility:hidden;transform:translateY(-12px);
+    transition:opacity .3s,visibility .3s,transform .3s;overflow-y:auto;
+  }
+  .atelier-mobile-menu.is-open {opacity:1;visibility:visible;transform:translateY(0);}
+  .atelier-mobile-menu-inner {max-width:680px;margin:auto;padding:30px 26px max(35px,env(safe-area-inset-bottom));}
+  .atelier-mobile-menu nav {margin-top:26px;border-top:1px solid #394438;}
+  .atelier-mobile-menu nav a {display:grid;grid-template-columns:46px 1fr 25px;align-items:center;
+    border-bottom:1px solid #394438;padding:17px 0;font-size:clamp(32px,7vw,54px);letter-spacing:-.055em!important;color:#f3f1e9;}
+  .atelier-mobile-menu nav a span {font:11px monospace;letter-spacing:0!important;color:#b0c0a4;}
+  .atelier-mobile-menu nav a svg {width:22px;height:22px;color:#dbfa8d;}
+  .atelier-menu-more {margin-top:32px;}
+  .atelier-menu-more > div {margin-top:12px;display:flex;flex-wrap:wrap;gap:10px;}
+  .atelier-menu-more a {border:1px solid #4b5548;padding:10px 13px;font-size:12px;color:#d4decc;border-radius:2px;}
+  .atelier-menu-foot {display:flex;justify-content:space-between;gap:14px;margin-top:40px;font:10px monospace;color:#abb7a5;}
+  .atelier-hero-grid {grid-template-columns:1fr .7fr;gap:24px;}
+  .atelier-home .atelier-hero-title {font-size:clamp(3rem,7.4vw,5.4rem);}
+  .atelier-portrait-frame {min-height:290px;}
+}
+@media (max-width: 680px) {
+  .atelier-header-inner {min-height:68px;padding-inline:19px;}
+  .atelier-mobile-menu {top:68px;}
+  .atelier-brand-symbol {width:39px;height:39px;}
+  .atelier-brand-type {font-size:12px;}
+  .atelier-brand-type small {font-size:8px;}
+  .atelier-nav-contact {display:none;}
+  .atelier-hero {min-height:auto;padding:100px 22px 25px;}
+  .atelier-hero-top {font-size:9px;align-items:start;}
+  .atelier-hero-top > span:last-child {display:none;}
+  .atelier-hero-grid {display:flex;flex-direction:column;align-items:stretch;gap:50px;padding:52px 0 45px;}
+  .atelier-home .atelier-hero-title {font-size:clamp(3.2rem,12vw,6.4rem);max-width:620px;margin-top:21px;}
+  .atelier-hero-title > span {white-space:normal;}
+  .atelier-kicker {font-size:10px;}
+  .atelier-hero-detail {display:block;margin-top:27px;}
+  .atelier-detail-index {display:block;padding:0;margin-bottom:12px;}
+  .atelier-hero-detail p {font-size:16px;line-height:1.65;}
+  .atelier-hero-buttons {margin-top:27px;gap:20px;}
+  .atelier-button-main {min-height:54px;}
+  .atelier-hero-visual {max-width:520px;justify-self:unset;}
+  .atelier-portrait-frame {aspect-ratio:1.13;min-height:0;}
+  .atelier-portrait-image {object-position:center 35%;}
+  .atelier-hero-bottom {align-items:flex-start;flex-wrap:wrap;row-gap:18px;}
+  .atelier-hero-edition {display:none;}
+  .atelier-hero-social {margin-left:auto;gap:12px;}
+  .atelier-hero-social a {font-size:9px;}
+  .atelier-home #about,.atelier-home #projects,.atelier-home #experience,.atelier-home #skills,.atelier-home #contact {padding-block:85px;}
+  .atelier-home #about h2,.atelier-home #experience h2,.atelier-home #skills h2,.atelier-home #contact h2 {font-size:clamp(2.25rem,9vw,3.8rem);}
+  .atelier-home #projects h2 {font-size:clamp(2.8rem,11vw,5rem);}
+  .atelier-home #projects h3 {font-size:clamp(2.8rem,12vw,4.7rem);}
+  .atelier-home #projects article {gap:25px;}
+  .atelier-home #projects article dl {gap:17px;}
+}
+@media (max-width: 400px) {
+  .atelier-home .atelier-hero-title {font-size:clamp(2.8rem,11vw,4.1rem);}
+  .atelier-hero-social {width:100%;margin-left:0;}
+  .atelier-portrait-caption {font-size:11px;}
+  .atelier-brand {gap:9px;}
+}
+@media (hover: none), (pointer:coarse) {
+  .atelier-portrait-frame {transform:none!important;}
+  .atelier-home #projects figure:hover,.atelier-home #experience article:hover {transform:none;padding-left:0;}
+}
+@media (prefers-reduced-motion:reduce) {
+  .atelier-enter,.atelier-scroll-arrow {animation:none!important;}
+  .atelier-home *, .atelier-home *::before,.atelier-home *::after {scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  .atelier-motion-ready .atelier-home [data-reveal] {opacity:1!important;transform:none!important;}
+}
