@@ -6,7 +6,7 @@ export function AtelierEffects() {
   useEffect(() => {
     const motionOK = !window.matchMedia("(prefers-reduced-motion: reduce)").matches
     const root = document.documentElement
-    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"))
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal], #about > div, #experience > div, #skills > div, #contact > div"))
     const observer = motionOK && "IntersectionObserver" in window
       ? new IntersectionObserver(entries => {
           entries.forEach(entry => {
@@ -19,6 +19,7 @@ export function AtelierEffects() {
       : null
 
     elements.forEach(element => {
+      element.setAttribute("data-reveal", "")
       if (observer) observer.observe(element)
       else element.classList.add("atelier-revealed")
     })
