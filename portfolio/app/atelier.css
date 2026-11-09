@@ -529,3 +529,12 @@ body h1,body h2,body h3,body h4,body h5,body h6 {
   .atelier-home #projects .atelier-project-intro h2 {font-size:clamp(3.25rem,11vw,5.6rem);}
   .atelier-home #projects .atelier-more-heading h2 {font-size:clamp(3rem,10vw,5rem);}
 }
+
+/* Allow long hero lines to reflow safely across laptop and tablet widths. */
+.atelier-hero-title > span {white-space:normal;}
+@media(min-width:681px) {
+  .atelier-home .atelier-hero-title {font-size:clamp(3.25rem,5.6vw,7.5rem);}
+}
+@media(max-width:680px) {
+  .atelier-home .atelier-hero-title {overflow-wrap:normal;word-break:normal;hyphens:none;}
+}
