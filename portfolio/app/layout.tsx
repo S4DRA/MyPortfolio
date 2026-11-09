@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/toaster'
 import { CinematicShell } from '@/components/cinematic/cinematic-shell'
 import 'lenis/dist/lenis.css'
 import './globals.css'
+import './atelier.css'
 
 export const viewport: Viewport = {
   width: 'device-width',
