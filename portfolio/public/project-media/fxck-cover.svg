@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-labelledby="t d">
+<title id="t">FxCK IT! word-party artwork</title>
+<desc id="d">Portfolio cover arranged from the game's original spooky palette and ghost and pumpkin artwork.</desc>
+<rect width="1200" height="720" fill="#9024f9"/>
+<path d="M-45 468L622 286 799 799-45 799Z" fill="#ff951b"/>
+<path d="M-50 102L804-30 813 198-50 330Z" fill="#c98bff"/>
+<rect x="52" y="90" width="648" height="440" rx="10" fill="#fffbee" stroke="#100e17" stroke-width="12" transform="rotate(-3 376 310)"/>
+<text x="100" y="267" font-family="Arial Black,Arial,sans-serif" font-size="118" font-weight="900" letter-spacing="-8" fill="#100e17">FxCK IT!</text>
+<text x="108" y="348" font-family="Arial Black,Arial,sans-serif" font-size="48" font-weight="900" letter-spacing="-2" fill="#ff5baa">BIG WORDS.</text>
+<text x="108" y="409" font-family="Arial Black,Arial,sans-serif" font-size="48" font-weight="900" letter-spacing="-2" fill="#100e17">BAD DECISIONS.</text>
+<text x="111" y="474" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#4c4558">ONE LETTER. YOUR FRIENDS JUDGE.</text>
+<g transform="translate(758 108) rotate(7 168 165) scale(3.1)" fill="none" stroke="#100e17" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M20 58V36Q20 7 49 7q30 0 30 29v18q16-12 17-1 1 17-21 23 9 20-5 19-11-1-16-14-9 20-22 13-7-4 0-16C9 85 5 71 6 63q2-10 14-5Z" fill="#fffefa"/>
+<ellipse cx="36" cy="37" rx="3.7" ry="5.5" fill="#100e17" stroke="none"/>
+<ellipse cx="64" cy="37" rx="3.7" ry="5.5" fill="#100e17" stroke="none"/>
+<ellipse cx="50" cy="57" rx="7" ry="9" fill="#100e17" stroke="none"/>
+<ellipse cx="27" cy="53" rx="7" ry="4" fill="#ffb7d8" stroke="none"/>
+<ellipse cx="73" cy="53" rx="7" ry="4" fill="#ffb7d8" stroke="none"/>
+</g>
+<g transform="translate(864 440) rotate(-12 75 75) scale(1.55)" fill="none" stroke="#100e17" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M44 28q-7-20 9-24 13 4 0 22" fill="#46ae43"/>
+<path d="M48 23C5 10-2 57 15 81q11 17 34 9 22 9 36-8 20-26 2-49-15-21-39-10Z" fill="#ff8c13"/>
+<path d="M37 27Q10 53 33 88m29-61q27 26 4 61" stroke="#dc6200" stroke-width="3"/>
+<path d="m26 45-9 16 20-3Zm44 0 12 16-21-3ZM20 69l13 7 5-5 8 8 9-8 7 5 18-8Q70 96 48 89 30 87 20 69Z" fill="#100e17" stroke-width="2"/>
+</g>
+<g stroke="#fff21b" stroke-width="8" stroke-linecap="round">
+<path d="M732 580l32 -28M743 617l51 -8M792 645l16 -29"/>
+<path d="M1099 80l18 -42M1075 100l-38 -23M1141 122l38 -8"/>
+</g>
+<text x="48" y="681" font-family="Arial,Helvetica,sans-serif" font-size="23" font-weight="800" fill="#fffbee" letter-spacing="1.5">PLAY ONLINE / F X C K I T</text>
+<text x="1152" y="681" text-anchor="end" font-family="Arial,Helvetica,sans-serif" font-size="19" font-weight="800" fill="#fffbee">2026</text>
+</svg>
