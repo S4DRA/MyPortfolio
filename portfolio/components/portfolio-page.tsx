@@ -7,7 +7,7 @@ import { PublishedImage } from "@/components/project-media"
 
 type Metric = {label:string;value:string}
 type ContentSection = {title:string;description:string;items:string[]}
-type ShowcaseCard = {title:string;description:string;tags:string[];imageSrc?:string;imageAlt?:string}
+type ShowcaseCard = {title:string;description:string;tags:string[];imageSrc?:string;imageAlt?:string;href?:string}
 type PortfolioPageProps = {
   eyebrow:string
   title:string
@@ -55,6 +55,9 @@ export function PortfolioPage({eyebrow,title,intro,metrics,sections,showcases,he
                 {item.tags.length > 0 && (
                   <p className="pack-inner-item-tags">{item.tags.join(" / ")}</p>
                 )}
+                {item.href && <a className="pack-inner-item-live" href={item.href} target="_blank" rel="noopener noreferrer">
+                  Open published project <ArrowUpRight size={17} aria-hidden="true" />
+                </a>}
               </div>
               {item.imageSrc ?
                 <div className="pack-inner-item-image">
