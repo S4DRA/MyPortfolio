@@ -109,7 +109,7 @@ export const projects: PortfolioProject[] = [
     "index": "03",
     "title": "Dampener",
     "category": "Financial SaaS",
-    "status": "Active personal product build.",
+    "status": "Published web product · active development",
     "tagline": "A finance workspace for tracking cash flow, invoices, budgets, forecasts, reports, and team access.",
     "summary": "A finance workspace for tracking cash flow, invoices, budgets, forecasts, reports, and team access.",
     "role": "I designed the product direction, built the interface, shaped the feature set, and worked through the dashboard, auth, reporting, and workspace flows.",
@@ -117,17 +117,13 @@ export const projects: PortfolioProject[] = [
     "solution": "Landing page, login flow, financial dashboard, transaction structure, invoices, recurring items, budgets, forecasting, reports, exports, and business workspaces.",
     "decision": "I moved the product away from a simple tracker layout and toward a workspace model so it could support both personal and team use without turning every view into a separate product.",
     "outcomes": [
-      "The product became more restrained over time. I removed decorative finance language and made the interface focus on what users need to understand first: money in, money out, trends, and next actions."
+      "The product became more restrained over time. I removed decorative finance language and made the interface focus on what users need to understand first: money in, money out, trends, and next actions.",
+      "Published a mobile-responsive landing experience; the screenshot gallery shows real Dampener product pages."
     ],
     "links": [
       {
-        "label": "Project page",
-        "href": "/programming-projects",
-        "internal": true
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/S4DRA",
+        "label": "Explore published website",
+        "href": "https://dampener.vercel.app",
         "internal": false
       }
     ],
@@ -160,14 +156,22 @@ export const projects: PortfolioProject[] = [
       "icon": "Wallet",
       "eyebrow": "Featured project",
       "tone": "financial"
-    }
+    },
+    "year": "2026",
+    "projectUrl": "https://dampener.vercel.app",
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "Financial dashboards",
+      "Responsive web"
+    ]
   },
   {
     "id": "axivoz",
     "slug": "axivoz",
     "title": "Axivoz",
     "category": "Desktop assistant",
-    "status": "Prototype direction and interface concept.",
+    "status": "Research / interface prototype · not a public production app",
     "tagline": "A desktop assistant concept for controlling computer tasks through a focused conversational interface.",
     "summary": "A desktop assistant concept for controlling computer tasks through a focused conversational interface.",
     "role": "I shaped the product idea, designed the assistant atmosphere, and built the preview around a simple command-led interaction model.",
@@ -179,13 +183,8 @@ export const projects: PortfolioProject[] = [
     ],
     "links": [
       {
-        "label": "Project page",
-        "href": "/programming-projects",
-        "internal": true
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/S4DRA",
+        "label": "GitHub repository",
+        "href": "https://github.com/S4DRA/Axivoz",
         "internal": false
       }
     ],
@@ -206,7 +205,14 @@ export const projects: PortfolioProject[] = [
       "icon": "Bot",
       "eyebrow": "Featured project",
       "tone": "voice"
-    }
+    },
+    "year": "2026",
+    "repositoryUrl": "https://github.com/S4DRA/Axivoz",
+    "technologies": [
+      "Product design",
+      "Desktop UX",
+      "Prototyping"
+    ]
   },
   {
     "id": "val",
@@ -858,5 +864,25 @@ export const primaryProjects = projects.filter(project => project.featured).sort
 export const archiveProjects = projects.filter(project => project.archive).sort((a, b) => a.order - b.order)
 
 export function getProjectShowcases(route: string) {
-  return projects.flatMap(project => project.presentations?.[route] ?? []).sort((a, b) => a.order - b.order)
+  // Published work appears ahead of earlier academic exercises, without erasing
+  // any archive content. Brand assets are project-owned, never stock screenshots.
+  const publishedIdsByRoute: Record<string, string[]> = {
+    "programming-projects": ["val", "fxck-it", "conduit", "merkat", "dampener", "axivoz"],
+    "game-projects": ["fxck-it"],
+    "website-design": ["conduit", "dampener"],
+  }
+  const published = (publishedIdsByRoute[route] ?? []).flatMap((id, index) => {
+    const project = projects.find(item => item.id === id)
+    if (!project) return []
+    const image = project.gallery?.[0]
+    return [{
+      title: project.title,
+      description: [project.summary ?? project.tagline ?? "", project.status ?? ""].filter(Boolean).join(" — "),
+      tags: project.technologies ?? [],
+      ...(image ? { imageSrc: image.src, imageAlt: image.alt } : {}),
+      order: -100 + index,
+    }]
+  })
+  const existing = projects.flatMap(project => project.presentations?.[route] ?? [])
+  return [...published, ...existing].sort((a, b) => a.order - b.order)
 }
